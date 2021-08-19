@@ -1,6 +1,6 @@
 body {
     background-color: #202124;
-    font-size: 15pt;
+    font-size: 12pt;
     color: white;
 }
 
@@ -10,8 +10,8 @@ table {
     margin: auto;
     margin-top: 30px;
     border-collapse: collapse;
-    max-width: 600px;
-    width: 90%;
+    max-width: 400px;
+    width: 95%;
     caret-color: transparent;
 }
 
@@ -22,8 +22,10 @@ tr {
 td {
     border: 2px solid blue;
     width: 50%;
-    height: 60px;
+    height: 40px;
     text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 input[type="number"] {
     background: transparent;
