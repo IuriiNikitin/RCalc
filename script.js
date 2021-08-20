@@ -16,11 +16,20 @@ const rate = document.getElementById("rate"), //Ставка
     const ZP = {
         allmd: "", //Всего Дневных смен
         allnd: "", //Всего Ночных смен
-        wh: "", //Количество ВСЕХ часов
-        oh: "", //Сверхурочные часы
+        wh: "", //Отработанное время
+        oh: "", //Сверхурочные часы (Работа в выходные дни)
         eh: "", //Вечерние часы
         nh: "", //Ночные часы
+        msh: "", //Многостаночные часы
+        ohm: "", //Доплата за работу в выходные дни
+        ehm: "", //Доплата за Вечерние часы
+        nhm: "", //Доплата за Ночные часы
         pw: "", //Сдельная оплата труда
+        lms: "", //Вознаграждение за выслугу лет
+        lvl: "", //Надбавка за разряд
+        ms: "", //Оплата за многостаночное обслуживание
+        wa: "", //Премия рабочим
+        cul: "" //Премия за культуру производства
     };
 
     function calcDays() {
@@ -29,11 +38,11 @@ const rate = document.getElementById("rate"), //Ставка
     }
 
     function calcWh() {
-        ZP.wh = (ZP.allmd) * 12 + (ZP.allnd) * 10.7;
+        ZP.wh = (ZP.allmd * 11.7) + (ZP.allnd * 11);
     }
 
     function calcOh() {
-        ZP.oh = (+omd.value) * 12 + (+ond.value) * 10.7;
+        ZP.oh = (+omd.value * 11.7) + (+ond.value * 11);
     }
 
     function calcEh() {
@@ -44,6 +53,76 @@ const rate = document.getElementById("rate"), //Ставка
         ZP.nh = ZP.allnd * 7.5;
     }
 
+    function calcMsh() {
+        ZP.msh = Math.round((ZP.wh * (+coe.value - 1)) * 100) / 100;
+    }
+
+    function calcOhm() {
+        ZP.ohm = ZP.oh * +rate.value;
+    }
+
+    function calcEhm() {
+        ZP.ehm = +(ZP.eh * (+rate.value * 0.2)).toFixed(2); // 20% от ставки
+    }
+
+    function calcNhm() {
+        ZP.nhm = +(ZP.nh * (+rate.value * 0.4)).toFixed(2); // 40% от ставки
+    }
+
     function calcPw() {
-        ZP.pw = ZP.wh * (+rate.value);
+        ZP.pw = Math.round((ZP.wh * (+rate.value)) * 100) / 100;
+    }
+
+    function calcLms() {
+        if(lms[0].checked) {
+            ZP.lms = +lms[0].value;
+        }
+        else if(lms[1].checked) {
+            ZP.lms = +lms[1].value;
+        }
+        else if(lms[2].checked) {
+            ZP.lms = +lms[2].value;
+        }
+    }
+
+    function calcLvl() {
+        if(lvl[0].checked) {
+            ZP.lvl = +lvl[0].value;
+        }
+        else if(lvl[1].checked) {
+            ZP.lvl = +lvl[1].value;
+        }
+        else if(lvl[2].checked) {
+            ZP.lvl = +lvl[2].value;
+        }
+    }
+function calcMs() {
+    ZP.ms = Math.round(((ZP.msh * 0.75) * +rate.value) * 100) / 100;
+}
+
+function calcWa() {
+    ZP.wa = Math.round(((ZP.pw + ZP.ms) * 0.3) * 100) / 100;
+}
+
+function calcCul() {
+    ZP.cul = Math.round(((ZP.pw + ZP.ms) * (+cul.value / 100)) * 100) / 100;
+}
+
+    function calc() {
+        calcDays();
+        calcWh();
+        calcOh();
+        calcEh();
+        calcNh();
+        calcMsh();
+        calcOhm();
+        calcEhm();
+        calcNhm();
+        calcPw();
+        calcLms();
+        calcLvl();
+        calcMs();
+        calcWa();
+        calcCul();
+        console.log(ZP);
     }
