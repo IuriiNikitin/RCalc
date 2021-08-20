@@ -1,12 +1,12 @@
 body {
-    background-color: #202124;
+    background-color: #35363A;
     font-size: 12pt;
-    color: white;
+    color: #A3A4A8;
 }
 
 
 table {
-    border: 2px solid blue;
+    border: 2px solid #FFFFFF;
     margin: auto;
     margin-top: 30px;
     border-collapse: collapse;
@@ -16,11 +16,11 @@ table {
 }
 
 tr {
-    border: 2px solid blue; 
+    border: 2px solid #FFFFFF; 
 }
 
 td {
-    border: 2px solid blue;
+    border: 2px solid #FFFFFF;
     width: 50%;
     height: 40px;
     text-align: center;
@@ -31,7 +31,7 @@ input[type="number"] {
     background: transparent;
     border: none;
     font-size: 15pt;
-    color:white;
+    color:#A3A4A8;
     text-align: center;
     width: 100%;
     height:100%;

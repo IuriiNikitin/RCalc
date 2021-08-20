@@ -12,6 +12,11 @@ const rate = document.getElementById("rate"), //Ставка
     coe = document.getElementById("coe"), //Коэффициент
     prp = document.getElementById("prp"); //Аванс
 
+const ZP = {
+    wt: ""
+};
 
 
-const wt = (+md.value + +mowd.value) * 12 + (+nd.value + +nowd.value) * 10.7;
+ function calcWt() {
+    ZP.wt = (+md.value + (+mowd.value)) * 12 + (+nd.value + (+nowd.value)) * 10.7;
+ }
