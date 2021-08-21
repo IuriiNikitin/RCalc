@@ -18,9 +18,10 @@ const rate = document.getElementById("rate"), //Ставка
         allnd: "", //Всего Ночных смен
         wh: "", //Отработанное время
         oh: "", //Сверхурочные часы (Работа в выходные дни)
+        pwh: "", //Одностаночные часы
+        msh: "", //Многостаночные часы
         eh: "", //Вечерние часы
         nh: "", //Ночные часы
-        msh: "", //Многостаночные часы
         ohm: "", //Доплата за работу в выходные дни
         ehm: "", //Доплата за Вечерние часы
         nhm: "", //Доплата за Ночные часы
@@ -38,7 +39,7 @@ const rate = document.getElementById("rate"), //Ставка
     }
 
     function calcWh() {
-        ZP.wh = (ZP.allmd * 11.7) + (ZP.allnd * 11);
+        ZP.wh = Math.round(((ZP.allmd * 11.7) + (ZP.allnd * 11)) * 100) / 100;
     }
 
     function calcOh() {
@@ -46,7 +47,7 @@ const rate = document.getElementById("rate"), //Ставка
     }
 
     function calcEh() {
-        ZP.eh = (ZP.allmd * 3.7) + (ZP.allnd * 2);
+        ZP.eh = Math.round(((ZP.allmd * 3.7) + (ZP.allnd * 2)) * 100) / 100;
     }
 
     function calcNh() {
@@ -55,6 +56,10 @@ const rate = document.getElementById("rate"), //Ставка
 
     function calcMsh() {
         ZP.msh = Math.round((ZP.wh * (+coe.value - 1)) * 100) / 100;
+    }
+    function calcPwh() {
+        // ZP.pwh = Math.round((ZP.wh * (+coe.value)) * 100) / 100;
+        ZP.pwh = +(ZP.wh * (+coe.value)).toFixed(2);
     }
 
     function calcOhm() {
@@ -70,7 +75,13 @@ const rate = document.getElementById("rate"), //Ставка
     }
 
     function calcPw() {
-        ZP.pw = Math.round((ZP.wh * (+rate.value)) * 100) / 100;
+        if (ms.checked) {
+            calcMsh();
+            ZP.pw = Math.round((ZP.wh * (+rate.value)) * 100) / 100;
+        } else {
+            calcPwh();
+            ZP.pw = Math.round((ZP.pwh * (+rate.value)) * 100) / 100;
+        }
     }
 
     function calcLms() {
@@ -107,22 +118,20 @@ function calcWa() {
 function calcCul() {
     ZP.cul = Math.round(((ZP.pw + ZP.ms) * (+cul.value / 100)) * 100) / 100;
 }
-
-    function calc() {
-        calcDays();
-        calcWh();
-        calcOh();
-        calcEh();
-        calcNh();
-        calcMsh();
-        calcOhm();
-        calcEhm();
-        calcNhm();
-        calcPw();
-        calcLms();
-        calcLvl();
-        calcMs();
-        calcWa();
-        calcCul();
-        console.log(ZP);
-    }
+function calc() {
+    calcDays();
+    calcWh();
+    calcOh();
+    calcEh();
+    calcNh();
+    calcOhm();
+    calcEhm();
+    calcNhm();
+    calcPw();
+    calcLms();
+    calcLvl();
+    calcMs();
+    calcWa();
+    calcCul();
+    console.log(ZP);
+}
