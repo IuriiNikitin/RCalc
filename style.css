@@ -23,6 +23,7 @@ details {
 max-width: 400px;
 margin: auto;
 margin-bottom: -2px;
+/* display: block; */
 }
 
 summary {
@@ -31,8 +32,15 @@ summary {
   line-height: 40px;
   border-left: 2px solid #FFFFFF;
   border-right: 2px solid #FFFFFF;
+  /* display: block; */
 }
-
+/* details[open] table {
+  animation: spoiler 2s;
+}
+@keyframes spoiler {
+  0%   {opacity: 0;}
+  100% {opacity: 1;}
+} */
 
 tr {
     border: 2px solid #FFFFFF; 
