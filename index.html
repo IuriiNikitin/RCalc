@@ -8,32 +8,46 @@
     <title>Zarplata</title>
 </head>
 <body>
+    <main>
 <table>
-<tr><td>СТАВКА</td>     <td><input id="rate" type="number" value="239"></td></tr>
-<tr><td>ДНЕВНЫХ СМЕН</td>        <td><input id="md" type="number" value="8"></td></tr>
-<tr><td>НОЧНЫХ</td>        <td><input id="nd" type="number" value="8"></td></tr>
-<tr><td>СВЕРХУРОЧНЫХ ДНЕВНЫХ</td>      <td><input id="omd" type="number" value="0"></td></tr>
-<tr><td>СВЕРХУРОЧНЫХ НОЧНЫХ</td>      <td><input id="ond" type="number" value="0"></td></tr>
-<tr><td>МНОГОСТАНОЧКА</td>        <td><input id="ms" type="checkbox" checked></td></tr>
+<tr><td class="left">СТАВКА</td>     <td class="right"><input id="rate" type="number" value="239"></td></tr>
+<tr><td class="left">ДНЕВНЫХ СМЕН</td>        <td  class="right"><input id="md" type="number" value="8"></td></tr>
+<tr><td class="left">НОЧНЫХ</td>        <td  class="right"><input id="nd" type="number" value="8"></td></tr>
+</table>
 
-<tr><td>ВЫСЛУГА</td>
-    <td>
+<details>
+    
+    <summary>ДОПОЛНИТНЛЬНЫЕ СМЕНЫ</summary>
+    <table>
+<tr><td class="left">СВЕРХУРОЧНЫХ ДНЕВНЫХ</td>      <td class="right"><input id="omd" type="number" value="0"></td></tr>
+<tr><td class="left">СВЕРХУРОЧНЫХ НОЧНЫХ</td>      <td class="right"><input id="ond" type="number" value="0"></td></tr>
+<tr><td class="left">ПРАЗДНИЧНЫХ ДНЕВНЫХ СМЕН</td>      <td class="right"><input id="mhd" type="number" value="0"></td></tr>
+<tr><td class="left">ПРАЗДНИЧНЫХ НОЧНЫХ СМЕН</td>      <td class="right"><input id="nhd" type="number" value="0"></td></tr>
+</table>
+</details>
+
+<table>
+    <tr><td class="left">МНОГОСТАНОЧКА</td>        <td class="right"><input id="ms" type="checkbox" checked></td></tr>
+
+<tr><td class="left">ВЫСЛУГА</td>
+    <td class="right">
         <input name="lms" type="radio" value="0">0
         <input name="lms" type="radio" value="2000">2К
         <input name="lms" type="radio" value="3000" checked>3К
     </td></tr>
 
-<tr><td>РАЗРЯД</td>
-    <td>
+<tr><td class="left">РАЗРЯД</td>
+    <td class="right">
         <input name="lvl" type="radio" value="0">0
         <input name="lvl" type="radio" value="2000" checked>2К
         <input name="lvl" type="radio" value="3000">3К
     </td></tr>
 
-<tr><td>КУЛЬТУРА (%)</td>      <td><input id="cul" type="number" value="15"></td></tr>
-<tr><td>КОЭФФИЦИЕНТ</td>        <td><input  id="coe" type="number" value="2"></td></tr>
-<tr><td>АВАНС</td>        <td><input   id="prp" type="number" value="27840"></td></tr>
+<tr><td class="left">КУЛЬТУРА (%)</td>      <td class="right"><input id="cul" type="number" value="15"></td></tr>
+<tr><td class="left">КОЭФФИЦИЕНТ</td>        <td class="right"><input  id="coe" type="number" value="2"></td></tr>
+<tr><td class="left">АВАНС</td>        <td class="right"><input   id="prp" type="number" value="27840"></td></tr>
 </table>
+</main>
 
     <script src="script.js"></script>
 </body>

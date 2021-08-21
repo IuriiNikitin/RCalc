@@ -1,31 +1,54 @@
 body {
     background-color: #35363A;
     font-size: 12pt;
+    font-weight: bold;
     color: #A3A4A8;
 }
-
+main {
+  max-width: 95%;
+  margin: auto;
+}
 
 table {
     border: 2px solid #FFFFFF;
     margin: auto;
-    margin-top: 30px;
     border-collapse: collapse;
     max-width: 400px;
-    width: 95%;
     caret-color: transparent;
 }
+
+
+
+details {
+max-width: 400px;
+margin: auto;
+margin-bottom: -2px;
+}
+
+summary {
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  border-left: 2px solid #FFFFFF;
+  border-right: 2px solid #FFFFFF;
+}
+
 
 tr {
     border: 2px solid #FFFFFF; 
 }
+.left {
+  width: 55%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 
 td {
     border: 2px solid #FFFFFF;
-    width: 50%;
     height: 40px;
     text-align: center;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 input[type="number"] {
     background: transparent;

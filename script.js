@@ -5,6 +5,8 @@ const rate = document.getElementById("rate"), //Ставка
     nd = document.getElementById("nd"), //Ночные смены
     omd = document.getElementById("omd"), //Сверхурочные дневные
     ond = document.getElementById("ond"), //Сверхурочные ночные
+    mhd = document.getElementById("mhd"), //Праздничные дневные
+    nhd = document.getElementById("nhd"), //Праздничные ночные
     ms = document.getElementById("ms"), //Многостаночка
     lms = document.getElementsByName("lms"), //Выслуга
     lvl = document.getElementsByName("lvl"), //Разряд
@@ -12,75 +14,88 @@ const rate = document.getElementById("rate"), //Ставка
     coe = document.getElementById("coe"), //Коэффициент
     prp = document.getElementById("prp"); //Аванс
     
-  
+    const time = {
+        // allmd: "", //Всего Дневных смен
+        // allnd: "", //Всего Ночных смен
+        // wh: "", //Отработанное время
+        // oh: "", //Сверхурочные часы (Работа в выходные дни)
+        // pwh: "", //Одностаночные часы
+        // msh: "", //Многостаночные часы
+        // eh: "", //Вечерние часы
+        // nh: "", //Ночные часы
+    };
     const ZP = {
-        allmd: "", //Всего Дневных смен
-        allnd: "", //Всего Ночных смен
-        wh: "", //Отработанное время
-        oh: "", //Сверхурочные часы (Работа в выходные дни)
-        pwh: "", //Одностаночные часы
-        msh: "", //Многостаночные часы
-        eh: "", //Вечерние часы
-        nh: "", //Ночные часы
-        ohm: "", //Доплата за работу в выходные дни
-        ehm: "", //Доплата за Вечерние часы
-        nhm: "", //Доплата за Ночные часы
-        pw: "", //Сдельная оплата труда
-        lms: "", //Вознаграждение за выслугу лет
-        lvl: "", //Надбавка за разряд
-        ms: "", //Оплата за многостаночное обслуживание
-        wa: "", //Премия рабочим
-        cul: "" //Премия за культуру производства
+        // ohm: "", //Доплата за работу в выходные дни
+        // ehm: "", //Доплата за Вечерние часы
+        // nhm: "", //Доплата за Ночные часы
+        // pw: "", //Сдельная оплата труда
+        // lms: "", //Вознаграждение за выслугу лет
+        // lvl: "", //Надбавка за разряд
+        // ms: "", //Оплата за многостаночное обслуживание
+        // wa: "", //Премия рабочим
+        // cul: "" //Премия за культуру производства
     };
 
+    function clearTime() {
+        for (let key in time) {
+            delete time[key];
+        }
+    }
+    function clearZP() {
+        for (let key in ZP) {
+            delete ZP[key];
+        }
+    }
+
     function calcDays() {
-        ZP.allmd = +md.value + (+omd.value);
-        ZP.allnd = +nd.value + (+ond.value);
+        time.allmd = +md.value + (+omd.value);
+        time.allnd = +nd.value + (+ond.value);
     }
 
     function calcWh() {
-        ZP.wh = Math.round(((ZP.allmd * 11.7) + (ZP.allnd * 11)) * 100) / 100;
+        time.wh = Math.round(((time.allmd * 11.7) + (time.allnd * 11)) * 100) / 100;
     }
 
     function calcOh() {
-        ZP.oh = (+omd.value * 11.7) + (+ond.value * 11);
+        time.oh = Math.round(((+omd.value * 11.7) + (+ond.value * 11)) * 100) / 100;
     }
 
     function calcEh() {
-        ZP.eh = Math.round(((ZP.allmd * 3.7) + (ZP.allnd * 2)) * 100) / 100;
+        time.eh = Math.round(((time.allmd * 3.7) + (time.allnd * 2)) * 100) / 100;
     }
 
     function calcNh() {
-        ZP.nh = ZP.allnd * 7.5;
+        time.nh = time.allnd * 7.5;
     }
 
     function calcMsh() {
-        ZP.msh = Math.round((ZP.wh * (+coe.value - 1)) * 100) / 100;
+        time.msh = Math.round((time.wh * (+coe.value - 1)) * 100) / 100;
     }
     function calcPwh() {
-        // ZP.pwh = Math.round((ZP.wh * (+coe.value)) * 100) / 100;
-        ZP.pwh = +(ZP.wh * (+coe.value)).toFixed(2);
+        // time.pwh = Math.round((time.wh * (+coe.value)) * 100) / 100;
+        time.pwh = +(time.wh * (+coe.value)).toFixed(2);
     }
 
     function calcOhm() {
-        ZP.ohm = ZP.oh * +rate.value;
+        ZP.ohm = Math.round((time.oh * +rate.value) * 100) / 100;
     }
 
     function calcEhm() {
-        ZP.ehm = +(ZP.eh * (+rate.value * 0.2)).toFixed(2); // 20% от ставки
+        ZP.ehm = +(time.eh * (+rate.value * 0.2)).toFixed(2); // 20% от ставки
     }
 
     function calcNhm() {
-        ZP.nhm = +(ZP.nh * (+rate.value * 0.4)).toFixed(2); // 40% от ставки
+        ZP.nhm = +(time.nh * (+rate.value * 0.4)).toFixed(2); // 40% от ставки
     }
 
     function calcPw() {
         if (ms.checked) {
             calcMsh();
-            ZP.pw = Math.round((ZP.wh * (+rate.value)) * 100) / 100;
+            calcMs();
+            ZP.pw = Math.round((time.wh * (+rate.value)) * 100) / 100;
         } else {
             calcPwh();
-            ZP.pw = Math.round((ZP.pwh * (+rate.value)) * 100) / 100;
+            ZP.pw = Math.round((time.pwh * (+rate.value)) * 100) / 100;
         }
     }
 
@@ -108,17 +123,28 @@ const rate = document.getElementById("rate"), //Ставка
         }
     }
 function calcMs() {
-    ZP.ms = Math.round(((ZP.msh * 0.75) * +rate.value) * 100) / 100;
+    ZP.ms = Math.round(((time.msh * 0.75) * +rate.value) * 100) / 100;
 }
 
 function calcWa() {
-    ZP.wa = Math.round(((ZP.pw + ZP.ms) * 0.3) * 100) / 100;
+    if (ms.checked) {
+        ZP.wa = Math.round(((ZP.pw + ZP.ms) * 0.3) * 100) / 100;
+    } else {
+        ZP.wa = Math.round((ZP.pw * 0.3) * 100) / 100;
+    }
 }
 
 function calcCul() {
-    ZP.cul = Math.round(((ZP.pw + ZP.ms) * (+cul.value / 100)) * 100) / 100;
+    if (ms.checked) {
+        ZP.cul = Math.round(((ZP.pw + ZP.ms) * (+cul.value / 100)) * 100) / 100;
+    } else {
+        ZP.cul = Math.round((ZP.pw * (+cul.value / 100)) * 100) / 100;
+    }
 }
+
 function calc() {
+    clearTime();
+    clearZP();
     calcDays();
     calcWh();
     calcOh();
@@ -130,8 +156,7 @@ function calc() {
     calcPw();
     calcLms();
     calcLvl();
-    calcMs();
     calcWa();
     calcCul();
-    console.log(ZP);
+    console.log(time, ZP);
 }
