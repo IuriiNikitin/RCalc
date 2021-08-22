@@ -1,0 +1,36 @@
+body {
+    background-color: #35363A;
+    font-size: 11pt;
+    color: #A3A4A8;
+}
+
+#zpList {
+    display: block;
+    margin: auto;
+    margin-top: 15px;
+
+}
+
+.st1 {
+    fill: none;
+    stroke: #000000;
+    stroke-miterlimit: 10;
+}
+.st2 {
+    fill: none;
+    stroke: #000000;
+    stroke-width: 0.5;
+    stroke-miterlimit: 10;
+}
+.st3 {
+    font-family: 'Arial-BoldMT';
+    font-size:10px;
+}
+
+.st4 {
+    font-size: 8.5px;
+}
+
+.st5 {
+    font-family: 'Arial';
+}
