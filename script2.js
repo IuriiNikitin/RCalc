@@ -672,10 +672,9 @@ function createTable() {
 
 }     
  
-createTable();
+// createTable();
 
 
-// [000] Отработанное время
 
 
 

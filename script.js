@@ -78,7 +78,7 @@ mhd.onblur = nhd.onblur = function () {
     };
 
     let items = ""; //Количество строчек зарплаты
-
+    // const nfl = 13 //Налог
    
    
    
@@ -210,6 +210,8 @@ function calcCul() {
     }
 }
 
+
+
 function calcItems() {
     items = Object.keys(ZP).length + 1;
 }
@@ -233,4 +235,4 @@ function calc() {
     calcItems();
     console.log(time, ZP);
 }
-calc();
+// calc();

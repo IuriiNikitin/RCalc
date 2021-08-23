@@ -16,14 +16,14 @@ table {
     border: 2px solid #FFFFFF;
     margin: auto;
     border-collapse: collapse;
-    max-width: 425px;
+    max-width: 400px;
     caret-color: transparent;
 }
 
 
 
 details {
-max-width: 425px;
+max-width: 400px;
 margin: auto;
 margin-bottom: -2px;
 /* display: block; */
@@ -80,4 +80,14 @@ input[type="number"]::-webkit-inner-spin-button {
 
 input[type="number"]:focus {
     outline: none; /* убирание внешних линий при тычке */
+  }
+
+
+  button{
+    display: block;
+    max-width: 400px;
+    width: 95%;
+    height:40px;
+    margin: auto;
+    margin-top: 20px;
   }
