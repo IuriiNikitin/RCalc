@@ -250,7 +250,7 @@ function createTable() {
     text.setAttributeNS(null,"class","st3");
     text.setAttributeNS(null,"x",321);
     text.setAttributeNS(null,"y",items * itemSize + 61);
-    text.appendChild(document.createTextNode("Зарплата"));
+    text.appendChild(document.createTextNode(ZP.zpd));
     zpList.appendChild(text);
 
 

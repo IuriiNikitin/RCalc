@@ -77,6 +77,8 @@ mhd.onblur = nhd.onblur = function () {
         // cul: "" //Премия за культуру производства
     };
 
+    let zpd = 0; //Чёрная зарплата
+
     let items = ""; //Количество строчек зарплаты
     // const nfl = 13 //Налог
    
@@ -210,11 +212,26 @@ function calcCul() {
     }
 }
 
-
-
 function calcItems() {
-    items = Object.keys(ZP).length + 1;
+    items = Object.keys(ZP).length;
 }
+
+
+
+function sum(obj) {
+    let rez = 0;
+    for(let key in obj) {
+        rez += obj[key];
+    }
+    return rez;
+}
+
+
+    function calcZpd() {
+        ZP.zpd = sum(ZP);
+    }
+
+
 
 function calc() {
     clearTime();
@@ -232,6 +249,7 @@ function calc() {
     calcCul();
     calcLms();
     calcLvl();
+    calcZpd();
     calcItems();
     console.log(time, ZP);
 }
