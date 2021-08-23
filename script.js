@@ -55,6 +55,7 @@ mhd.onblur = nhd.onblur = function () {
         // allnd: "", //Всего Ночных смен
         // alld: "", // Отработано дней
         // allhd: "", //Праздничных дней
+        // allod: "", // Сверхурочные дни
         // wh: "", //Отработанное время
         // oh: "", //Сверхурочные часы (Работа в выходные дни)
         // pwh: "", //Одностаночные часы
@@ -76,6 +77,12 @@ mhd.onblur = nhd.onblur = function () {
         // cul: "" //Премия за культуру производства
     };
 
+    let items = ""; //Количество строчек зарплаты
+
+   
+   
+   
+   
     function clearTime() {
         for (let key in time) {
             delete time[key];
@@ -91,6 +98,12 @@ mhd.onblur = nhd.onblur = function () {
         time.allmd = +md.value + (+omd.value);
         time.allnd = +nd.value + (+ond.value);
         time.alld = time.allmd + time.allnd;
+    }
+
+    function calcAllod() {
+        if(+omd.value || +ond.value) {
+            time.allod = (+omd.value) + (+ond.value);
+        }
     }
 
     function calcWh() {
@@ -197,10 +210,15 @@ function calcCul() {
     }
 }
 
+function calcItems() {
+    items = Object.keys(ZP).length + 1;
+}
+
 function calc() {
     clearTime();
     clearZP();
     calcDays();
+    calcAllod();
     calcWh();
     calcEh();
     calcOhm();
@@ -212,6 +230,7 @@ function calc() {
     calcCul();
     calcLms();
     calcLvl();
+    calcItems();
     console.log(time, ZP);
 }
 calc();
