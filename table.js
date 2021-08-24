@@ -2,8 +2,8 @@
 
 const svgNS = "http://www.w3.org/2000/svg",
 zpList = document.getElementById("zpList"),
-itemSize = 12, //Размер строчки
-k = 0.8; // Коэфициент расстояния между строчками
+itemSize = 15, //Размер строчки
+k = 0.7; // Коэфициент расстояния между строчками
 
 
 

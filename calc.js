@@ -29,16 +29,18 @@ const rate = document.getElementById("rate"), //Ставка
    
    
    
-    function clearTime() {
-        for (let key in time) {
-            delete time[key];
+    function clear(obj) {
+        for (let key in obj) {
+            if (typeof(obj[key]) != "object") {
+                delete obj[key];
+            }
+            else {
+                clear(obj[key]);
+                }
+            }
         }
-    }
-    function clearZP() {
-        for (let key in ZP) {
-            delete ZP[key];
-        }
-    }
+
+
 
     function calcDays() {
         time.allmd = +md.value + (+omd.value);
@@ -87,7 +89,6 @@ const rate = document.getElementById("rate"), //Ставка
 
     function calcOhm() {
         if (+omd.value || +ond.value) {
-            time.allhd = (+mhd.value) + (+nhd.value);
             calcOh();
             ZP.ohm = Math.round((time.oh * +rate.value) * 100) / 100;
         }
@@ -95,6 +96,7 @@ const rate = document.getElementById("rate"), //Ставка
 
     function calcHdm() {
         if (+mhd.value || +nhd.value) {
+            time.allhd = (+mhd.value) + (+nhd.value);
             calcHdh();
             ZP.hdm = Math.round((time.hdh * rate.value) * 100) / 100;
         }
@@ -194,8 +196,8 @@ function calcZp() {
 
 
 function calc() {
-    // clearTime();
-    // clearZP();
+    clear(time);
+    clear(ZP);
     calcDays();
     calcAllod();
     calcWh();
