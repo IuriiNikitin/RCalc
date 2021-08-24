@@ -14,73 +14,17 @@ const rate = document.getElementById("rate"), //Ставка
     coe = document.getElementById("coe"), //Коэффициент
     prp = document.getElementById("prp"); //Аванс
 
-rate.onfocus = md.onfocus = 
-nd.onfocus = omd.onfocus = 
-ond.onfocus = mhd.onfocus = 
-nhd.onfocus = cul.onfocus = 
-coe.onfocus = prp.onfocus = function () {
-    this.value = "";
-};
-rate.onblur = function () {
-    if (!this.value) {
-        this.value = 239;
-    }
-};
-md.onblur = nd.onblur = 
-omd.onblur = ond.onblur = 
-mhd.onblur = nhd.onblur = function () {
-    if (!this.value) {
-        this.value = 0;
-    }
-    };
-    cul.onblur = function () {
-        if (!this.value) {
-            this.value = 15;
-        }
-    };
-    coe.onblur = function () {
-        if (!this.value) {
-            this.value = 2;
-        }
-    };
-    prp.onblur = function () {
-        if (!this.value) {
-            this.value = 27840;
-        }
-    };
 
-    
-    const time = {
-        // allmd: "", //Всего Дневных смен
-        // allnd: "", //Всего Ночных смен
-        // alld: "", // Отработано дней
-        // allhd: "", //Праздничных дней
-        // allod: "", // Сверхурочные дни
-        // wh: "", //Отработанное время
-        // oh: "", //Сверхурочные часы (Работа в выходные дни)
-        // pwh: "", //Одностаночные часы
-        // msh: "", //Многостаночные часы
-        // eh: "", //Вечерние часы
-        // nh: "", //Ночные часы
-        // hdh: "". //Праздничные часы
-    };
-    const ZP = {
-        // ohm: "", //Доплата за работу в выходные дни
-        // hdm: "" // Доплата за работу в праздничные дни
-        // ehm: "", //Доплата за Вечерние часы
-        // nhm: "", //Доплата за Ночные часы
-        // pw: "", //Сдельная оплата труда
-        // lms: "", //Вознаграждение за выслугу лет
-        // lvl: "", //Надбавка за разряд
-        // ms: "", //Оплата за многостаночное обслуживание
-        // wa: "", //Премия рабочим
-        // cul: "" //Премия за культуру производства
-    };
+    const time = {},
+        percent = {
+            nfl: 13, //Налог с физического лица
+        },
+        ZP = {
+            final: {}
+        };
 
-    let zpd = 0; //Чёрная зарплата
 
     let items = ""; //Количество строчек зарплаты
-    // const nfl = 13 //Налог
    
    
    
@@ -152,7 +96,7 @@ mhd.onblur = nhd.onblur = function () {
     function calcHdm() {
         if (+mhd.value || +nhd.value) {
             calcHdh();
-            ZP.hdm = time.hdh * rate.value;
+            ZP.hdm = Math.round((time.hdh * rate.value) * 100) / 100;
         }
     }
 
@@ -221,21 +165,37 @@ function calcItems() {
 function sum(obj) {
     let rez = 0;
     for(let key in obj) {
-        rez += obj[key];
+        if(!isNaN(obj[key])){
+            rez += obj[key];
+        }
     }
     return rez;
 }
 
-
     function calcZpd() {
-        ZP.zpd = sum(ZP);
+        ZP.final.zpd = (Math.round(sum(ZP) * 100)) / 100; //Грязная  зарплата
     }
+
+    function calcTax() {
+        ZP.final.tax = (Math.round(ZP.final.zpd * percent.nfl)) / 100; //Налог
+    }
+
+    function calcWit() {
+        ZP.final.wit = ZP.final.tax + (+prp.value);// Удержано
+    }
+function calcZpc() {
+    ZP.final.zpc = ZP.final.zpd - ZP.final.tax;// Чистая  зарплата (без вычета аванса)
+}
+
+function calcZp() {
+    ZP.final.zp = ZP.final.zpc - (+prp.value);// Зарплата
+}
 
 
 
 function calc() {
-    clearTime();
-    clearZP();
+    // clearTime();
+    // clearZP();
     calcDays();
     calcAllod();
     calcWh();
@@ -250,6 +210,10 @@ function calc() {
     calcLms();
     calcLvl();
     calcZpd();
+    calcTax();
+    calcWit();
+    calcZpc();
+    calcZp();
     calcItems();
     console.log(time, ZP);
 }

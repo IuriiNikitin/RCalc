@@ -3,15 +3,15 @@
 const svgNS = "http://www.w3.org/2000/svg",
 zpList = document.getElementById("zpList"),
 itemSize = 12, //Размер строчки
-nfl = 13, // Налог
 k = 0.8; // Коэфициент расстояния между строчками
-let i = 0; //Счётчик айтемов
 
 
 
 
 function createTable() {
-    i = 0;
+    let i = 0; //Счётчик айтемов
+    
+    
     let rect = document.createElementNS(svgNS,"rect");
     rect.setAttributeNS(null,"x",0);
     rect.setAttributeNS(null,"y",0);
@@ -159,7 +159,7 @@ function createTable() {
     text.setAttributeNS(null,"class","st3");
     text.setAttributeNS(null,"x",335);
     text.setAttributeNS(null,"y",34);
-    text.appendChild(document.createTextNode("239.00"));
+    text.appendChild(document.createTextNode(rate.value));
     zpList.appendChild(text);
 
     text = document.createElementNS(svgNS,"text");
@@ -243,14 +243,14 @@ function createTable() {
     text.setAttributeNS(null,"class","st4 st5");
     text.setAttributeNS(null,"x",313);
     text.setAttributeNS(null,"y",items * itemSize + 82);
-    text.appendChild(document.createTextNode(nfl));
+    text.appendChild(document.createTextNode(percent.nfl));
     zpList.appendChild(text);
 
     text = document.createElementNS(svgNS,"text");
     text.setAttributeNS(null,"class","st3");
     text.setAttributeNS(null,"x",321);
     text.setAttributeNS(null,"y",items * itemSize + 61);
-    text.appendChild(document.createTextNode(ZP.zpd));
+    text.appendChild(document.createTextNode(ZP.final.zpd));
     zpList.appendChild(text);
 
 
@@ -258,7 +258,7 @@ function createTable() {
     text.setAttributeNS(null,"class","st3");
     text.setAttributeNS(null,"x",321);
     text.setAttributeNS(null,"y",items * itemSize + 95);
-    text.appendChild(document.createTextNode("Удержано"));
+    text.appendChild(document.createTextNode(ZP.final.wit));
     zpList.appendChild(text);
 
     text = document.createElementNS(svgNS,"text");
@@ -272,7 +272,7 @@ function createTable() {
     text.setAttributeNS(null,"class","st3");
     text.setAttributeNS(null,"x",300);
     text.setAttributeNS(null,"y",items * itemSize + 121);
-    text.appendChild(document.createTextNode("Зарплата"));
+    text.appendChild(document.createTextNode(ZP.final.zp));
     zpList.appendChild(text);
 
     text = document.createElementNS(svgNS,"text");
@@ -286,7 +286,7 @@ function createTable() {
     text.setAttributeNS(null,"class","st4 st5");
     text.setAttributeNS(null,"x",339);
     text.setAttributeNS(null,"y",items * itemSize + 82);
-    text.appendChild(document.createTextNode("Налог"));
+    text.appendChild(document.createTextNode(ZP.final.tax));
     zpList.appendChild(text);
 
     text = document.createElementNS(svgNS,"text");
