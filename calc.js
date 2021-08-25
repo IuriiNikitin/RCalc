@@ -29,24 +29,13 @@ const rate = document.getElementById("rate"), //Ставка
    
    
    
-    function clear(obj) {
-        for (let key in obj) {
-            if (typeof(obj[key]) != "object") {
-                delete obj[key];
-            }
-            else {
-                clear(obj[key]);
-                }
-            }
-        }
 
 
-
-    function calcDays() {
-        time.allmd = +md.value + (+omd.value);
-        time.allnd = +nd.value + (+ond.value);
-        time.alld = time.allmd + time.allnd;
-    }
+const calcDays = () => {
+    time.allmd = +md.value + (+omd.value);
+    time.allnd = +nd.value + (+ond.value);
+    time.alld = time.allmd + time.allnd;
+};
 
     function calcAllod() {
         if(+omd.value || +ond.value) {
@@ -54,29 +43,14 @@ const rate = document.getElementById("rate"), //Ставка
         }
     }
 
-    function calcWh() {
-        time.wh = Math.round(((time.allmd * 11.7) + (time.allnd * 11)) * 100) / 100;
-    }
-
-    function calcOh() {
-        time.oh = Math.round(((+omd.value * 11.7) + (+ond.value * 11)) * 100) / 100;
-    }
-
-    function calcEh() {
-        time.eh = Math.round(((time.allmd * 3.7) + (time.allnd * 2)) * 100) / 100;
-    }
-
-    function calcNh() {
-        time.nh = time.allnd * 7.5;
-    }
-
-    function calcMsh() {
-        time.msh = Math.round((time.wh * (+coe.value - 1)) * 100) / 100;
-    }
-    function calcPwh() {
-        time.pwh = Math.round((time.wh * (+coe.value)) * 100) / 100;
-        // time.pwh = +(time.wh * (+coe.value)).toFixed(2);
-    }
+    const calcWh = () => {time.wh = Math.round(((time.allmd * 11.7) + (time.allnd * 11)) * 100) / 100;},
+    calcOh = () => {time.oh = Math.round(((+omd.value * 11.7) + (+ond.value * 11)) * 100) / 100;},
+    calcEh = () => {time.eh = Math.round(((time.allmd * 3.7) + (time.allnd * 2)) * 100) / 100;},
+    calcNh = () => {time.nh = time.allnd * 7.5;},
+    calcMsh = () => {time.msh = Math.round((time.wh * (+coe.value - 1)) * 100) / 100;},
+    calcPwh = () => {time.pwh = Math.round((time.wh * (+coe.value)) * 100) / 100;};
+    
+    
     function calcHdh() {
         if (ms.checked) {
             time.hdh = (+mhd.value * 11.7) + (+nhd.value * 7);
@@ -102,9 +76,7 @@ const rate = document.getElementById("rate"), //Ставка
         }
     }
 
-    function calcEhm() {
-        ZP.ehm = +(time.eh * (+rate.value * 0.2)).toFixed(2); // 20% от ставки
-    }
+    const calcEhm = () => {ZP.ehm = +(time.eh * (+rate.value * 0.2)).toFixed(2);}; // 20% от ставки
 
     function calcNhm() {
         if (time.allnd) {
@@ -138,9 +110,7 @@ function calcLvl() {
         ZP.lvl = +lvl[2].value;
     }
 }
-function calcMs() {
-    ZP.ms = Math.round(((time.msh * 0.75) * +rate.value) * 100) / 100;
-}
+const calcMs = () => {ZP.ms = Math.round(((time.msh * 0.75) * +rate.value) * 100) / 100;};
 
 function calcWa() {
     if (ms.checked) {
@@ -150,48 +120,43 @@ function calcWa() {
     }
 }
 
-function calcCul() {
-    if (ms.checked) {
-        ZP.cul = Math.round(((ZP.pw + ZP.ms) * (+cul.value / 100)) * 100) / 100;
-    } else {
-        ZP.cul = Math.round((ZP.pw * (+cul.value / 100)) * 100) / 100;
-    }
-}
-
-function calcItems() {
-    items = Object.keys(ZP).length;
-}
+const calcCul = () => {if (ms.checked) {ZP.cul = Math.round(((ZP.pw + ZP.ms) * (+cul.value / 100)) * 100) / 100;} 
+                       else {ZP.cul = Math.round((ZP.pw * (+cul.value / 100)) * 100) / 100;}};
 
 
 
-function sum(obj) {
-    let rez = 0;
-    for(let key in obj) {
-        if(!isNaN(obj[key])){
-            rez += obj[key];
+
+
+    const calcItems = () => {items = Object.keys(ZP).length;},
+    calcZpd = () => {ZP.final.zpd = (Math.round(sum(ZP) * 100)) / 100;}, //Грязная  зарплата
+    calcTax = () => {ZP.final.tax = (Math.round(ZP.final.zpd * percent.nfl)) / 100;}, //Налог
+    calcWit = () => {ZP.final.wit = ZP.final.tax + (+prp.value);},// Удержано
+    calcZpc = () => {ZP.final.zpc = ZP.final.zpd - ZP.final.tax;},// Чистая  зарплата (без вычета аванса)
+    calcZp = () => {ZP.final.zp = ZP.final.zpc - (+prp.value);};// Зарплата
+
+
+
+
+    function clear(obj) {
+        for (let key in obj) {
+            if (typeof(obj[key]) != "object") {
+                delete obj[key];
+            }
+            else {
+                clear(obj[key]);
+                }
+            }
         }
-    }
-    return rez;
-}
 
-    function calcZpd() {
-        ZP.final.zpd = (Math.round(sum(ZP) * 100)) / 100; //Грязная  зарплата
+    function sum(obj) {
+        let rez = 0;
+        for(let key in obj) {
+            if(!isNaN(obj[key])){
+                rez += obj[key];
+            }
+        }
+        return rez;
     }
-
-    function calcTax() {
-        ZP.final.tax = (Math.round(ZP.final.zpd * percent.nfl)) / 100; //Налог
-    }
-
-    function calcWit() {
-        ZP.final.wit = ZP.final.tax + (+prp.value);// Удержано
-    }
-function calcZpc() {
-    ZP.final.zpc = ZP.final.zpd - ZP.final.tax;// Чистая  зарплата (без вычета аванса)
-}
-
-function calcZp() {
-    ZP.final.zp = ZP.final.zpc - (+prp.value);// Зарплата
-}
 
 
 
