@@ -100,7 +100,7 @@ input[type="number"]:focus {
   }
 
   .btn:disabled {
-    background-color: #eee;
-    color: #444;
+    background-color: #444;
+    color: rgb(150, 150, 150);
     pointer-events: none;
   }

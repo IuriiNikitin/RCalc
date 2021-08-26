@@ -11,6 +11,9 @@ k = 0.7; // расстояние между
 function createTable() {
     let i = 0; //Счётчик айтемов
     
+    let style = document.createElementNS(svgNS,"style");
+    style.appendChild(document.createTextNode(".st1 {fill: none;stroke: #000000;stroke-miterlimit: 10;}.st2 {fill: none;stroke: #000000;stroke-width: 0.5;stroke-miterlimit: 10;}.st3 {font-family: Arial-Bold, sans-serif;font-size:10px;}.st4 {font-size: 8.5px;}.st5 {font-family: Arial;font-weight: 300;}"));
+    zpList.appendChild(style);
     
     let rect = document.createElementNS(svgNS,"rect");
     rect.setAttributeNS(null,"x",0);
@@ -680,11 +683,11 @@ createTable();
 
 function saveSvg(svgEl, name) {
     svgEl.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-    var svgData = svgEl.outerHTML;
-    var preface = '<?xml version="1.0" standalone="no"?>\r\n';
-    var svgBlob = new Blob([preface, svgData], {type:"image/svg+xml;charset=utf-8"});
-    var svgUrl = URL.createObjectURL(svgBlob);
-    var downloadLink = document.createElement("a");
+    const svgData = svgEl.outerHTML;
+    const preface = '<?xml version="1.0" standalone="no"?>\r\n';
+    const svgBlob = new Blob([preface, svgData], {type:"image/svg+xml;charset=utf-8"});
+    const svgUrl = URL.createObjectURL(svgBlob);
+    const downloadLink = document.createElement("a");
     downloadLink.href = svgUrl;
     downloadLink.download = name;
     document.body.appendChild(downloadLink);
@@ -692,4 +695,4 @@ function saveSvg(svgEl, name) {
     document.body.removeChild(downloadLink);
 }
 
-// saveSvg(zpList, "test.svg");
+// saveSvg(zpList, `Зарплата ${Date()}.svg`);
