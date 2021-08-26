@@ -172,7 +172,21 @@ function fixed(obj) {
 
     }
 }
-
+function space(obj) {
+    for (let key in obj) {
+        if (typeof (obj[key]) != "object") {
+            if (obj[key].length == 7) {
+                obj[key] = obj[key].slice(0, 1) + " " + obj[key].slice(1);
+            } else if (obj[key].length == 8) {
+                obj[key] = obj[key].slice(0, 2) + " " + obj[key].slice(2);
+            } else if (obj[key].length == 9) {
+                obj[key] = obj[key].slice(0, 3) + " " + obj[key].slice(3);
+            }
+        } else{
+            space(obj[key]);
+        }
+    }
+}
 
 
 function calc() {
@@ -197,6 +211,7 @@ function calc() {
     calcZpc();
     calcZp();
     fixed(ZP);
+    space(ZP);
     calcItems();
     console.log(time, ZP);
 }
