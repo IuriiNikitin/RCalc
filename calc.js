@@ -42,13 +42,12 @@ const calcDays = () => {
             time.allod = (+omd.value) + (+ond.value);
         }
     }
-
-    const calcWh = () => {time.wh = Math.round(((time.allmd * 11.7) + (time.allnd * 11)) * 100) / 100;},
-    calcOh = () => {time.oh = Math.round(((+omd.value * 11.7) + (+ond.value * 11)) * 100) / 100;},
-    calcEh = () => {time.eh = Math.round(((time.allmd * 3.7) + (time.allnd * 2)) * 100) / 100;},
+const calcWh = () => {time.wh = round((time.allmd * 11.7) + (time.allnd * 11));},
+    calcOh = () => {time.oh = round((+omd.value * 11.7) + (+ond.value * 11));},
+    calcEh = () => {time.eh = round((time.allmd * 3.7) + (time.allnd * 2));},
     calcNh = () => {time.nh = time.allnd * 7.5;},
-    calcMsh = () => {time.msh = Math.round((time.wh * (+coe.value - 1)) * 100) / 100;},
-    calcPwh = () => {time.pwh = Math.round((time.wh * (+coe.value)) * 100) / 100;};
+    calcMsh = () => {time.msh = round(time.wh * (+coe.value - 1));},
+    calcPwh = () => {time.pwh = round(time.wh * (+coe.value));};
     
     
     function calcHdh() {
@@ -64,7 +63,7 @@ const calcDays = () => {
     function calcOhm() {
         if (+omd.value || +ond.value) {
             calcOh();
-            ZP.ohm = Math.round((time.oh * +rate.value) * 100) / 100;
+            ZP.ohm = round(time.oh * +rate.value);
         }
     }
 
@@ -72,16 +71,16 @@ const calcDays = () => {
         if (+mhd.value || +nhd.value) {
             time.allhd = (+mhd.value) + (+nhd.value);
             calcHdh();
-            ZP.hdm = Math.round((time.hdh * rate.value) * 100) / 100;
+            ZP.hdm = round(time.hdh * rate.value);
         }
     }
 
-    const calcEhm = () => {ZP.ehm = +(time.eh * (+rate.value * 0.2)).toFixed(2);}; // 20% от ставки
+    const calcEhm = () => {ZP.ehm = round((time.eh * (+rate.value * 0.2)));}; // 20% от ставки
 
     function calcNhm() {
         if (time.allnd) {
             calcNh();
-            ZP.nhm = +(time.nh * (+rate.value * 0.4)).toFixed(2); // 40% от ставки
+            ZP.nhm = round((time.nh * (+rate.value * 0.4))); // 40% от ставки
         }
     }
 
@@ -89,10 +88,10 @@ const calcDays = () => {
         if (ms.checked) {
             calcMsh();
             calcMs();
-            ZP.pw = Math.round((time.wh * (+rate.value)) * 100) / 100;
+            ZP.pw = round(time.wh * (+rate.value));
         } else {
             calcPwh();
-            ZP.pw = Math.round((time.pwh * (+rate.value)) * 100) / 100;
+            ZP.pw = round(time.pwh * (+rate.value));
         }
     }
 function calcLms() {
@@ -110,29 +109,29 @@ function calcLvl() {
         ZP.lvl = +lvl[2].value;
     }
 }
-const calcMs = () => {ZP.ms = Math.round(((time.msh * 0.75) * +rate.value) * 100) / 100;};
+const calcMs = () => {ZP.ms = round((time.msh * 0.75) * +rate.value);};
 
 function calcWa() {
     if (ms.checked) {
-        ZP.wa = Math.round(((ZP.pw + ZP.ms) * 0.3) * 100) / 100;
+        ZP.wa = round((ZP.pw + ZP.ms) * 0.3);
     } else {
-        ZP.wa = Math.round((ZP.pw * 0.3) * 100) / 100;
+        ZP.wa = round(ZP.pw * 0.3);
     }
 }
 
-const calcCul = () => {if (ms.checked) {ZP.cul = Math.round(((ZP.pw + ZP.ms) * (+cul.value / 100)) * 100) / 100;} 
-                       else {ZP.cul = Math.round((ZP.pw * (+cul.value / 100)) * 100) / 100;}};
+const calcCul = () => {if (ms.checked) {ZP.cul = round((ZP.pw + ZP.ms) * (+cul.value / 100));} 
+                       else {ZP.cul = round(ZP.pw * (+cul.value / 100));}};
 
 
 
 
 
     const calcItems = () => {items = Object.keys(ZP).length;},
-    calcZpd = () => {ZP.final.zpd = (Math.round(sum(ZP) * 100)) / 100;}, //Грязная  зарплата
-    calcTax = () => {ZP.final.tax = (Math.round(ZP.final.zpd * percent.nfl)) / 100;}, //Налог
+    calcZpd = () => {ZP.final.zpd = round(sum(ZP));}, //Грязная  зарплата
+    calcTax = () => {ZP.final.tax = Math.round(ZP.final.zpd * (percent.nfl / 100));}, //Налог
     calcWit = () => {ZP.final.wit = ZP.final.tax + (+prp.value);},// Удержано
-    calcZpc = () => {ZP.final.zpc = ZP.final.zpd - ZP.final.tax;},// Чистая  зарплата (без вычета аванса)
-    calcZp = () => {ZP.final.zp = ZP.final.zpc - (+prp.value);};// Зарплата
+    calcZpc = () => {ZP.final.zpc = round(ZP.final.zpd - ZP.final.tax);},// Чистая  зарплата (без вычета аванса)
+    calcZp = () => {ZP.final.zp = round(ZP.final.zpc - (+prp.value));};// Зарплата
 
 
 
@@ -158,6 +157,22 @@ const calcCul = () => {if (ms.checked) {ZP.cul = Math.round(((ZP.pw + ZP.ms) * (
         return rez;
     }
 
+function round(value) {
+    value = (Math.round(value * 100))/100;
+    return value;
+}
+
+function fixed(obj) {
+    for(let key in obj) {
+        if (typeof(obj[key]) != "object") {
+            obj[key] = obj[key].toFixed(2);
+        } else {
+            fixed(obj[key]);
+        }
+
+    }
+}
+
 
 
 function calc() {
@@ -181,7 +196,8 @@ function calc() {
     calcWit();
     calcZpc();
     calcZp();
+    fixed(ZP);
     calcItems();
     console.log(time, ZP);
 }
-// calc();
+ calc();

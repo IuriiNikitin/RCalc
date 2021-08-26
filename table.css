@@ -23,7 +23,7 @@ body {
     stroke-miterlimit: 10;
 }
 .st3 {
-    font-family: 'Arial-Bold', sans-serif;
+    font-family: Arial-Bold, sans-serif;
     font-size:10px;
 }
 
@@ -32,6 +32,6 @@ body {
 }
 
 .st5 {
-    font-family: 'Arial';
-    font-weight: 200;
+    font-family: Arial;
+    font-weight: 300;
 }

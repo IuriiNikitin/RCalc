@@ -10,7 +10,11 @@ coe.onfocus = prp.onfocus = function () {
 };
 rate.onblur = function () {
     if (!this.value) {
-        this.value = 239.00;
+        this.value = 239;
+        this.value = (+this.value).toFixed(2);
+    }
+    else {
+        this.value = (+this.value).toFixed(2);
     }
 };
 md.onblur = nd.onblur = 
@@ -33,6 +37,10 @@ mhd.onblur = nhd.onblur = function () {
     prp.onblur = function () {
         if (!this.value) {
             this.value = 27840;
+            this.value = (+this.value).toFixed(2);
+        }
+        else {
+            this.value = (+this.value).toFixed(2);
         }
     };
 
