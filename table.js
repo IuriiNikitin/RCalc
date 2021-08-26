@@ -265,7 +265,7 @@ function createTable() {
     text.setAttributeNS(null,"class","st3");
     text.setAttributeNS(null,"x",300);
     text.setAttributeNS(null,"y",items * itemSize + 109);
-    text.appendChild(document.createTextNode(prp.value));
+    text.appendChild(document.createTextNode(ZP.final.prp));
     zpList.appendChild(text);
 
     text = document.createElementNS(svgNS,"text");
@@ -279,7 +279,7 @@ function createTable() {
     text.setAttributeNS(null,"class","st4 st5");
     text.setAttributeNS(null,"x",339);
     text.setAttributeNS(null,"y",items * itemSize + 73);
-    text.appendChild(document.createTextNode(prp.value));
+    text.appendChild(document.createTextNode(ZP.final.prp));
     zpList.appendChild(text);
 
     text = document.createElementNS(svgNS,"text");
