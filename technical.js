@@ -1,4 +1,5 @@
 'use strict';
+const toggleVis = () => {zpList.style.display = "block";};
 
 
 rate.onfocus = md.onfocus = 
