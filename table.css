@@ -10,28 +10,3 @@ body {
     margin-top: 15px;
 
 }
-
-.st1 {
-    fill: none;
-    stroke: #000000;
-    stroke-miterlimit: 10;
-}
-.st2 {
-    fill: none;
-    stroke: #000000;
-    stroke-width: 0.5;
-    stroke-miterlimit: 10;
-}
-.st3 {
-    font-family: Arial-Bold, sans-serif;
-    font-size:10px;
-}
-
-.st4 {
-    font-size: 8.5px;
-}
-
-.st5 {
-    font-family: Arial;
-    font-weight: 300;
-}
