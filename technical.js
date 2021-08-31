@@ -2,7 +2,6 @@
 const btn1 = document.getElementById("btn1"),
 btn2 = document.getElementById("btn2");
 const toggleVis = () => {zpList.style.display = "block"; btn2.style.display = "block";};
-
 btn1.addEventListener("click", () => {calc(); createTable(); toggleVis();});
 
 rate.onfocus = md.onfocus = 
@@ -48,4 +47,19 @@ mhd.onblur = nhd.onblur = function () {
         }
     };
 
-    
+    const notNum = (e) => {
+if(isNaN(+e.key)) {
+    e.target.value = "";
+}
+    };
+
+    rate.addEventListener("keyup", notNum);
+    md.addEventListener("keyup", notNum);
+    nd.addEventListener("keyup", notNum);
+    omd.addEventListener("keyup", notNum);
+    ond.addEventListener("keyup", notNum);
+    mhd.addEventListener("keyup", notNum);
+    nhd.addEventListener("keyup", notNum);
+    cul.addEventListener("keyup", notNum);
+    coe.addEventListener("keyup", notNum);
+    prp.addEventListener("keyup", notNum);
