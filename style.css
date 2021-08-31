@@ -99,6 +99,14 @@ input[type="number"]:focus {
     font-size: 64px;
   }
 
+
+  #zpList {
+    /* display: block; */
+    margin: auto;
+    margin-top: 15px;
+
+}
+
   .btn:disabled {
     background-color: #444;
     color: rgb(150, 150, 150);

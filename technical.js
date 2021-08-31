@@ -3,7 +3,7 @@ const btn1 = document.getElementById("btn1"),
 btn2 = document.getElementById("btn2");
 const toggleVis = () => {zpList.style.display = "block"; btn2.style.display = "block";};
 
-
+btn1.addEventListener("click", () => {calc(); createTable(); toggleVis();});
 
 rate.onfocus = md.onfocus = 
 nd.onfocus = omd.onfocus = 
