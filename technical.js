@@ -61,5 +61,5 @@ if(isNaN(+e.key)) {
     mhd.addEventListener("keyup", notNum);
     nhd.addEventListener("keyup", notNum);
     cul.addEventListener("keyup", notNum);
-    coe.addEventListener("keyup", notNum);
+
     prp.addEventListener("keyup", notNum);
