@@ -1,4 +1,6 @@
 'use strict';
+
+
 const btn1 = document.getElementById("btn1"),
 btn2 = document.getElementById("btn2");
 const toggleVis = () => {zpList.style.display = "block"; btn2.style.display = "block";};
@@ -47,12 +49,16 @@ mhd.onblur = nhd.onblur = function () {
         }
     };
 
-    const notNum = (e) => {
-if(isNaN(+e.key)) {
-    e.target.value = "";
-}
-    };
 
+    const notNum = (e) => {
+        if(isNaN(e.target.value)) {
+            e.target.value = e.target.value.slice(0, e.target.value.length-1);
+        }
+    };
+    
+    
+    
+    
     rate.addEventListener("keyup", notNum);
     md.addEventListener("keyup", notNum);
     nd.addEventListener("keyup", notNum);
@@ -61,5 +67,5 @@ if(isNaN(+e.key)) {
     mhd.addEventListener("keyup", notNum);
     nhd.addEventListener("keyup", notNum);
     cul.addEventListener("keyup", notNum);
-
+    coe.addEventListener("keyup", notNum);
     prp.addEventListener("keyup", notNum);
