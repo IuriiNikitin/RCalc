@@ -7,7 +7,7 @@ const toggleVis = (element) => {element.style.display = "block";};
         
         
 
-btn1.addEventListener("click", () => {calc(); createTable(); toggleVis(zpList); toggleVis(btn2); addAnim(zpList); addAnim(btn2);});
+btn1.addEventListener("click", () => {calc(); createTable(); toggleVis(zpList); toggleVis(btn2); addAnim(zpList);});
 
 
 const addAnim = (element) => {

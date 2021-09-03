@@ -107,6 +107,7 @@ input[type="number"], [type="tel"]:focus {
   }
   .btn:active {
     background-color: #007399;
+    transform: scale(0.98);
   }
 
 
