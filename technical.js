@@ -65,7 +65,7 @@ const addAnim = (element) => {
     prp.addEventListener("focus", delVaule);
 
     const notNum = (e) => { // Запрет ввода не цифр
-        if(isNaN(+e.target.value) || e.key == "-") 
+        if(isNaN(+e.target.value) || e.key == "-" || e.target.value<0) 
          {e.target.value = e.target.value.slice(0, e.target.value.length-1);
    
 }};
