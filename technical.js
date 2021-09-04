@@ -65,9 +65,11 @@ const addAnim = (element) => {
     prp.addEventListener("focus", delVaule);
 
     const notNum = (e) => { // Запрет ввода не цифр
-        if(isNaN(e.target.value) || e.key == "-") {e.target.value = e.target.value.slice(0, e.target.value.length-1);
-   
-    }};
+        if(isNaN(e.target.value) || e.key == "-" ||  e.key != "0"  &&  e.key != "1" && 
+        e.key != "2" &&  e.key != "3" &&  e.key != "4" &&  e.key != "5" &&  e.key != "6" && 
+         e.key != "7" &&  e.key != "8" &&  e.key != "9" &&  e.key != ".") 
+         {e.target.value = e.target.value.slice(0, e.target.value.length-1);
+   }};
     rate.addEventListener("keyup", notNum);
     md.addEventListener("keyup", notNum);
     nd.addEventListener("keyup", notNum);
