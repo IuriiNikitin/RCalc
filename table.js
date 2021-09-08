@@ -27,6 +27,8 @@ function createTable() {
     rect.setAttributeNS(null,"width",425);
     rect.setAttributeNS(null,"height",595);
     rect.setAttributeNS(null,"fill","white");
+    rect.setAttributeNS(null,"stroke","black");
+    rect.setAttributeNS(null,"stroke-width", 1);
     zpList.append(rect);
     rect = document.createElementNS(svgNS,"rect");
     rect.setAttributeNS(null,"class","st1");
@@ -681,6 +683,15 @@ function createTable() {
         zpList.append(text);
         i++;
     }
+
+    const crDate =  new Date().toLocaleDateString(),
+    crTime = new Date().toLocaleTimeString();
+    text = document.createElementNS(svgNS,"text");
+    text.setAttributeNS(null,"class","st3");
+    text.setAttributeNS(null,"x",38);
+    text.setAttributeNS(null,"y",34);
+    text.append(document.createTextNode(`Сгенерировано ${crDate} в ${crTime}`));
+    zpList.append(text);
 
 }     
  

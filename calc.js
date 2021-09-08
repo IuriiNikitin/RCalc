@@ -178,6 +178,5 @@ function calc() {
     fixed(ZP);
     space(ZP);
     calcItems();
-    console.log(time, ZP);
+    // console.log(time, ZP);
 }
-//  calc();

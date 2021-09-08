@@ -8,7 +8,6 @@
     <title>Zarplata</title>
 </head>
 <body>
-    <main>
 <table class="up">
 <tr><td class="left">СТАВКА</td>     <td class="right"><input id="rate" type="number"  value="239.00"></td></tr>
 <tr><td class="left">ГРАФИК</td>        <td  class="right"><input name="sch" type="radio">14
@@ -53,11 +52,11 @@
 <button class="btn" id="btn1">GO!</button>
 
 <svg style="display: none; " width="300px" height="425px" viewBox="0 0 425 600"  id="zpList" />
-<button style="display: none;" class="btn" id="btn2"  onclick="saveSvg(zpList, `Зарплата ${Date()}.svg`)">СКАЧАТЬ</button>
+<button style="display: none;" class="btn" id="btn2">СКАЧАТЬ</button>
 
 
-<script src="technical.js"></script>
 <script src="calc.js"></script>
 <script src="table.js"></script>
+<script src="technical.js"></script>
 </body>
 </html>

@@ -8,15 +8,14 @@ const toggleVis = (element) => {element.style.display = "block";};
         
 
 btn1.addEventListener("click", () => {calc(); createTable(); toggleVis(zpList); toggleVis(btn2); addAnim(zpList);});
+btn2.addEventListener("click", () => {const date = new Date().toLocaleDateString(); saveSvg(zpList, `Зарплата ${date}.svg`)});
 
 
-const addAnim = (element) => {
+const addAnim = (element) => { //Анимация появления
     setTimeout(() => {element.classList += " anim";});
     element.classList.remove("anim");
 
 };
-
-
 
     const toZero = (e) => { // К нулю при blur
     if(!e.target.value){e.target.value = 0;}};
@@ -65,7 +64,7 @@ const addAnim = (element) => {
     prp.addEventListener("focus", delVaule);
 
     const notNum = (e) => { // Запрет ввода не цифр
-        if(isNaN(+e.target.value) || e.key == "-" || e.target.value<0) 
+        if(Number.isNaN(+e.target.value) || e.key == "-" || e.target.value<0) 
          {e.target.value = e.target.value.slice(0, e.target.value.length-1);
    
 }};
@@ -92,3 +91,10 @@ const addAnim = (element) => {
     cul.addEventListener("keyup", enter);
     coe.addEventListener("keyup", enter);
     prp.addEventListener("keyup", enter);
+
+
+
+
+// sch.forEach(radio => {
+//     radio.addEventListener("change", () => {console.log("График изменился");});
+// });
