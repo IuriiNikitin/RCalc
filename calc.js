@@ -15,13 +15,11 @@ const rate = document.getElementById("rate"), //Ставка
     coe = document.getElementById("coe"), //Коэффициент
     prp = document.getElementById("prp"); //Аванс
 
-
     const time = {},
         percent = {nfl: 13},//Налог с физического лица
         ZP = {
         final: {}
         };
-
 
     let items = ""; //Количество строчек зарплаты
    
@@ -29,8 +27,6 @@ const calcDays = () => {
     time.allmd = +md.value + (+omd.value);
     time.allnd = +nd.value + (+ond.value);
     time.alld = time.allmd + time.allnd;};
-
-
 
 const calcAllod = () => {if(+omd.value || +ond.value) {time.allod = (+omd.value) + (+ond.value);}},
     calcWh = () => {time.wh = round((time.allmd * 11.7) + (time.allnd * 11));},
@@ -41,38 +37,24 @@ const calcAllod = () => {if(+omd.value || +ond.value) {time.allod = (+omd.value)
     calcPwh = () => {time.pwh = round(time.wh * (+coe.value));},
     calcHdh = () => {time.hdh = (ms.checked) ? (+mhd.value * 11.7) + (+nhd.value * 7) : (+mhd.value * 11) + (+nhd.value * 7);};
     
-    
-
 function calcOhm() {
     if (+omd.value || +ond.value) {
         calcOh();
         ZP.ohm = round(time.oh * +rate.value);
-    }
-}
+    }}
 
 function calcHdm() {
     if (+mhd.value || +nhd.value) {
         time.allhd = (+mhd.value) + (+nhd.value);
         calcHdh();
         ZP.hdm = round(time.hdh * rate.value);
-    }
-}
+    }}
 
-function calcLms() {
-    if (lms[0].checked) {} else if (lms[1].checked) {
-        ZP.lms = +lms[1].value;
-    } else if (lms[2].checked) {
-        ZP.lms = +lms[2].value;
-    }
-}
-
-function calcLvl() {
-    if (lvl[0].checked) {} else if (lvl[1].checked) {
-        ZP.lvl = +lvl[1].value;
-    } else if (lvl[2].checked) {
-        ZP.lvl = +lvl[2].value;
-    }
-}
+function calcRadio(radio, writeObj, key) {
+    radio.forEach(btn => {
+        if (btn.checked && +btn.value) {
+        writeObj[key] = +btn.value;
+        }});}
 
 function calcPw() {
     if (ms.checked) {
@@ -82,8 +64,7 @@ function calcPw() {
     } else {
         calcPwh();
         ZP.pw = round(time.pwh * (+rate.value));
-    }
-}
+    }}
 
     const calcEhm = () => {if(sch[1].checked){ calcEh();ZP.ehm = round((time.eh * (+rate.value * 0.2)));}}, // 20% от ставки
     calcNhm = () => {if (time.allnd) {calcNh(); ZP.nhm = round((time.nh * (+rate.value * 0.4)));}}, // 40% от ставки 
@@ -98,9 +79,6 @@ function calcPw() {
     calcZp = () => {ZP.final.zp = round(ZP.final.zpc - (+prp.value));},// Зарплата
     calcPrp = () => {ZP.final.prp = +prp.value;};
 
-
-
-
     function clear(obj) {
         for (let key in obj) {
             if (typeof(obj[key]) != "object") {
@@ -108,17 +86,14 @@ function calcPw() {
             }
             else {
                 clear(obj[key]);
-                }
-            }
-        }
+                }}}
 
     function sum(obj) {
         let rez = 0;
         for(let key in obj) {
             if(!isNaN(obj[key])){
                 rez += obj[key];
-            }
-        }
+            }}
         return rez;
     }
 
@@ -133,10 +108,8 @@ function fixed(obj) {
             obj[key] = obj[key].toFixed(2);
         } else {
             fixed(obj[key]);
-        }
+        }}}
 
-    }
-}
 function space(obj) {
     for (let key in obj) {
         if (typeof (obj[key]) != "object") {
@@ -149,10 +122,7 @@ function space(obj) {
             }
         } else{
             space(obj[key]);
-        }
-    }
-}
-
+        }}}
 
 function calc() {
     clear(time);
@@ -166,9 +136,9 @@ function calc() {
     calcNhm();
     calcPw();
     calcWa();
-    calcCul();
-    calcLms();
-    calcLvl();
+    calcCul();    
+    calcRadio(lms, ZP, "lms");
+    calcRadio(lvl, ZP, "lvl");
     calcZpd();
     calcTax();
     calcWit();
