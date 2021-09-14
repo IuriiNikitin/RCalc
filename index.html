@@ -13,8 +13,8 @@
 <tr><td class="left">ГРАФИК</td>        <td  class="right"><input name="sch" type="radio">14
                                                                 <input name="sch" type="radio" checked>16
                                                             </td></tr>
-<tr><td class="left">ДНЕВНЫХ СМЕН</td>        <td  class="right"><input id="md" type="number" value="8"></td></tr>
-<tr><td class="left">НОЧНЫХ</td>        <td  class="right"><input id="nd" type="number" value="8"></td></tr>
+<tr><td class="left">ДНЕВНЫХ СМЕН</td>        <td  class="right"><input id="md" type="number" value="0"></td></tr>
+<tr><td class="left">НОЧНЫХ</td>        <td  class="right"><input id="nd" type="number" value="0"></td></tr>
 </table>
 
 <details>
@@ -29,19 +29,23 @@
 </details>
 
 <table>
+    <tr><td class="left">ВЫПЛАТЫ ИЗ ФНП</td>        <td  class="right"><input id="fnp" type="number" value="0"></td></tr>
     <tr><td class="left">МНОГОСТАНОЧКА</td>        <td class="right"><input id="ms" type="checkbox" checked></td></tr>
 
 <tr><td class="left">ВЫСЛУГА</td>
     <td class="right">
         <input name="lms" type="radio">0
         <input name="lms" type="radio" value="2000">2К
+        <br>
         <input name="lms" type="radio" value="3000" checked>3К
+        <input name="lms" type="radio" value="5000">5К
     </td></tr>
 
 <tr><td class="left">РАЗРЯД</td>
     <td class="right">
         <input name="lvl" type="radio">0
         <input name="lvl" type="radio" value="2000" checked>2К
+        <br>
         <input name="lvl" type="radio" value="3000">3К
     </td></tr>
 
@@ -49,7 +53,7 @@
 <tr><td class="left">КОЭФФИЦИЕНТ</td>        <td class="right"><input  id="coe" type="number" value="2"></td></tr>
 <tr><td class="left">АВАНС</td>        <td class="right"><input id="prp" type="number" value="27840.00"></td></tr>
 </table>
-<button class="btn" id="btn1">GO!</button>
+<button class="btn" id="btn1" disabled>GO!</button>
 
 <svg style="display: none; " width="300px" height="425px" viewBox="0 0 425 600"  id="zpList" />
 <button style="display: none;" class="btn" id="btn2">СКАЧАТЬ</button>

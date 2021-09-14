@@ -8,6 +8,7 @@ const rate = document.getElementById("rate"), //Ставка
     ond = document.getElementById("ond"), //Сверхурочные ночные
     mhd = document.getElementById("mhd"), //Праздничные дневные
     nhd = document.getElementById("nhd"), //Праздничные ночные
+    fnp = document.getElementById("fnp"), //Фонд начальника подразделения
     ms = document.getElementById("ms"), //Многостаночка
     lms = document.getElementsByName("lms"), //Выслуга
     lvl = document.getElementsByName("lvl"), //Разряд
@@ -69,6 +70,7 @@ function calcPw() {
     const calcEhm = () => {if(sch[1].checked){ calcEh();ZP.ehm = round((time.eh * (+rate.value * 0.2)));}}, // 20% от ставки
     calcNhm = () => {if (time.allnd) {calcNh(); ZP.nhm = round((time.nh * (+rate.value * 0.4)));}}, // 40% от ставки 
     calcMs = () => {ZP.ms = round((time.msh * 0.75) * +rate.value);},
+    calcFnp = () => {if(+fnp.value){ZP.fnp = +fnp.value;}},
     calcWa = () => {ZP.wa = (ms.checked) ? round((ZP.pw + ZP.ms) * 0.3) : round(ZP.pw * 0.3);},
     calcCul = () =>  ZP.cul = (ms.checked) ? round((ZP.pw + ZP.ms) * (+cul.value / 100)) : round(ZP.pw * (+cul.value / 100)),
     calcItems = () => {items = Object.keys(ZP).length;},
@@ -135,6 +137,7 @@ function calc() {
     calcEhm();
     calcNhm();
     calcPw();
+    calcFnp();
     calcWa();
     calcCul();    
     calcRadio(lms, ZP, "lms");
@@ -148,5 +151,5 @@ function calc() {
     fixed(ZP);
     space(ZP);
     calcItems();
-    // console.log(time, ZP);
+    // console.log("Зарплата посчитана");
 }

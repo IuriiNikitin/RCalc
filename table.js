@@ -14,9 +14,9 @@ function createTable() {
     let style = document.createElementNS(svgNS,"style");
     style.append(document.createTextNode(".st1 {fill: none;stroke: #000000;stroke-miterlimit: 10;}"));
     style.append(document.createTextNode(".st2 {fill: none;stroke: #000000;stroke-width: 0.5;stroke-miterlimit: 10;}"));
-    style.append(document.createTextNode(".st3 {font-family: Arial-Bold, sans-serif;font-size:10px;}"));
+    style.append(document.createTextNode(".st3 {font-family: 'Arial-Bold', sans-serif; font-weight: 600; font-size:10px;}"));
     style.append(document.createTextNode(".st4 {font-size: 8.5px;}"));
-    style.append(document.createTextNode(".st5 {font-family: Arial;font-weight: 300;}"));
+    style.append(document.createTextNode(".st5 {font-family: 'Arial', sans-serif; font-weight: 400;}"));
     zpList.append(style);
     
 
@@ -369,6 +369,22 @@ function createTable() {
     zpList.append(text);
     i++;
 
+    if(ZP.fnp) {
+        text = document.createElementNS(svgNS,"text");
+        text.setAttributeNS(null,"class","st4 st5");
+        text.setAttributeNS(null,"x",37);
+        text.setAttributeNS(null,"y",(78) + (itemSize * k) * i);
+        text.append(document.createTextNode("[015] Выплаты из фонда нач. подразделения"));
+        zpList.append(text);
+        text = document.createElementNS(svgNS,"text");
+        text.setAttributeNS(null,"class","st4 st5");
+        text.setAttributeNS(null,"x",340);
+        text.setAttributeNS(null,"y",(78) + (itemSize * k) * i);
+        text.append(document.createTextNode(ZP.fnp));
+        zpList.append(text);
+        i++;
+        }
+
     
     if(ZP.lvl) {
     text = document.createElementNS(svgNS,"text");
@@ -693,9 +709,10 @@ function createTable() {
     text.append(document.createTextNode(`Сгенерировано ${crDate} в ${crTime}`));
     zpList.append(text);
 
+    // console.log("Таблица создана");
+
 }     
  
-// createTable();
 
 
 

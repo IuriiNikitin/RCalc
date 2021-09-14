@@ -3,6 +3,7 @@ body {
     font-size: 12pt;
     font-weight: bold;
     color: #A3A4A8;
+    font-family: "Arial", sans-serif;
 }
 main {
   max-width: 95%;
@@ -31,19 +32,11 @@ margin-bottom: -2px;
 
 summary {
   text-align: center;
-  height: 40px;
-  line-height: 40px;
+  height: 45px;
+  line-height: 45px;
   border-left: 2px solid #FFFFFF;
   border-right: 2px solid #FFFFFF;
-  /* display: block; */
 }
-/* details[open] table {
-  animation: spoiler 2s;
-}
-@keyframes spoiler {
-  0%   {opacity: 0;}
-  100% {opacity: 1;}
-} */
 
 tr {
     border: 2px solid #FFFFFF; 
