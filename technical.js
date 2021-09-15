@@ -29,7 +29,7 @@ btn2.addEventListener("click", () => {const date = new Date().toLocaleDateString
 
 
 const addAnim = (element) => { //Анимация появления
-    setTimeout(() => {element.classList += " anim";});
+    setTimeout(() => {element.classList.add("anim");});
     element.classList.remove("anim");
 
 };
@@ -151,3 +151,7 @@ lvl.forEach(radio => {
 ms.addEventListener("change", () => {
     someChanged = true;
 });
+
+// document.querySelector("td").addEventListener("select", () => {
+// console.log("fdxs");
+// });

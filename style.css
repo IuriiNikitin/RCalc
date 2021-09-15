@@ -5,6 +5,7 @@ body {
     color: #A3A4A8;
     font-family: "Arial", sans-serif;
 }
+
 main {
   max-width: 95%;
   margin: auto;
@@ -73,6 +74,12 @@ input[type="number"]::-webkit-inner-spin-button {
 
 input[type="number"]:focus {
     outline: none; /* убирание внешних линий при тычке */
+  }
+
+  .small {
+    line-height: 0.7;
+    padding-bottom: 0;
+    padding-top: 5px;
   }
 
 
