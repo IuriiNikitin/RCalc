@@ -8,6 +8,7 @@
     <title>Zarplata</title>
 </head>
 <body>
+    <div class="wrapper">
 <table class="up">
 <tr><td class="left">СТАВКА</td>     <td class="right"><input id="rate" type="number"  value="239.00"></td></tr>
 <tr><td class="left">ГРАФИК</td>        <td  class="right"><input name="sch" type="radio">14
@@ -46,13 +47,14 @@
         <input name="lvl" type="radio">0
         <input name="lvl" type="radio" value="2000" checked>2К
         <br>
-        <input name="lvl" type="radio" value="3000">3К
+        <input name="lvl" type="radio" value="4000">4К
     </td></tr>
 
 <tr><td class="left">КУЛЬТУРА (%)</td>      <td class="right"><input id="cul" type="number" value="15"></td></tr>
 <tr><td class="left">КОЭФФИЦИЕНТ</td>        <td class="right"><input  id="coe" type="number" value="2"></td></tr>
 <tr><td class="left">АВАНС</td>        <td class="right"><input id="prp" type="number" value="27840.00"></td></tr>
 </table>
+</div>
 <button class="btn" id="btn1" disabled>GO!</button>
 
 <svg style="display: none; " width="300px" height="425px" viewBox="0 0 425 600"  id="zpList" />

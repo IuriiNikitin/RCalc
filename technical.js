@@ -1,7 +1,8 @@
 'use strict';
 
 
-const btn1 = document.getElementById("btn1"),
+const wrapper = document.querySelectorAll("input[type='number']"),
+btn1 = document.getElementById("btn1"),
 btn2 = document.getElementById("btn2");
 const toggleVis = (element) => {element.style.display = "block";};
 let someChanged = false,
