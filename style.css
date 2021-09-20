@@ -116,6 +116,12 @@ input[type="number"]:focus {
     margin-top: 15px;
     opacity: 0;
 }
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}
 
 @keyframes spoiler {
   0%   {opacity: 0;}

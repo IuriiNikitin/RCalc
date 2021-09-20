@@ -1,10 +1,17 @@
 'use strict';
 
 
-const wrapper = document.querySelectorAll("input[type='number']"),
+const tableWrapper = document.querySelector(".tableWrapper"),
 btn1 = document.getElementById("btn1"),
-btn2 = document.getElementById("btn2");
-const toggleVis = (element) => {element.style.display = "block";};
+btn2 = document.getElementById("btn2"),
+showElement = (element) => {
+    element.classList.remove("hide");
+    element.classList.add("show");
+},
+hideElement = (element) => {
+    element.classList.remove("show");
+    element.classList.add("hide");
+};
 let someChanged = false,
 numOfClick = 0;
         
@@ -14,8 +21,8 @@ btn1.addEventListener("click", () => {
     if(someChanged) {
     calc();
     createTable();
-    toggleVis(zpList);
-    toggleVis(btn2);
+    showElement(zpList);
+    showElement(btn2);
     numOfClick = 0;
     }
     addAnim(zpList);
@@ -35,96 +42,53 @@ const addAnim = (element) => { //Анимация появления
 
 };
 
-    const toZero = (e) => { // К нулю при blur
-    if (!e.target.value) {e.target.value = 0;} someChanged = true;};
-    md.addEventListener("blur", toZero);
-    nd.addEventListener("blur", toZero);
-    omd.addEventListener("blur", toZero);
-    ond.addEventListener("blur", toZero);
-    mhd.addEventListener("blur", toZero);
-    nhd.addEventListener("blur", toZero);
-    fnp.addEventListener("blur", toZero);
-
-    rate.addEventListener("blur", (e) => {
-    if(!e.target.value) {
-        e.target.value = (239).toFixed(2);
-    } else {
-        e.target.value = (+e.target.value).toFixed(2);
-    }
-    someChanged = true;
-    });
-
-    cul.addEventListener("blur", (e) => {
+    const toZero = (e, value1, fixed) => { // К value1 при blur, fixed(2) введённое значение
         if (!e.target.value) {
-            e.target.value = 15;
-        }
-        someChanged = true;
-    });
-
-    coe.addEventListener("blur", (e) => {
-        if (!e.target.value) {
-            e.target.value = 2;
-        }
-        someChanged = true;
-    });
-
-    prp.addEventListener("blur", (e) => {
-        if (!e.target.value) {
-            e.target.value = (27840).toFixed(2);
-        } else {
+            e.target.value = value1;
+        } else if(fixed) {
             e.target.value = (+e.target.value).toFixed(2);
         }
         someChanged = true;
-    });
-
-
-
-
-
+    };
     const delVaule = (e) => { // Удаление значения при focus
-    e.target.value = "";};
-    rate.addEventListener("focus", delVaule);
-    md.addEventListener("focus", delVaule);
-    nd.addEventListener("focus", delVaule);
-    omd.addEventListener("focus", delVaule);
-    ond.addEventListener("focus", delVaule);
-    mhd.addEventListener("focus", delVaule);
-    nhd.addEventListener("focus", delVaule);
-    cul.addEventListener("focus", delVaule);
-    coe.addEventListener("focus", delVaule);
-    prp.addEventListener("focus", delVaule);
-    fnp.addEventListener("focus", delVaule);
+        e.target.value = "";};
+    
+        const notNum = (e) => { // Запрет ввода не цифр
+            if(Number.isNaN(+e.target.value) || e.key == "-"|| e.key == "e" || e.target.value<0) 
+             {e.target.value = e.target.value.slice(0, e.target.value.length-1);
+       
+    }};
+        const enter = (e) => { // blur при нажатии на Enter
+            if(e.key == "Enter") {e.target.blur();}};
 
-    const notNum = (e) => { // Запрет ввода не цифр
-        if(Number.isNaN(+e.target.value) || e.key == "-" || e.target.value<0) 
-         {e.target.value = e.target.value.slice(0, e.target.value.length-1);
-   
-}};
-    rate.addEventListener("keyup", notNum);
-    md.addEventListener("keyup", notNum);
-    nd.addEventListener("keyup", notNum);
-    omd.addEventListener("keyup", notNum);
-    ond.addEventListener("keyup", notNum);
-    mhd.addEventListener("keyup", notNum);
-    nhd.addEventListener("keyup", notNum);
-    cul.addEventListener("keyup", notNum);
-    coe.addEventListener("keyup", notNum);
-    prp.addEventListener("keyup", notNum);
-    fnp.addEventListener("keyup", notNum);
-
-    const enter = (e) => { // blur при нажатии на Enter
-        if(e.key == "Enter") {e.target.blur();}};
-    rate.addEventListener("keyup", enter);
-    md.addEventListener("keyup", enter);
-    nd.addEventListener("keyup", enter);
-    omd.addEventListener("keyup", enter);
-    ond.addEventListener("keyup", enter);
-    mhd.addEventListener("keyup", enter);
-    nhd.addEventListener("keyup", enter);
-    cul.addEventListener("keyup", enter);
-    coe.addEventListener("keyup", enter);
-    prp.addEventListener("keyup", enter);
-    fnp.addEventListener("keyup", enter);
+    tableWrapper.addEventListener("focusout", (e) =>{
+        if(e.target && e.target.matches("input.zero[type='number']")) {
+            toZero(e, 0);
+        }
+        if(e.target && e.target.matches("input#rate[type='number']")) {
+            toZero(e, (239).toFixed(2), true);
+        }
+        if(e.target && e.target.matches("input#cul[type='number']")) {
+            toZero(e, 15);
+        }
+        if(e.target && e.target.matches("input#coe[type='number']")) {
+            toZero(e, 2);
+        }
+        if(e.target && e.target.matches("input#prp[type='number']")) {
+            toZero(e, (27840).toFixed(2), true);
+        }
+    });
+tableWrapper.addEventListener("focusin", (e) =>{
+    if(e.target && e.target.matches("input[type='number']")) {
+        delVaule(e);
+    }
+});
+tableWrapper.addEventListener("keyup", (e) =>{
+    if(e.target && e.target.matches("input[type='number']")) {
+        notNum(e);
+        enter(e);
+    }
+});
 
 
     const btnStatus = () => {       //Активность кнопки при отсутствии ночных или дневных смен
@@ -152,7 +116,3 @@ lvl.forEach(radio => {
 ms.addEventListener("change", () => {
     someChanged = true;
 });
-
-// document.querySelector("td").addEventListener("select", () => {
-// console.log("fdxs");
-// });
