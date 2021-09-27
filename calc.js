@@ -4,6 +4,8 @@ const rate = document.getElementById("rate"), //Ставка
     sch = document.getElementsByName("sch"), //График
     md = document.getElementById("md"), // Дневные  смены
     nd = document.getElementById("nd"), //Ночные смены
+    mdg = document.getElementById("mdg"), // Дневные  смены по графику
+    ndg = document.getElementById("ndg"), //Ночные смены по графику
     omd = document.getElementById("omd"), //Сверхурочные дневные
     ond = document.getElementById("ond"), //Сверхурочные ночные
     mhd = document.getElementById("mhd"), //Праздничные дневные
@@ -33,7 +35,7 @@ const calcAllod = () => {if(+omd.value || +ond.value) {time.allod = (+omd.value)
     calcWh = () => {time.wh = round((time.allmd * 11.7) + (time.allnd * 11));},
     calcOh = () => {time.oh = round((+omd.value * 11.7) + (+ond.value * 11));},
     calcEh = () => {time.eh = round((time.allmd * 3.7) + (time.allnd * 2));},
-    calcNh = () => {time.nh = time.allnd * 7.5;},
+    calcNh = () => {time.nh = (+nd.value * 7.5) + (+ond.value * 8);},
     calcMsh = () => {time.msh = round(time.wh * (+coe.value - 1));},
     calcPwh = () => {time.pwh = round(time.wh * (+coe.value));},
     calcHdh = () => {time.hdh = (ms.checked) ? (+mhd.value * 11.7) + (+nhd.value * 7) : (+mhd.value * 11) + (+nhd.value * 7);};

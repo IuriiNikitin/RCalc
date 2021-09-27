@@ -14,18 +14,20 @@
 <tr><td class="left">ГРАФИК</td>        <td  class="right"><input name="sch" type="radio">14
                                                                 <input name="sch" type="radio" checked>16
                                                             </td></tr>
-<tr><td class="left small">ДНЕВНЫХ СМЕН <br><small><small><small>без учёта сверхурочных</small></small></small></td>        <td  class="right"><input class="zero" id="md" type="number" value="0"></td></tr>
-<tr><td class="left small">НОЧНЫХ <br><small><small><small>без учёта сверхурочных</small></small></small></td>        <td  class="right"><input class="zero" id="nd" type="number" value="0"></td></tr>
+<tr><td class="left small">ДНЕВНЫХ СМЕН (Д) <br><small><small><small>без учёта сверхурочных</small></small></small></td>        <td  class="right"><input class="zero" id="md" type="number" value="0"></td></tr>
+<tr><td class="left small">НОЧНЫХ СМЕН (Н) <br><small><small><small>без учёта сверхурочных</small></small></small></td>        <td  class="right"><input class="zero" id="nd" type="number" value="0"></td></tr>
+<tr><td class="left small">ДНЕВНЫХ СМЕН <br><small><small><small>по графику</small></small></small></td>        <td  class="right"><input id="mdg" type="number" value="0"></td></tr>
+<tr><td class="left small">НОЧНЫХ СМЕН <br><small><small><small>по графику</small></small></small></td>        <td  class="right"><input id="ndg" type="number" value="0"></td></tr>
 </table>
 
 <details>
     
     <summary>ДОПОЛНИТЕЛЬНЫЕ СМЕНЫ</summary>
     <table>
-<tr><td class="left">СВЕРХУРОЧНЫХ ДНЕВНЫХ</td>      <td class="right"><input class="zero" id="omd" type="number" value="0"></td></tr>
-<tr><td class="left">СВЕРХУРОЧНЫХ НОЧНЫХ</td>      <td class="right"><input class="zero" id="ond" type="number" value="0"></td></tr>
-<tr><td class="left">ПРАЗДНИЧНЫХ ДНЕВНЫХ СМЕН</td>      <td class="right"><input class="zero" id="mhd" type="number" value="0"></td></tr>
-<tr><td class="left">ПРАЗДНИЧНЫХ НОЧНЫХ СМЕН</td>      <td class="right"><input class="zero" id="nhd" type="number" value="0"></td></tr>
+<tr><td class="left">СВЕРХУРОЧНЫХ (Д)</td>      <td class="right"><input class="zero" id="omd" type="number" value="0"></td></tr>
+<tr><td class="left">СВЕРХУРОЧНЫХ (Н)</td>      <td class="right"><input class="zero" id="ond" type="number" value="0"></td></tr>
+<tr><td class="left">ПРАЗДНИЧНЫХ (Д)</td>      <td class="right"><input class="zero" id="mhd" type="number" value="0"></td></tr>
+<tr><td class="left">ПРАЗДНИЧНЫХ (Н)</td>      <td class="right"><input class="zero" id="nhd" type="number" value="0"></td></tr>
 </table>
 </details>
 
@@ -61,8 +63,16 @@
 <button class="btn hide" id="btn2">СКАЧАТЬ</button>
 
 
-<script src="calc.js"></script>
-<script src="table.js"></script>
-<script src="technical.js"></script>
+<script>
+    function loadScript(src) {
+        const script = document.createElement("script");
+        script.src = src;
+        script.async = false;
+        document.body.append(script);
+    }
+    loadScript("calc.js");
+    loadScript("table.js");
+    loadScript("technical.js");
+</script>
 </body>
 </html>
