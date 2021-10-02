@@ -438,7 +438,11 @@ function createTable() {
         text.setAttributeNS(null,"class","st4 st5");
         text.setAttributeNS(null,"x",273);
         text.setAttributeNS(null,"y",(78) + (itemSize * k) * i);
-        text.append(document.createTextNode(time.wh));
+        if(ms.checked) {
+            text.append(document.createTextNode(time.wh));
+        } else {
+            text.append(document.createTextNode(time.pwh));
+        }
         zpList.append(text);
         text = document.createElementNS(svgNS,"text");
         text.setAttributeNS(null,"class","st4 st5");
