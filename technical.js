@@ -3,12 +3,18 @@
 const tableWrapper = document.querySelector(".tableWrapper"),
     btn1 = document.getElementById("btn1"),
     btn2 = document.getElementById("btn2"),
+    night = document.querySelectorAll(".night"),
     showElement = (element) => {
         element.classList.remove("hide");
         element.classList.add("show");
     },
+    showRow = (element) => {
+        element.classList.remove("hide");
+        element.classList.add("showRow");
+    },
     hideElement = (element) => {
         element.classList.remove("show");
+        element.classList.remove("showRow");
         element.classList.add("hide");
     };
 let someChanged = false,
@@ -149,12 +155,27 @@ tableWrapper.addEventListener("focusout", (e) => {
     }
 });
 
-
-sch.forEach(radio => {
-    radio.addEventListener("change", () => {
+tableWrapper.addEventListener("change", (e) => {
+    if (e.target && e.target.matches("input[name='sch']")) {
+        if (e.target.value == 14) {
+            night.forEach(row => {
+                hideElement(row);
+                nd.value = 0;
+                ndg.value = 0;
+                btnStatus();
+            });
+        }
+        if (e.target.value == 16) {
+            night.forEach(row => {
+                showRow(row);
+            });
+        }
         someChanged = true;
-    });
+    }
 });
+
+
+
 lms.forEach(radio => {
     radio.addEventListener("change", () => {
         someChanged = true;

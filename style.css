@@ -119,6 +119,9 @@ input[type="number"]:focus {
 .show {
   display: block;
 }
+.showRow {
+  display: table-row;
+}
 .hide {
   display: none;
 }
