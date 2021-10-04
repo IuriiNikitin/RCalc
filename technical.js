@@ -112,7 +112,12 @@ tableWrapper.addEventListener("focusout", (e) => {
         toZero(e, 15);
     }
     if (e.target && e.target.matches("input#coe[type='number']")) {
-        toZero(e, 2);
+        if(ms.checked) {
+            toZero(e, 2);
+        } else {
+            toZero(e, 1.2);
+        }
+        
     }
     if (e.target && e.target.matches("input#prp[type='number']")) {
         toZero(e, (27840).toFixed(2), true);
@@ -168,25 +173,22 @@ tableWrapper.addEventListener("change", (e) => {
         if (e.target.value == 16) {
             night.forEach(row => {
                 showRow(row);
+                
             });
         }
+
+    }
+    if (e.target && e.target.matches("input[type='checkbox']")) {
+        if (ms.checked) {
+            coe.value = 2;
+        } else {
+            coe.value = 1.2;
+        }
+    }
+
+    if(e.target && e.target.matches("input[type='radio'],input[type='checkbox']")) {
         someChanged = true;
     }
 });
 
-
-
-lms.forEach(radio => {
-    radio.addEventListener("change", () => {
-        someChanged = true;
-    });
-});
-lvl.forEach(radio => {
-    radio.addEventListener("change", () => {
-        someChanged = true;
-    });
-});
-ms.addEventListener("change", () => {
-    someChanged = true;
-});
 

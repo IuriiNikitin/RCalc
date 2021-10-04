@@ -25,20 +25,34 @@ const rate = document.getElementById("rate"), //Ставка
         };
 
     let items = ""; //Количество строчек зарплаты
-   
-const calcDays = () => {
-    time.allmd = +md.value + (+omd.value);
-    time.allnd = +nd.value + (+ond.value);
-    time.alld = time.allmd + time.allnd;};
 
-const calcAllod = () => {if(+omd.value || +ond.value) {time.allod = (+omd.value) + (+ond.value);}},
+   const calcDays = () => {
+       time.allmd = +md.value + (+omd.value);
+       time.allnd = +nd.value + (+ond.value);
+       time.alld0 = +md.value + (+nd.value);
+       time.alld = time.allmd + time.allnd;
+       if (+mhd.value || +nhd.value) {
+           time.allhd = (+mhd.value) + (+nhd.value);
+       }
+       if (time.allhd) {
+           time.wdlvl = time.alld0 - time.allhd;
+       } else {
+        time.wdlvl = time.alld0;
+       }
+       if (+omd.value || +ond.value) {
+           time.allod = (+omd.value) + (+ond.value);
+       }
+   };
+
+const calcWhlvl = () => {time.whlvl = round(((+md.value - +mhd.value) * 11.7) + ((+nd.value - +nhd.value) * 11)) ;},
+    calcWh0 = () => {time.wh0 = round((+md.value * 11.7) + (+nd.value * 11));},
     calcWh = () => {time.wh = round((time.allmd * 11.7) + (time.allnd * 11));},
     calcOh = () => {time.oh = round((+omd.value * 11.7) + (+ond.value * 11));},
     calcEh = () => {time.eh = round((time.allmd * 3.7) + (time.allnd * 2));},
     calcNh = () => {time.nh = (+nd.value * 7.5) + (+ond.value * 8);},
     calcMsh = () => {time.msh = round(time.wh * (+coe.value - 1));},
     calcPwh = () => {time.pwh = round(time.wh * (+coe.value));},
-    calcHdh = () => {time.hdh = (ms.checked) ? (+mhd.value * 11.7) + (+nhd.value * 7) : (+mhd.value * 11) + (+nhd.value * 7);};
+    calcHdh = () => {time.hdh = round((+mhd.value * 11.7) + (+nhd.value * 7));};
     
 function calcOhm() {
     if (+omd.value || +ond.value) {
@@ -47,8 +61,7 @@ function calcOhm() {
     }}
 
 function calcHdm() {
-    if (+mhd.value || +nhd.value) {
-        time.allhd = (+mhd.value) + (+nhd.value);
+    if (time.allhd) {
         calcHdh();
         ZP.hdm = round(time.hdh * rate.value);
     }}
@@ -132,7 +145,8 @@ function calc() {
     clear(time);
     clear(ZP);
     calcDays();
-    calcAllod();
+    calcWhlvl();
+    calcWh0();
     calcWh();
     calcOhm();
     calcHdm();
@@ -155,3 +169,14 @@ function calc() {
     calcItems();
     // console.log("Зарплата посчитана");
 }
+
+// let lvlT = "";
+
+// function calcLvlT() {
+//     const obj = {};
+//     const 
+//     mh0 =  (+md.value * 11.7),
+//     nh0 = (+nd.value * 11);
+//     calcRadio(lvl, obj, "key");
+//     lvlT = (( ((mh0) / (wh0 / 100) /100) * obj.key ));
+// }

@@ -397,13 +397,13 @@ function createTable() {
     text.setAttributeNS(null,"class","st4 st5");
     text.setAttributeNS(null,"x",247);
     text.setAttributeNS(null,"y",(78) + (itemSize * k) * i);
-    text.append(document.createTextNode(time.alld));
+    text.append(document.createTextNode(time.wdlvl));
     zpList.append(text);
     text = document.createElementNS(svgNS,"text");
     text.setAttributeNS(null,"class","st4 st5");
     text.setAttributeNS(null,"x",273);
     text.setAttributeNS(null,"y",(78) + (itemSize * k) * i);
-    text.append(document.createTextNode(time.wh));
+    text.append(document.createTextNode(time.whlvl));
     zpList.append(text);
     text = document.createElementNS(svgNS,"text");
     text.setAttributeNS(null,"class","st4 st5");
