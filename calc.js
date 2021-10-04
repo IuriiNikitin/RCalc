@@ -167,7 +167,7 @@ function calc() {
     fixed(ZP);
     space(ZP);
     calcItems();
-    // console.log("Зарплата посчитана");
+    console.log("Зарплата посчитана");
 }
 
 // let lvlT = "";
