@@ -167,16 +167,18 @@ function calc() {
     fixed(ZP);
     space(ZP);
     calcItems();
-    console.log("Зарплата посчитана");
+    // console.log("Зарплата посчитана");
+    calcLvlT();
 }
 
-// let lvlT = "";
+let lvlT = "";
 
-// function calcLvlT() {
-//     const obj = {};
-//     const 
-//     mh0 =  (+md.value * 11.7),
-//     nh0 = (+nd.value * 11);
-//     calcRadio(lvl, obj, "key");
-//     lvlT = (( ((mh0) / (wh0 / 100) /100) * obj.key ));
-// }
+function calcLvlT() {
+    const obj = {};
+    const mh0 =  (+md.value * 11.7),
+    nh0 = (+nd.value * 11);
+    calcRadio(lvl, obj, "key");
+    lvlT = round(( round((((mh0) / (time.wh0 / 100) /100) * obj.key ) / (+mdg.value)) * (+md.value))+
+    ( round((((nh0) / (time.wh0 / 100) /100) * obj.key ) / (+ndg.value)) * (+nd.value)));
+    console.log(lvlT);
+}
