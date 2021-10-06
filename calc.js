@@ -80,10 +80,13 @@ function calcRadio(radio, writeObj, key) {
             gh = nh0 + mh0;
             let lvlm = "";
             if(sch[0].checked) {
-        lvlm = round(( round((((mh0) / (gh / 100) /100) * obj.key ) / (+mdg.value)) * (+md.value)));
+        lvlm = round(obj.key / +mdg.value) * +md.value;
             } else {
                 lvlm = round(( round((((mh0) / (gh / 100) /100) * obj.key ) / (+mdg.value)) * (+md.value))+
                 ( round((((nh0) / (gh / 100) /100) * obj.key ) / (+ndg.value)) * (+nd.value)));
+            }
+            if(lvlm > obj.key) {
+                lvlm = obj.key;
             }
             ZP.lvl = lvlm;
         }
