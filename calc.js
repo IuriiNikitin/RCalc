@@ -72,6 +72,22 @@ function calcRadio(radio, writeObj, key) {
         writeObj[key] = +btn.value;
         }});}
 
+        function calcLvl() {
+            const obj = {};
+            calcRadio(lvl, obj, "key");
+            const mh0 =  (+mdg.value * 11.7),
+            nh0 = (+ndg.value * 11),
+            gh = nh0 + mh0;
+            let lvlm = "";
+            if(sch[0].checked) {
+        lvlm = round(( round((((mh0) / (gh / 100) /100) * obj.key ) / (+mdg.value)) * (+md.value)));
+            } else {
+                lvlm = round(( round((((mh0) / (gh / 100) /100) * obj.key ) / (+mdg.value)) * (+md.value))+
+                ( round((((nh0) / (gh / 100) /100) * obj.key ) / (+ndg.value)) * (+nd.value)));
+            }
+            ZP.lvl = lvlm;
+        }
+
 function calcPw() {
     if (ms.checked) {
         calcMsh();
@@ -157,7 +173,7 @@ function calc() {
     calcWa();
     calcCul();    
     calcRadio(lms, ZP, "lms");
-    calcRadio(lvl, ZP, "lvl");
+    calcLvl();
     calcZpd();
     calcTax();
     calcWit();
@@ -168,17 +184,4 @@ function calc() {
     space(ZP);
     calcItems();
     // console.log("Зарплата посчитана");
-    calcLvlT();
-}
-
-let lvlT = "";
-
-function calcLvlT() {
-    const obj = {};
-    const mh0 =  (+md.value * 11.7),
-    nh0 = (+nd.value * 11);
-    calcRadio(lvl, obj, "key");
-    lvlT = round(( round((((mh0) / (time.wh0 / 100) /100) * obj.key ) / (+mdg.value)) * (+md.value))+
-    ( round((((nh0) / (time.wh0 / 100) /100) * obj.key ) / (+ndg.value)) * (+nd.value)));
-    console.log(lvlT);
 }
