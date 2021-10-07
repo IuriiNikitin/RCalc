@@ -1,11 +1,13 @@
 { 
-    "name": "Starter", 
-    "short_name": "Starter", 
+    "name": "Rcalc", 
+    "short_name": "Rcalc", 
     "icons": [{ 
         "src": "icons/RCalc_512x512.png", 
         "sizes": "512x512"
     }], 
     "background_color" : "#005D9E", 
     "theme_color": "#005D9E", 
-    "display": "fullscreen" 
+    "display": "standalone",
+    "orientation": "portrait",
+    "start_url": "."
 }
