@@ -67,28 +67,38 @@ function calcHdm() {
     }}
 
 function calcRadio(radio, writeObj, key) {
+    if (typeof(writeObj) == "object") {
     radio.forEach(btn => {
         if (btn.checked && +btn.value) {
-        writeObj[key] = +btn.value;
-        }});}
+            writeObj[key] = +btn.value;
+        }});} 
+        else {
+    let rez = 0;
+    radio.forEach(btn => {
+        if (btn.checked && +btn.value) {
+            rez = +btn.value;
+        }});
+    return rez;
+}}
 
         function calcLvl() {
-            const obj = {};
-            calcRadio(lvl, obj, "key");
-            const mh0 =  (+mdg.value * 11.7),
-            nh0 = (+ndg.value * 11),
-            gh = nh0 + mh0;
-            let lvlm = "";
-            if(sch[0].checked) {
-        lvlm = round(obj.key / +mdg.value) * +md.value;
-            } else {
-                lvlm = round(( round((((mh0) / (gh / 100) /100) * obj.key ) / (+mdg.value)) * (+md.value))+
-                ( round((((nh0) / (gh / 100) /100) * obj.key ) / (+ndg.value)) * (+nd.value)));
+            const lvlVal = calcRadio(lvl);
+            if (lvlVal) {
+                const mh0 = (+mdg.value * 11.7),
+                    nh0 = (+ndg.value * 11),
+                    gh = nh0 + mh0;
+                let lvlm = 0;
+                if (sch[0].checked) {
+                    lvlm = round(lvlVal / +mdg.value) * +md.value;
+                } else {
+                    lvlm = round((round((((mh0) / (gh / 100) / 100) * lvlVal) / (+mdg.value)) * (+md.value)) +
+                        (round((((nh0) / (gh / 100) / 100) * lvlVal) / (+ndg.value)) * (+nd.value)));
+                }
+                if (lvlm > lvlVal) {
+                    lvlm = lvlVal;
+                }
+                ZP.lvl = lvlm;
             }
-            if(lvlm > obj.key) {
-                lvlm = obj.key;
-            }
-            ZP.lvl = lvlm;
         }
 
 function calcPw() {
@@ -109,7 +119,7 @@ function calcPw() {
     calcCul = () =>  ZP.cul = (ms.checked) ? round((ZP.pw + ZP.ms) * (+cul.value / 100)) : round(ZP.pw * (+cul.value / 100)),
     calcItems = () => {items = Object.keys(ZP).length;},
     calcZpd = () => {ZP.final.zpd = round(sum(ZP));}, //Грязная  зарплата
-    calcTax = () => {ZP.final.tax = Math.round(ZP.final.zpd * (percent.nfl / 100));}, //Налог
+    calcTax = () => {ZP.final.tax = Math.trunc(ZP.final.zpd * (percent.nfl / 100));}, //Налог
     calcWit = () => {ZP.final.wit = ZP.final.tax + (+prp.value);},// Удержано
     calcZpc = () => {ZP.final.zpc = round(ZP.final.zpd - ZP.final.tax);},// Чистая  зарплата (без вычета аванса)
     calcZp = () => {ZP.final.zp = round(ZP.final.zpc - (+prp.value));},// Зарплата
