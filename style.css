@@ -76,6 +76,13 @@ input[type="number"]:focus {
     outline: none; /* убирание внешних линий при тычке */
   }
 
+  input[type=checkbox] {
+    transform: scale(1.4);
+    -ms-transform: scale(1.4);
+    -webkit-transform: scale(1.4);
+    padding: 10px;
+}
+
   .small {
     line-height: 0.7;
     padding-bottom: 0;
