@@ -43,7 +43,7 @@ tr {
     border: 2px solid #FFFFFF; 
 }
 .left {
-  width: 55%;
+  width: 65%;
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -140,4 +140,18 @@ input[type="number"]:focus {
 .anim {
   animation: spoiler 1s;
   animation-fill-mode: forwards;
+}
+.alt {
+display: inline-block;
+position: absolute;
+margin-left: 10px;
+border-radius: 6px;
+border: 1px solid #A3A4A8;
+background-color:white;
+}
+.text {
+  display: inline-block;
+}
+.text_and_button {
+  margin-right: 35px;
 }
