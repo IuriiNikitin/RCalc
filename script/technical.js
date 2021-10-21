@@ -205,7 +205,13 @@ tableWrapper.addEventListener("change", (e) => {
 });
 tableWrapper.addEventListener("input", (e) => { //Запрет ввода не цифр
     if (e.target && e.target.matches("input[type='number']")) {
-        e.target.value = e.target.value.replace(/[^\d]/g, '');
+        // e.target.value = e.target.value.replace(/[^\d]/g, '');
+        // e.target.value = e.target.value.replace(/[^0-9.]/g, "");
+        // e.target.value = e.target.value.replace(/[A-Za-zА-Яа-яЁё]/, '');
+        // e.target.value = e.target.value.replace(/[^0-9\.\,]/g, '');
+        e.target.value = e.target.value.replace(/[^\d\.]/g, "");
+        // console.log(e.target.value);
+
     }
 });
 tableWrapper.addEventListener("click", (e) => {
