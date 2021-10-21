@@ -313,7 +313,7 @@ function createTable() {
     text.setAttributeNS(null,"class","st4 st5");
     text.setAttributeNS(null,"x",247);
     text.setAttributeNS(null,"y",78);
-    text.append(document.createTextNode(time.alld));
+    text.append(document.createTextNode(Math.round(time.alld)));
     zpList.append(text);
     text = document.createElementNS(svgNS,"text");
     text.setAttributeNS(null,"class","st4 st5");
@@ -397,7 +397,7 @@ function createTable() {
     text.setAttributeNS(null,"class","st4 st5");
     text.setAttributeNS(null,"x",247);
     text.setAttributeNS(null,"y",(78) + (itemSize * k) * i);
-    text.append(document.createTextNode(time.wdlvl));
+    text.append(document.createTextNode(Math.round(time.wdlvl)));
     zpList.append(text);
     text = document.createElementNS(svgNS,"text");
     text.setAttributeNS(null,"class","st4 st5");
@@ -432,7 +432,7 @@ function createTable() {
         text.setAttributeNS(null,"class","st4 st5");
         text.setAttributeNS(null,"x",247);
         text.setAttributeNS(null,"y",(78) + (itemSize * k) * i);
-        text.append(document.createTextNode(time.alld));
+        text.append(document.createTextNode(Math.round(time.alld)));
         zpList.append(text);
         text = document.createElementNS(svgNS,"text");
         text.setAttributeNS(null,"class","st4 st5");
@@ -472,7 +472,7 @@ function createTable() {
         text.setAttributeNS(null,"class","st4 st5");
         text.setAttributeNS(null,"x",247);
         text.setAttributeNS(null,"y",(78) + (itemSize * k) * i);
-        text.append(document.createTextNode(time.alld));
+        text.append(document.createTextNode(Math.round(time.alld)));
         zpList.append(text);
         text = document.createElementNS(svgNS,"text");
         text.setAttributeNS(null,"class","st4 st5");
@@ -507,7 +507,7 @@ function createTable() {
         text.setAttributeNS(null,"class","st4 st5");
         text.setAttributeNS(null,"x",247);
         text.setAttributeNS(null,"y",(78) + (itemSize * k) * i);
-        text.append(document.createTextNode(time.allnd));
+        text.append(document.createTextNode(Math.round(time.allnd)));
         zpList.append(text);
         text = document.createElementNS(svgNS,"text");
         text.setAttributeNS(null,"class","st4 st5");
@@ -543,7 +543,7 @@ function createTable() {
         text.setAttributeNS(null,"class","st4 st5");
         text.setAttributeNS(null,"x",247);
         text.setAttributeNS(null,"y",(78) + (itemSize * k) * i);
-        text.append(document.createTextNode(time.allod));
+        text.append(document.createTextNode(Math.round(time.allod)));
         zpList.append(text);
         text = document.createElementNS(svgNS,"text");
         text.setAttributeNS(null,"class","st4 st5");
@@ -613,7 +613,7 @@ function createTable() {
         text.setAttributeNS(null,"class","st4 st5");
         text.setAttributeNS(null,"x",247);
         text.setAttributeNS(null,"y",(78) + (itemSize * k) * i);
-        text.append(document.createTextNode(time.allhd));
+        text.append(document.createTextNode(Math.round(time.allhd)));
         zpList.append(text);
         text = document.createElementNS(svgNS,"text");
         text.setAttributeNS(null,"class","st4 st5");
@@ -647,7 +647,7 @@ function createTable() {
         text.setAttributeNS(null,"class","st4 st5");
         text.setAttributeNS(null,"x",247);
         text.setAttributeNS(null,"y",(78) + (itemSize * k) * i);
-        text.append(document.createTextNode(time.alld));
+        text.append(document.createTextNode(Math.round(time.alld)));
         zpList.append(text);
         text = document.createElementNS(svgNS,"text");
         text.setAttributeNS(null,"class","st4 st5");

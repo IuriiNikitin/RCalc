@@ -4,6 +4,10 @@ const tableWrapper = document.querySelector(".tableWrapper"),
     btn1 = document.getElementById("btn1"),
     btn2 = document.getElementById("btn2"),
     night = document.querySelectorAll(".night"),
+    days = document.querySelectorAll(".days"),
+    dayhours = document.querySelectorAll(".dayhours"),
+    nights = document.querySelectorAll(".nights"),
+    nighthours = document.querySelectorAll(".nighthours"),
     showElement = (element) => {
         element.classList.remove("hide");
         element.classList.add("show");
@@ -19,7 +23,6 @@ const tableWrapper = document.querySelector(".tableWrapper"),
     };
 let someChanged = false,
     numOfClick = 0;
-
 
 btn1.addEventListener("click", () => {
     if (someChanged) {
@@ -39,10 +42,8 @@ btn1.addEventListener("click", () => {
 });
 btn2.addEventListener("click", () => {
     const date = new Date().toLocaleDateString();
-    saveSvg(zpList, `Зарплата ${date}.svg`)
+    saveSvg(zpList, `Зарплата ${date}.svg`);
 });
-
-
 const addAnim = (element) => { //Анимация появления
     setTimeout(() => {
         element.classList.add("anim");
@@ -50,7 +51,6 @@ const addAnim = (element) => { //Анимация появления
     element.classList.remove("anim");
 
 };
-
 const toZero = (e, value1, fixed) => { // К value1 при blur, fixed(2) введённое значение
     if (!e.target.value) {
         e.target.value = value1;
@@ -62,18 +62,11 @@ const toZero = (e, value1, fixed) => { // К value1 при blur, fixed(2) вве
 const delVaule = (e) => { // Удаление значения при focus
     e.target.value = "";
 };
-const notNum = (e) => { // Запрет ввода не цифр
-    if (Number.isNaN(+e.target.value) || e.key == "-" || e.key == "e" || e.target.value < 0) {
-        e.target.value = e.target.value.slice(0, e.target.value.length - 1);
-
-    }
-};
 const enter = (e) => { // blur при нажатии на Enter
     if (e.key == "Enter") {
         e.target.blur();
     }
 };
-
 const btnStatus = () => { //Активность кнопки при отсутствии ночных или дневных смен
     if (md.value > 0 || nd.value > 0) {
         btn1.disabled = false;
@@ -81,15 +74,42 @@ const btnStatus = () => { //Активность кнопки при отсут�
         btn1.disabled = true;
     }
 };
-
 const mdgVal = () => {
-mdg.value = md.value;
+mdg.value = Math.round(md.value);
 };
 const ndgVal = () => {
-    ndg.value = nd.value;
-    };
+    ndg.value = Math.round(nd.value);
+};
 
+tableWrapper.addEventListener("focusin", (e) => {
+    if (e.target && e.target.matches("input.delvalue[type='number']")) {
+        delVaule(e);
+    }
+    if (e.target && e.target.matches("input.dayhours[type='number']")) {
+        if(+e.target.value == 0){
+            delVaule(e);
+        }}
+    if (e.target && e.target.matches("input.nighthours[type='number']")) {
+        if(+e.target.value == 0){
+            delVaule(e);
+    }}
+
+});
+tableWrapper.addEventListener("keyup", (e) => {
+    if (e.target && e.target.matches("input[type='number']")) {
+        btnStatus();
+        enter(e);
+    }
+    if (e.target && e.target.matches("input#md[type='number']" )) {
+        btnStatus();
+        mdgVal();
+    }
+    if (e.target && e.target.matches("input#nd[type='number']" )) {
+        btnStatus();
+        ndgVal();
+ }});
 tableWrapper.addEventListener("focusout", (e) => {
+
     if (e.target && e.target.matches("input.zero[type='number']")) {
         toZero(e, 0);
     }
@@ -97,46 +117,25 @@ tableWrapper.addEventListener("focusout", (e) => {
         toZero(e, (239).toFixed(2), true);
     }
     if (e.target && e.target.matches("input#mdg[type='number']")) {
-        toZero(e, md.value);
+        toZero(e, Math.round(md.value));
         if(+mdg.value < +md.value) {
-            mdg.value = +md.value;
-        }
-    }
+            mdg.value = Math.round(+md.value);
+        }}
     if (e.target && e.target.matches("input#ndg[type='number']")) {
-        toZero(e, nd.value);
+        toZero(e, Math.round(nd.value));
         if(+ndg.value < +nd.value) {
-            ndg.value = +nd.value;
-        }
-    }
+            ndg.value = Math.round(+nd.value);
+        }}
     if (e.target && e.target.matches("input#cul[type='number']")) {
         toZero(e, 15);
     }
     if (e.target && e.target.matches("input#coe[type='number']")) {
-        if(ms.checked) {
-            toZero(e, 2);
-        } else {
-            toZero(e, 1.2);
+        if(ms.checked) {toZero(e, 2);
+        } else {toZero(e, 1.2);}
         }
-        
-    }
     if (e.target && e.target.matches("input#prp[type='number']")) {
         toZero(e, (27840).toFixed(2), true);
     }
-});
-tableWrapper.addEventListener("focusin", (e) => {
-    if (e.target && e.target.matches("input[type='number']")) {
-        delVaule(e);
-    }
-});
-tableWrapper.addEventListener("keyup", (e) => {
-    if (e.target && e.target.matches("input[type='number']")) {
-        notNum(e);
-        enter(e);
-    }
-});
-
-
-    tableWrapper.addEventListener("keyup", (e) => {
     if (e.target && e.target.matches("input#md[type='number']" )) {
         btnStatus();
         mdgVal();
@@ -145,21 +144,41 @@ tableWrapper.addEventListener("keyup", (e) => {
         btnStatus();
         ndgVal();
     }
-}); 
-
-
-tableWrapper.addEventListener("focusout", (e) => {
-    if (e.target && e.target.matches("input#md[type='number']" )) {
-        btnStatus();
-        mdgVal();
-
+    if (e.target && e.target.matches("input.days[type='number']")) {
+        days.forEach((day, i) => {
+            if (day == e.target) {
+                dayhours[i].value = round(days[i].value * 11.7);
+            }
+        });
     }
-    if (e.target && e.target.matches("input#nd[type='number']" )) {
-        btnStatus();
-        ndgVal();
+
+    if (e.target && e.target.matches("input.nights[type='number']")) {
+        nights.forEach((night, i) => {
+            if (night == e.target) {
+                nighthours[i].value = round(nights[i].value * 11);
+            }
+        });
     }
+
+if (e.target && e.target.matches("input.dayhours[type='number']")) {
+    dayhours.forEach((hours, i) => {
+        if (hours == e.target) {
+            days[i].value = hours.value / 11.7;
+            btnStatus();
+        }
+    });
+}
+
+if (e.target && e.target.matches("input.nighthours[type='number']")) {
+    nighthours.forEach((hours, i) => {
+        if (hours == e.target) {
+            nights[i].value = hours.value / 11;
+            btnStatus();
+        }
+    });
+}
+
 });
-
 tableWrapper.addEventListener("change", (e) => {
     if (e.target && e.target.matches("input[name='sch']")) {
         if (e.target.value == 14) {
@@ -168,27 +187,58 @@ tableWrapper.addEventListener("change", (e) => {
                 nd.value = 0;
                 ndg.value = 0;
                 btnStatus();
-            });
-        }
+            });}
         if (e.target.value == 16) {
             night.forEach(row => {
-                showRow(row);
-                
-            });
-        }
+                showRow(row);    
+            });}}
 
-    }
     if (e.target && e.target.matches("input[type='checkbox']")) {
         if (ms.checked) {
             coe.value = 2;
         } else {
             coe.value = 1.2;
-        }
-    }
-
+        }}
     if(e.target && e.target.matches("input[type='radio'],input[type='checkbox']")) {
         someChanged = true;
     }
 });
+tableWrapper.addEventListener("input", (e) => { //Запрет ввода не цифр
+    if (e.target && e.target.matches("input[type='number']")) {
+        e.target.value = e.target.value.replace(/[^\d]/g, '');
+    }
+});
+tableWrapper.addEventListener("click", (e) => {
+    const nextInput = e.target.nextElementSibling,
+    previousInput = e.target.previousElementSibling;
+    if(e.target && e.target.matches('.input-number__minus')){
+        if(nextInput.value > 0){
+            nextInput.value = +nextInput.value - 1;
+        }
+    }
+    if(e.target && e.target.matches('.input-number__plus')){
+        previousInput.value = +previousInput.value + 1;
+    }
 
 
+
+    if(e.target && e.target.matches('.input-number__plus') || e.target.matches('.input-number__minus')){
+
+if(nextInput && nextInput.classList.contains("dayhours") || previousInput && previousInput.classList.contains("dayhours")) {
+    dayhours.forEach((hours, i) => {
+        if(hours == nextInput || hours == previousInput) {
+            days[i].value = hours.value / 11.7;
+        }});}
+
+if (nextInput && nextInput.classList.contains("nighthours") || previousInput && previousInput.classList.contains("nighthours")) {
+    nighthours.forEach((hours, i) => {
+        if (hours == nextInput || hours == previousInput) {
+            nights[i].value = hours.value / 11;
+        }});}
+    
+        btnStatus();
+        mdgVal();
+        ndgVal();
+}
+
+});

@@ -49,7 +49,7 @@ const calcWhlvl = () => {time.whlvl = round(((+md.value - +mhd.value) * 11.7) + 
     calcWh = () => {time.wh = round((time.allmd * 11.7) + (time.allnd * 11));},
     calcOh = () => {time.oh = round((+omd.value * 11.7) + (+ond.value * 11));},
     calcEh = () => {time.eh = round((time.allmd * 3.7) + (time.allnd * 2));},
-    calcNh = () => {time.nh = (+nd.value * 7.5) + (+ond.value * 8);},
+    calcNh = () => {time.nh = round((+nd.value * 7.5) + (+ond.value * 8));},
     calcMsh = () => {time.msh = round(time.wh * (+coe.value - 1));},
     calcPwh = () => {time.pwh = round(time.wh * (+coe.value));},
     calcHdh = () => {time.hdh = round((+mhd.value * 11.7) + (+nhd.value * 7));};
