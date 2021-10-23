@@ -141,7 +141,7 @@ input[type="number"]:focus {
   animation: spoiler 1s;
   animation-fill-mode: forwards;
 }
-.alt {
+.altDays, .altHours {
 display: inline-block;
 position: absolute;
 margin-left: 10px;
