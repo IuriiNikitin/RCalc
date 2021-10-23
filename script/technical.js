@@ -151,7 +151,6 @@ tableWrapper.addEventListener("focusout", (e) => {
             }
         });
     }
-
     if (e.target && e.target.matches("input.nights[type='number']")) {
         nights.forEach((night, i) => {
             if (night == e.target) {
@@ -159,7 +158,6 @@ tableWrapper.addEventListener("focusout", (e) => {
             }
         });
     }
-
 if (e.target && e.target.matches("input.dayhours[type='number']")) {
     dayhours.forEach((hours, i) => {
         if (hours == e.target) {
@@ -168,7 +166,6 @@ if (e.target && e.target.matches("input.dayhours[type='number']")) {
         }
     });
 }
-
 if (e.target && e.target.matches("input.nighthours[type='number']")) {
     nighthours.forEach((hours, i) => {
         if (hours == e.target) {
@@ -177,7 +174,6 @@ if (e.target && e.target.matches("input.nighthours[type='number']")) {
         }
     });
 }
-
 });
 tableWrapper.addEventListener("change", (e) => {
     if (e.target && e.target.matches("input[name='sch']")) {
@@ -186,6 +182,7 @@ tableWrapper.addEventListener("change", (e) => {
                 hideElement(row);
                 nd.value = 0;
                 ndg.value = 0;
+                nighthours[0].value = 0;
                 btnStatus();
             });}
         if (e.target.value == 16) {
@@ -217,30 +214,37 @@ tableWrapper.addEventListener("input", (e) => { //Запрет ввода не �
 tableWrapper.addEventListener("click", (e) => {
     const nextInput = e.target.nextElementSibling,
     previousInput = e.target.previousElementSibling;
+
     if(e.target && e.target.matches('.input-number__minus')){
         if(nextInput.value > 0){
             nextInput.value = +nextInput.value - 1;
-        }
+            someChanged = true;}
     }
     if(e.target && e.target.matches('.input-number__plus')){
         previousInput.value = +previousInput.value + 1;
+        someChanged = true;
     }
-
-
 
     if(e.target && e.target.matches('.input-number__plus') || e.target.matches('.input-number__minus')){
 
 if(nextInput && nextInput.classList.contains("dayhours") || previousInput && previousInput.classList.contains("dayhours")) {
-    dayhours.forEach((hours, i) => {
-        if(hours == nextInput || hours == previousInput) {
-            days[i].value = hours.value / 11.7;
-        }});}
+    // dayhours.forEach((hours, i) => {
+    //     if (hours == nextInput || hours == previousInput) {
+    //         days[i].value = hours.value / 11.7;
+    //     }
+    // });
+convertHours(dayhours, days, nextInput, 11.7);
+convertHours(dayhours, days, previousInput, 11.7);
+
+    }
 
 if (nextInput && nextInput.classList.contains("nighthours") || previousInput && previousInput.classList.contains("nighthours")) {
     nighthours.forEach((hours, i) => {
         if (hours == nextInput || hours == previousInput) {
             nights[i].value = hours.value / 11;
-        }});}
+        }
+        });
+        }
     
         btnStatus();
         mdgVal();
@@ -248,3 +252,20 @@ if (nextInput && nextInput.classList.contains("nighthours") || previousInput && 
 }
 
 });
+
+
+
+
+function convertHours(convertItem, writePlace, element, hoursInDay) {
+// convertItem что конвертируем
+// writePlace куда пишем
+// element текущий элемент
+// hoursInDay количество часов в дне для конвертации
+convertItem.forEach((hours, i) => {
+    if (hours == element) {
+        writePlace[i].value = hours.value / hoursInDay;
+    }
+    });
+
+
+}

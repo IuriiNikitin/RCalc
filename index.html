@@ -72,16 +72,15 @@
     <tr class="night">
         <td class="left small">
             <div class="text_and_button">
-                <div class="text">НОЧНЫХ ЧАСОВ<br><small><small><small>без учёта сверхурочных</small></small></small>
-                </div>
+                <div class="text">НОЧНЫХ ЧАСОВ<br><small><small><small>без учёта сверхурочных</small></small></small></div>
                 <button class="alt">Alt</button>
             </div>
         </td>
 
 <td class="right">
     <div class="input-number">
-        <div class="input-number__minus">
-            <</div> <input class="zero nighthours" id="nh" type="number" value="0">
+        <div class="input-number__minus"><</div> 
+        <input class="zero nighthours" id="nh" type="number" value="0">
                 <div class="input-number__plus">></div>
         </div>
 </td>
@@ -107,10 +106,78 @@
     
     <summary>ДОПОЛНИТЕЛЬНЫЕ СМЕНЫ</summary>
     <table>
-<tr><td class="left small">СВЕРХУРОЧНЫХ СМЕН<br><small><small><small>дневных</small></small></small></td><td class="right"><input class="zero delvalue" id="omd" type="number" value="0"></td></tr>
-<tr><td class="left small">СВЕРХУРОЧНЫХ СМЕН<br><small><small><small>ночных</small></small></small></td><td class="right"><input class="zero delvalue" id="ond" type="number" value="0"></td></tr>
-<tr><td class="left small">ПРАЗДНИЧНЫХ СМЕН<br><small><small><small>дневных</small></small></small></td><td class="right"><input class="zero delvalue" id="mhd" type="number" value="0"></td></tr>
-<tr><td class="left small">ПРАЗДНИЧНЫХ СМЕН<br><small><small><small>ночных</small></small></small></td><td class="right"><input class="zero delvalue" id="nhd" type="number" value="0"></td></tr>
+<tr>
+    <td class="left small">СВЕРХУРОЧНЫХ СМЕН<br><small><small><small>дневных</small></small></small></td>
+    <td class="right"><input class="zero days delvalue" id="omd" type="number" value="0"></td>
+</tr>
+<tr>
+    <td class="left small">
+        <div class="text_and_button">
+       <div class="text">СВЕРХУРОЧНЫХ ЧАСОВ<br><small><small><small>дневных</small></small></small></div>
+       <button class="alt">Alt</button>
+    </div>
+    </td>
+
+    <td class="right">
+        <div class="input-number">
+            <div class="input-number__minus"><</div>
+        <input class="zero dayhours" id="omh" type="number" value="0">
+        <div class="input-number__plus">></div>
+    </div>
+    </td>
+</tr>
+
+
+<tr>
+    <td class="left small">СВЕРХУРОЧНЫХ СМЕН<br><small><small><small>ночных</small></small></small></td>
+    <td class="right"><input class="zero nights delvalue" id="ond" type="number" value="0"></td>
+</tr>
+<tr>
+    <td class="left small">
+        <div class="text_and_button">
+       <div class="text">СВЕРХУРОЧНЫХ ЧАСОВ<br><small><small><small>ночных</small></small></small></div>
+       <button class="alt">Alt</button>
+    </div>
+    </td>
+
+    <td class="right">
+        <div class="input-number">
+            <div class="input-number__minus"><</div>
+        <input class="zero nighthours" id="onh" type="number" value="0">
+        <div class="input-number__plus">></div>
+    </div>
+    </td>
+</tr>
+
+<tr>
+    <td class="left small">ПРАЗДНИЧНЫХ СМЕН<br><small><small><small>дневных</small></small></small></td>
+    <td class="right"><input class="zero days delvalue" id="mhd" type="number" value="0"></td>
+</tr>
+<tr>
+    <td class="left small">
+        <div class="text_and_button">
+       <div class="text">ПРАЗДНИЧНЫХ ЧАСОВ<br><small><small><small>дневных</small></small></small></div>
+       <button class="alt">Alt</button>
+    </div>
+    </td>
+
+    <td class="right">
+        <div class="input-number">
+            <div class="input-number__minus"><</div>
+        <input class="zero dayhours" id="mhh" type="number" value="0">
+        <div class="input-number__plus">></div>
+    </div>
+    </td>
+</tr>
+
+
+
+
+
+<tr>
+    <td class="left small">ПРАЗДНИЧНЫХ СМЕН<br><small><small><small>ночных</small></small></small></td>
+    <td class="right"><input class="zero delvalue" id="nhd" type="number" value="0"></td>
+</tr>
 </table>
 </details>
 
