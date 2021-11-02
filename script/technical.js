@@ -99,10 +99,11 @@ function convertHours(convertItem, writePlace, element, hoursInDay) {
     // hoursInDay количество часов в дне для конвертации
     convertItem.forEach((hours, i) => {
         if (hours == element) {
-            writePlace[i].value = hours.value / hoursInDay;
+            writePlace[i].value = roundHours(hours.value / hoursInDay);
         }
         });
 }
+
 function convertDays(convertItem, writePlace, element, hoursInDay) {
     // convertItem что конвертируем
     // writePlace куда пишем
@@ -114,6 +115,10 @@ function convertDays(convertItem, writePlace, element, hoursInDay) {
         }
         });
 
+}
+function roundHours(value) {
+    value = (Math.round(value * 10000000000000)) / 10000000000000;
+    return value;
 }
 tableWrapper.addEventListener("focusin", (e) => {
     if (e.target && e.target.matches("input.delvalue[type='number']")) {
@@ -284,10 +289,24 @@ if (nextInput && nextInput.classList.contains("nighthours") || previousInput && 
     if (nextInput && nextInput.matches("#mh") || previousInput && previousInput.matches("#mh")) {
         btnStatus();
         mdgVal();
+        mhg.value = +mdg.value * 11.7;
     }
     if (nextInput && nextInput.matches("#nh") || previousInput && previousInput.matches("#nh")) {
         btnStatus();
-        mdgVal();
+        ndgVal();
+        nhg.value = +ndg.value * 11;
+    }
+    if (nextInput && nextInput.matches("#mhg") || previousInput && previousInput.matches("#mhg")) {
+        if(+mhg.value <= +mh.value){
+            mhg.value = mh.value;
+            mdg.value = md.value;
+        }
+    }
+    if (nextInput && nextInput.matches("#nhg") || previousInput && previousInput.matches("#nhg")) {
+        if(+nhg.value <= +nh.value){
+            nhg.value = nh.value;
+            ndg.value = nd.value;
+        }
     }
 
 }
