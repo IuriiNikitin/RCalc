@@ -4,6 +4,7 @@ body {
     font-weight: bold;
     color: #A3A4A8;
     font-family: "Arial", sans-serif;
+    text-align: center;
 }
 
 main {
@@ -19,6 +20,7 @@ table {
     margin: auto;
     border-collapse: collapse;
     max-width: 400px;
+    min-width: 305px;
     caret-color: transparent;
 }
 
@@ -26,6 +28,7 @@ table {
 
 details {
 max-width: 400px;
+min-width: 305px;
 margin: auto;
 margin-bottom: -2px;
 /* display: block; */
@@ -91,28 +94,43 @@ input[type="number"]:focus {
 
 
   .btn {
-    display: block;
-    border-radius: 25px;
-    max-width: 300px;
-    width: 100%;
-    height:80px;
+    display: inline;
+    border-radius: 10px;
+    max-width: 220px;
+    height:40px;
     margin: auto;
     margin-top: 20px;
-
     background-color: #008CBA;
     border: none;
     color: white;
     text-align: center;
     text-decoration: none;
-    font-size: 50px;
+    font-size: 25px;
+  }
+  .btnwrapper {
+    display: inline-block;
+    width: 95%;
+    max-width: 400px;
+  } 
+  .btn#btn1 {
+    display: inline;
+    width: 80%;
+  }
+  .btn#btn2 {
+    display: inline;
+    width: 20%;
   }
 
   .btn:disabled {
+    display: inline;
     background-color: #444;
-    color: rgb(150, 150, 150);
+    color: white;
     pointer-events: none;
+    text-align: center;
   }
   .btn:active {
+    display: inline;
+    margin: auto;
     background-color: #007399;
     transform: scale(0.98);
   }

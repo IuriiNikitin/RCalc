@@ -84,15 +84,23 @@ function calcRadio(radio, writeObj, key) {
         function calcLvl() {
             const lvlVal = calcRadio(lvl);
             if (lvlVal) {
-                const mh0 = (+mdg.value * 11.7),
-                    nh0 = (+ndg.value * 11),
-                    gh = nh0 + mh0;
+                const mh0 = (+mdg.value * 11.7), //Дневные часы по графику
+                    nh0 = (+ndg.value * 11), // Ночные часы по графику
+                    gh = nh0 + mh0,  //Все часы по графику
+                    dayPercent = mh0/(gh/100), //Процент дневных часов
+                    nightPercent = nh0/(gh/100), // Процент ночных часов
+                    dayMoney = lvlVal * (dayPercent / 100), //Деньги за все дневные смены
+                    nightMoney = lvlVal * (nightPercent / 100), //Деньги за все ночные смены
+                    oneDayMoney = round(dayMoney / +mdg.value), //Деньги за одну дневную смену
+                    oneNightMoney = round(nightMoney / +ndg.value), //Деньги за одну ночную смену
+                    oneDayHourMoney = oneDayMoney / 11.7, //Деньги за один дневной час
+                    oneNightHourMoney = oneNightMoney / 11; //Деньги за один ночной час
+                    
                 let lvlm = 0;
                 if (sch[0].checked) {
                     lvlm = round(lvlVal / +mdg.value) * +md.value;
                 } else {
-                    lvlm = round((round((((mh0) / (gh / 100) / 100) * lvlVal) / (+mdg.value)) * (+md.value)) +
-                        (round((((nh0) / (gh / 100) / 100) * lvlVal) / (+ndg.value)) * (+nd.value)));
+                    lvlm = round(oneDayHourMoney * (+md.value * 11.7)) + round(oneNightHourMoney * (+nd.value * 11));
                 }
                 if (lvlm > lvlVal) {
                     lvlm = lvlVal;

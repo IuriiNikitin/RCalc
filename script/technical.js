@@ -10,6 +10,10 @@ const tableWrapper = document.querySelector(".tableWrapper"),
     nighthours = document.querySelectorAll(".nighthours"),
     nighthd =  document.querySelector(".nighthd"),
     nighthourshd = document.querySelector(".nighthourshd"),
+    mhg = document.getElementById("mhg"),
+    nhg =document.getElementById("nhg"),
+    mh = document.getElementById("mh"),
+    nh =document.getElementById("nh"),
     showElement = (element) => {
         element.classList.remove("hide");
         element.classList.add("show");
@@ -31,7 +35,6 @@ btn1.addEventListener("click", () => {
         calc();
         createTable();
         showElement(zpList);
-        showElement(btn2);
         numOfClick = 0;
     }
     addAnim(zpList);
@@ -41,6 +44,7 @@ btn1.addEventListener("click", () => {
         alert("Ты шо, больной? o_0");
         btn1.disabled = true;
     }
+    btn2.disabled = false;
 });
 btn2.addEventListener("click", () => {
     const date = new Date().toLocaleDateString();
@@ -77,10 +81,16 @@ const btnStatus = () => { //Активность кнопки при отсут�
     }
 };
 const mdgVal = () => {
-mdg.value = Math.round(md.value);
+    mdg.value = Math.ceil(md.value);
 };
 const ndgVal = () => {
-    ndg.value = Math.round(nd.value);
+    ndg.value = Math.ceil(nd.value);
+};
+const mhgVal = () =>{
+     mhg.value = mh.value;
+};
+const nhgVal = () =>{
+    nhg.value = nh.value;
 };
 function convertHours(convertItem, writePlace, element, hoursInDay) {
     // convertItem что конвертируем
@@ -92,6 +102,18 @@ function convertHours(convertItem, writePlace, element, hoursInDay) {
             writePlace[i].value = hours.value / hoursInDay;
         }
         });
+}
+function convertDays(convertItem, writePlace, element, hoursInDay) {
+    // convertItem что конвертируем
+    // writePlace куда пишем
+    // element текущий элемент
+    // hoursInDay количество часов в дне для конвертации
+    convertItem.forEach((day, i) => {
+        if (day == element) {
+            writePlace[i].value = round(day.value * hoursInDay);
+        }
+        });
+
 }
 tableWrapper.addEventListener("focusin", (e) => {
     if (e.target && e.target.matches("input.delvalue[type='number']")) {
@@ -105,6 +127,12 @@ tableWrapper.addEventListener("focusin", (e) => {
         if(+e.target.value == 0){
             delVaule(e);
     }}
+    // if (e.target && e.target.matches("input#mh[type='number']")) {
+    //     mhgVal();
+    // }
+    // if (e.target && e.target.matches("input#nh[type='number']")) {
+    //     nhgVal();
+    // }
 
 });
 tableWrapper.addEventListener("keyup", (e) => {
@@ -115,10 +143,14 @@ tableWrapper.addEventListener("keyup", (e) => {
     if (e.target && e.target.matches("input#md[type='number']" )) {
         btnStatus();
         mdgVal();
+        convertDays(days, dayhours, e.target, 11.7);
+        mhgVal();
     }
     if (e.target && e.target.matches("input#nd[type='number']" )) {
         btnStatus();
         ndgVal();
+        convertDays(nights, nighthours, e.target, 11);
+        nhgVal();
 }});
 tableWrapper.addEventListener("focusout", (e) => {
 
@@ -156,24 +188,18 @@ tableWrapper.addEventListener("focusout", (e) => {
     if (e.target && e.target.matches("input#md[type='number']")) {
         btnStatus();
         mdgVal();
+        const mhgTimer = setTimeout(mhgVal, 100);
     }
     if (e.target && e.target.matches("input#nd[type='number']")) {
         btnStatus();
         ndgVal();
+        const nhgTimer = setTimeout(nhgVal, 100);
     }
     if (e.target && e.target.matches("input.days[type='number']")) {
-        days.forEach((day, i) => {
-            if (day == e.target) {
-                dayhours[i].value = round(days[i].value * 11.7);
-            }
-        });
+        convertDays(days, dayhours, e.target, 11.7);
     }
     if (e.target && e.target.matches("input.nights[type='number']")) {
-        nights.forEach((night, i) => {
-            if (night == e.target) {
-                nighthours[i].value = round(nights[i].value * 11);
-            }
-        });
+        convertDays(nights, nighthours, e.target, 11);
     }
     if (e.target && e.target.matches("input.nighthd[type='number']")) {
         nighthourshd.value = round(nighthd.value * 7);
@@ -195,6 +221,7 @@ tableWrapper.addEventListener("change", (e) => {
         if (e.target.value == 14) {
             night.forEach(row => {
                 hideElement(row);
+                hideElement(night[0].nextElementSibling);
                 nd.value = 0;
                 ndg.value = 0;
                 nighthours[0].value = 0;
@@ -249,14 +276,20 @@ convertHours(dayhours, days, previousInput, 11.7);
 if (nextInput && nextInput.classList.contains("nighthours") || previousInput && previousInput.classList.contains("nighthours")) {
     convertHours(nighthours, nights, nextInput, 11);
     convertHours(nighthours, nights, previousInput, 11);
-        }
-if (nextInput && nextInput.classList.contains("nighthourshd") || previousInput && previousInput.classList.contains("nighthourshd")) {
-    nighthd.value = nighthourshd.value / 7;
-        }
-    
+    }
+    if (nextInput && nextInput.classList.contains("nighthourshd") || previousInput && previousInput.classList.contains("nighthourshd")) {
+        nighthd.value = nighthourshd.value / 7;
+    }
+
+    if (nextInput && nextInput.matches("#mh") || previousInput && previousInput.matches("#mh")) {
         btnStatus();
         mdgVal();
-        ndgVal();
+    }
+    if (nextInput && nextInput.matches("#nh") || previousInput && previousInput.matches("#nh")) {
+        btnStatus();
+        mdgVal();
+    }
+
 }
     if(e.target && e.target.matches(".altDays")) {
         hideElement(e.target.parentElement.parentElement.parentElement);
