@@ -103,7 +103,6 @@ function convertHours(convertItem, writePlace, element, hoursInDay) {
         }
         });
 }
-
 function convertDays(convertItem, writePlace, element, hoursInDay) {
     // convertItem что конвертируем
     // writePlace куда пишем
@@ -163,19 +162,7 @@ tableWrapper.addEventListener("focusout", (e) => {
         toZero(e, 0);
     }
     if (e.target && e.target.matches("input#rate[type='number']")) {
-        toZero(e, (239).toFixed(2), true);
-    }
-    if (e.target && e.target.matches("input#mdg[type='number']")) {
-        toZero(e, Math.round(md.value));
-        if (+mdg.value < +md.value) {
-            mdg.value = Math.round(+md.value);
-        }
-    }
-    if (e.target && e.target.matches("input#ndg[type='number']")) {
-        toZero(e, Math.round(nd.value));
-        if (+ndg.value < +nd.value) {
-            ndg.value = Math.round(+nd.value);
-        }
+        toZero(e, (251).toFixed(2), true);
     }
     if (e.target && e.target.matches("input#cul[type='number']")) {
         toZero(e, 15);
@@ -199,6 +186,28 @@ tableWrapper.addEventListener("focusout", (e) => {
         btnStatus();
         ndgVal();
         const nhgTimer = setTimeout(nhgVal, 100);
+    }
+    if (e.target && e.target.matches("input#mdg[type='number']")) {
+        toZero(e, Math.round(md.value));
+        if (+mdg.value < +md.value) {
+            mdg.value = Math.ceil(+md.value);
+        }
+    }
+    if (e.target && e.target.matches("input#ndg[type='number']")) {
+        toZero(e, Math.round(nd.value));
+        if (+ndg.value < +nd.value) {
+            ndg.value = Math.ceil(+nd.value);
+        }
+    }
+    if (e.target && e.target.matches("input#mhg[type='number']")) {
+        if(mhg.value < mh.value) {
+            mhg.value = mh.value;
+        }
+    }
+    if (e.target && e.target.matches("input#nhg[type='number']")) {
+        if(nhg.value < nh.value) {
+            nhg.value = nh.value;
+        }
     }
     if (e.target && e.target.matches("input.days[type='number']")) {
         convertDays(days, dayhours, e.target, 11.7);
@@ -225,13 +234,15 @@ tableWrapper.addEventListener("change", (e) => {
     if (e.target && e.target.matches("input[name='sch']")) {
         if (e.target.value == 14) {
             night.forEach(row => {
-                hideElement(row);
-                hideElement(night[0].nextElementSibling);
-                nd.value = 0;
-                ndg.value = 0;
-                nighthours[0].value = 0;
-                btnStatus();
-            });}
+                hideElement(row);});
+            hideElement(night[0].nextElementSibling);
+            hideElement(night[1].nextElementSibling);
+            nd.value = 0;
+            ndg.value = 0;
+            nighthours[0].value = 0;
+            nighthours[1].value = 0;
+            btnStatus();
+        }
         if (e.target.value == 16) {
             night.forEach(row => {
                 showRow(row);
@@ -249,14 +260,9 @@ tableWrapper.addEventListener("change", (e) => {
 });
 tableWrapper.addEventListener("input", (e) => { //Запрет ввода не цифр
     if (e.target && e.target.matches("input[type='number']")) {
-        // e.target.value = e.target.value.replace(/[^\d]/g, '');
-        // e.target.value = e.target.value.replace(/[^0-9.]/g, "");
-        // e.target.value = e.target.value.replace(/[A-Za-zА-Яа-яЁё]/, '');
-        // e.target.value = e.target.value.replace(/[^0-9\.\,]/g, '');
         e.target.value = e.target.value.replace(/[^\d\.]/g, "");
-        // console.log(e.target.value);
 
-    }
+        }
 });
 tableWrapper.addEventListener("click", (e) => {
     const nextInput = e.target.nextElementSibling,
@@ -289,12 +295,12 @@ if (nextInput && nextInput.classList.contains("nighthours") || previousInput && 
     if (nextInput && nextInput.matches("#mh") || previousInput && previousInput.matches("#mh")) {
         btnStatus();
         mdgVal();
-        mhg.value = +mdg.value * 11.7;
+        mhg.value = roundHours(+mdg.value * 11.7);
     }
     if (nextInput && nextInput.matches("#nh") || previousInput && previousInput.matches("#nh")) {
         btnStatus();
         ndgVal();
-        nhg.value = +ndg.value * 11;
+        nhg.value = roundHours(+ndg.value * 11);
     }
     if (nextInput && nextInput.matches("#mhg") || previousInput && previousInput.matches("#mhg")) {
         if(+mhg.value <= +mh.value){
