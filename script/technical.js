@@ -258,11 +258,11 @@ tableWrapper.addEventListener("change", (e) => {
         someChanged = true;
     }
 });
-tableWrapper.addEventListener("input", (e) => { //Запрет ввода не цифр
-    if (e.target && e.target.matches("input[type='number']")) {
-        e.target.value = e.target.value.replace(/[^\d\.]/g, "");
-
-        }
+tableWrapper.addEventListener("keydown", (event) => { //Запрет ввода не цифр
+    if (event.target && event.target.matches("input[type='number']")) {
+            return !(/^[А-Яа-яA-Za-z ]$/.test(event.key));
+        
+    }
 });
 tableWrapper.addEventListener("click", (e) => {
     const nextInput = e.target.nextElementSibling,
