@@ -137,7 +137,6 @@ tableWrapper.addEventListener("focusin", (e) => {
     // if (e.target && e.target.matches("input#nh[type='number']")) {
     //     nhgVal();
     // }
-
 });
 tableWrapper.addEventListener("keyup", (e) => {
     if (e.target && e.target.matches("input[type='number']")) {
@@ -186,6 +185,16 @@ tableWrapper.addEventListener("focusout", (e) => {
         btnStatus();
         ndgVal();
         const nhgTimer = setTimeout(nhgVal, 100);
+    }
+    if (e.target && e.target.matches("input#mh[type='number']")) {
+        btnStatus();
+        const mdgTimer = setTimeout(mdgVal, 100),
+        mhgTimer = setTimeout(mhgVal, 100);
+    }
+    if (e.target && e.target.matches("input#nh[type='number']")) {
+        btnStatus();
+        const ndgTimer = setTimeout(ndgVal, 100),
+        nhgTimer = setTimeout(nhgVal, 100);
     }
     if (e.target && e.target.matches("input#mdg[type='number']")) {
         toZero(e, Math.round(md.value));
