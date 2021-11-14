@@ -3,6 +3,7 @@
 const tableWrapper = document.querySelector(".tableWrapper"),
     btn1 = document.getElementById("btn1"),
     btn2 = document.getElementById("btn2"),
+    btn3 = document.getElementById("btn3"),
     night = document.querySelectorAll(".night"),
     days = document.querySelectorAll(".days"),
     dayhours = document.querySelectorAll(".dayhours"),
@@ -47,8 +48,13 @@ btn1.addEventListener("click", () => {
     btn2.disabled = false;
 });
 btn2.addEventListener("click", () => {
-    const date = new Date().toLocaleDateString();
-    saveSvg(zpList, `Зарплата ${date}.svg`);
+    let date = new Date().toLocaleDateString(),
+    shortTime = new Date().toLocaleTimeString([], {timeStyle: 'short'});
+    shortTime = shortTime.slice(0,2) + "-" + shortTime.slice(3);
+    saveSvg(zpList, `Зарплата ${date} ${shortTime}.svg`);
+});
+btn3.addEventListener("click", () => {
+    writeHistory();
 });
 const addAnim = (element) => { //Анимация появления
     setTimeout(() => {
@@ -119,6 +125,21 @@ function roundHours(value) {
     value = (Math.round(value * 10000000000000)) / 10000000000000;
     return value;
 }
+function sch14() {
+    night.forEach(row => {
+        hideElement(row);});
+    hideElement(night[0].nextElementSibling);
+    hideElement(night[1].nextElementSibling);
+    nd.value = 0;
+    ndg.value = 0;
+    nighthours[0].value = 0;
+    nighthours[1].value = 0;
+}
+function sch16() {
+    night.forEach(row => {
+        showRow(row);
+    });
+}
 tableWrapper.addEventListener("focusin", (e) => {
     if (e.target && e.target.matches("input.delvalue[type='number']")) {
         delVaule(e);
@@ -149,12 +170,25 @@ tableWrapper.addEventListener("keyup", (e) => {
         convertDays(days, dayhours, e.target, 11.7);
         mhgVal();
     }
-    if (e.target && e.target.matches("input#nd[type='number']" )) {
+    if (e.target && e.target.matches("input#nd[type='number']")) {
         btnStatus();
         ndgVal();
         convertDays(nights, nighthours, e.target, 11);
         nhgVal();
-}});
+    }
+    if (e.target && e.target.matches("input#mh[type='number']" )) {
+        convertHours(dayhours, days, e.target, 11.7);
+        btnStatus();
+        mdgVal();
+        mhgVal();
+    }
+    if (e.target && e.target.matches("input#nh[type='number']" )) {
+        convertHours(nighthours, nights, e.target, 11);
+        btnStatus();
+        ndgVal();
+        nhgVal();
+    }
+});
 tableWrapper.addEventListener("focusout", (e) => {
 
     if (e.target && e.target.matches("input.zero[type='number']")) {
@@ -242,20 +276,13 @@ tableWrapper.addEventListener("focusout", (e) => {
 tableWrapper.addEventListener("change", (e) => {
     if (e.target && e.target.matches("input[name='sch']")) {
         if (e.target.value == 14) {
-            night.forEach(row => {
-                hideElement(row);});
-            hideElement(night[0].nextElementSibling);
-            hideElement(night[1].nextElementSibling);
-            nd.value = 0;
-            ndg.value = 0;
-            nighthours[0].value = 0;
-            nighthours[1].value = 0;
+            sch14();
             btnStatus();
         }
         if (e.target.value == 16) {
-            night.forEach(row => {
-                showRow(row);
-            });}}
+            sch16();
+        }
+        }
 
     if (e.target && e.target.matches("input[type='checkbox']")) {
         if (ms.checked) {

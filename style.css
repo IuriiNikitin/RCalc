@@ -1,6 +1,6 @@
 body {
     background-color: #35363A;
-    font-size: 12pt;
+    font-size: 10pt;
     font-weight: bold;
     color: #A3A4A8;
     font-family: "Arial", sans-serif;
@@ -46,14 +46,14 @@ tr {
     border: 2px solid #FFFFFF; 
 }
 .left {
-  width: 65%;
+  width: 60%;
   padding-left: 10px;
   padding-right: 10px;
 }
 
 td {
     border: 2px solid #FFFFFF;
-    height: 40px;
+    height: 38px;
     text-align: center;
     padding-left: 5px;
     padding-right: 5px;
@@ -61,10 +61,10 @@ td {
 input[type="number"] {
     background: transparent;
     border: none;
-    font-size: 15pt;
+    font-size: 13pt;
     color:#A3A4A8;
     text-align: center;
-    width: 100%;
+    width: 70%;
     height:100%;
     caret-color:auto;
     -moz-appearance: textfield; /* убирание стрелок firefox */
@@ -87,10 +87,10 @@ input[type="number"]:focus {
 }
 
   .small {
-    line-height: 0.7;
+    line-height: 0.9;
     padding-bottom: 0;
-    padding-top: 5px;
-  }
+    padding-top: 0px;
+}
 
 
   .btn {
@@ -108,30 +108,36 @@ input[type="number"]:focus {
     font-size: 25px;
   }
   .btnwrapper {
-    display: inline-block;
+    display:flex;
     width: 95%;
-    max-width: 400px;
+    max-width: 350px;
     min-width: 305px;
+    margin: auto;
   } 
   .btn#btn1 {
-    display: inline;
-    width: 80%;
+    display: inline-block;
+    width: 60%;
   }
   .btn#btn2 {
-    display: inline;
+    display: inline-block;
     width: 20%;
+  }
+  .btn#btn3 {
+    display: inline-block;
+    width: 20%;
+  }
+  .btn {
+    margin-left: 3px;
+    margin-right: 3px;
   }
 
   .btn:disabled {
-    display: inline;
     background-color: #444;
     color: white;
     pointer-events: none;
     text-align: center;
   }
   .btn:active {
-    display: inline;
-    margin: auto;
     background-color: #007399;
     transform: scale(0.98);
   }
@@ -177,7 +183,7 @@ float: right;
 
 .input-number__minus,
 .input-number__plus {
-    width: 32px;
+    width: 52px;
     height: 32px;
     display: flex;
     align-items: center;
