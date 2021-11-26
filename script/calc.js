@@ -96,11 +96,13 @@ function calcRadio(radio, writeObj, key) {
                     oneDayHourMoney = oneDayMoney / 11.7, //Деньги за один дневной час
                     oneNightHourMoney = oneNightMoney / 11; //Деньги за один ночной час
                     
-                let lvlm = 0;
-                if (sch[0].checked) {
+                let lvlm;
+                if (sch[0].checked || ndg.value == 0) {
                     lvlm = round(lvlVal / +mdg.value) * +md.value;
+                    // console.log("Посчитано как 14 график");
                 } else {
                     lvlm = round(oneDayHourMoney * (+md.value * 11.7)) + round(oneNightHourMoney * (+nd.value * 11));
+                    // console.log("Посчитано как 16 график");
                 }
                 if (lvlm > lvlVal) {
                     lvlm = lvlVal;
