@@ -36,21 +36,21 @@ function writeHistory() {
     }
     history.rate = rate.value;
     history.md = md.value;
-    history.mh = mh.value;
+    // history.mh = mh.value;
     history.nd = nd.value;
-    history.nh = nh.value;
+    // history.nh = nh.value;
     history.mdg = mdg.value;
-    history.mhg = mhg.value;
+    // history.mhg = mhg.value;
     history.ndg = ndg.value;
-    history.nhg = nhg.value;
+    // history.nhg = nhg.value;
     history.omd = omd.value;
-    history.omh = omh.value;
+    // history.omh = omh.value;
     history.ond = ond.value;
-    history.onh = onh.value;
+    // history.onh = onh.value;
     history.mhd = mhd.value;
-    history.mhh = mhh.value;
+    // history.mhh = mhh.value;
     history.nhd = nhd.value;
-    history.nhh = nhh.value;
+    // history.nhh = nhh.value;
     history.fnp = fnp.value;
     history.cul = cul.value;
     history.coe = coe.value;
@@ -67,7 +67,7 @@ for(let key in history) {
 search = search.slice(0, -1);
 link = href + search;
 
-console.log(link);
+// console.log(link);
 
     // window.history.pushState('1', 'Title', search);
 }
@@ -81,35 +81,67 @@ historyArr.forEach(item => {
     historyObj[param[0]] = param[1];
 });
 
-rate.value = historyObj.rate;
-md.value = historyObj.md;
-mh.value = historyObj.mh;
-nd.value = historyObj.nd;
-nh.value = historyObj.nh;
-mdg.value = historyObj.mdg;
-mhg.value = historyObj.mhg;
-ndg.value = historyObj.ndg;
-nhg.value = historyObj.nhg;
-omd.value = historyObj.omd;
-omh.value = historyObj.omh;
-ond.value = historyObj.ond;
-onh.value = historyObj.onh;
-mhd.value = historyObj.mhd;
-mhh.value = historyObj.mhh;
-nhd.value = historyObj.nhd;
-nhh.value = historyObj.nhh;
-fnp.value = historyObj.fnp;
-cul.value = historyObj.cul;
-coe.value = historyObj.coe;
-prp.value = historyObj.prp;
+if(historyObj.rate){rate.value = historyObj.rate;}
 
-sch[historyObj.sch].checked = true;
-if(+historyObj.sch == 0) {
-    sch14();
+if(historyObj.md){
+    md.value = historyObj.md;
+    mh.value = roundHours(historyObj.md * 11.7);
 }
-ms.checked = +historyObj.ms;
-lms[historyObj.lms].checked = true;
-lvl[historyObj.lvl].checked = true;
+// if(historyObj.mh){mh.value = historyObj.mh;}
+if(historyObj.nd){
+    nd.value = historyObj.nd;
+    nh.value = roundHours(historyObj.nd * 11);
+}
+// if(historyObj.nh){nh.value = historyObj.nh;}
+
+if(historyObj.mdg){
+    mdg.value = historyObj.mdg;
+    mhg.value = roundHours(historyObj.mdg * 11.7);
+}
+// if(historyObj.mhg){mhg.value = historyObj.mhg;}
+
+if(historyObj.ndg){
+    ndg.value = historyObj.ndg;
+    nhg.value = roundHours(historyObj.ndg * 11);
+}
+// if(historyObj.nhg){nhg.value = historyObj.nhg;}
+
+if(historyObj.omd){
+    omd.value = historyObj.omd;
+    omh.value = roundHours(historyObj.omd * 11.7);
+}
+// if(historyObj.omh){omh.value = historyObj.omh;}
+
+if(historyObj.ond){
+    ond.value = historyObj.ond;
+    onh.value = roundHours(historyObj.ond * 11);
+}
+// if(historyObj.onh){onh.value = historyObj.onh;}
+if(historyObj.mhd){
+    mhd.value = historyObj.mhd;
+    mhh.value = roundHours(historyObj.mhd * 11.7);
+}
+// if(historyObj.mhh){mhh.value = historyObj.mhh;}
+
+if(historyObj.nhd){
+    nhd.value = historyObj.nhd;
+    nhh.value = roundHours(historyObj.nhd * 7);
+}
+// if(historyObj.nhh){nhh.value = historyObj.nhh;}
+if(historyObj.fnp){fnp.value = historyObj.fnp;}
+if(historyObj.cul){cul.value = historyObj.cul;}
+if(historyObj.coe){coe.value = historyObj.coe;}
+if(historyObj.prp){prp.value = historyObj.prp;}
+
+if (historyObj.sch) {
+    sch[historyObj.sch].checked = true;
+    if (+historyObj.sch == 0) {
+        sch14();
+    }
+}
+if(historyObj.ms){ms.checked = +historyObj.ms;}
+if(historyObj.lms){lms[historyObj.lms].checked = true;}
+if(historyObj.lvl){lvl[historyObj.lvl].checked = true;}
 someChanged = true;
 btnStatus();
 }

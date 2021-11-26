@@ -1,0 +1,8 @@
+{
+    "liveServer.settings.https": {
+    "enable": true, //set it true to enable the feature.
+    "cert": "/Users/yurii/Desktop/Work/ZP_GOZ/.vscode/server.crt", //full path of the certificate
+    "key": "/Users/yurii/Desktop/Work/ZP_GOZ/.vscode/server.key", //full path of the private key
+    "passphrase": "devil2285731"
+    }
+    }

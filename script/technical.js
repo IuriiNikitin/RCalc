@@ -15,6 +15,7 @@ const tableWrapper = document.querySelector(".tableWrapper"),
     nhg =document.getElementById("nhg"),
     mh = document.getElementById("mh"),
     nh =document.getElementById("nh"),
+    copy =  document.querySelector(".copy"),
     showElement = (element) => {
         element.classList.remove("hide");
         element.classList.add("show");
@@ -23,9 +24,14 @@ const tableWrapper = document.querySelector(".tableWrapper"),
         element.classList.remove("hide");
         element.classList.add("showRow");
     },
+    showFlex = (element) => {
+        element.classList.remove("hide");
+        element.classList.add("showFlex");
+    },
     hideElement = (element) => {
         element.classList.remove("show");
         element.classList.remove("showRow");
+        element.classList.remove("showFlex");
         element.classList.add("hide");
     };
 let someChanged = false,
@@ -55,13 +61,33 @@ btn2.addEventListener("click", () => {
 });
 btn3.addEventListener("click", () => {
     writeHistory();
+    if (navigator.share) {
+        navigator.share({
+            title: 'RCalc',
+            text: 'Мой расчёт заработной платы',
+            url: link
+          });
+    } else {
+        navigator.clipboard.writeText(link);
+        copy.style.bottom = 40 - document.documentElement.scrollTop + "px";
+        addAnim1(copy);
+        const first = () =>{ showFlex(copy);};
+        const second = () =>{setTimeout( function(){ hideElement(copy);}, 1000 );};
+          first();
+          second();
+    }
 });
 const addAnim = (element) => { //Анимация появления
     setTimeout(() => {
         element.classList.add("anim");
     });
     element.classList.remove("anim");
-
+};
+const addAnim1 = (element) => { //Анимация появления
+    setTimeout(() => {
+        element.classList.add("anim1");
+    });
+    element.classList.remove("anim1");
 };
 const toZero = (e, value1, fixed) => { // К value1 при blur, fixed(2) введённое значение
     if (!e.target.value) {
