@@ -148,7 +148,7 @@ function convertDays(convertItem, writePlace, element, hoursInDay) {
 
 }
 function roundHours(value) {
-    value = (Math.round(value * 10000000000000)) / 10000000000000;
+    value = (Math.round(value * 1000000000000)) / 1000000000000;
     return value;
 }
 function sch14() {
