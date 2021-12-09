@@ -26,7 +26,7 @@ const rate = document.getElementById("rate"), //Ставка
 
     let items = ""; //Количество строчек зарплаты
 
-   const calcDays = () => {
+const calcDays = () => {
        time.allmd = +md.value + (+omd.value);
        time.allnd = +nd.value + (+ond.value);
        time.alld0 = +md.value + (+nd.value);
@@ -42,7 +42,7 @@ const rate = document.getElementById("rate"), //Ставка
        if (+omd.value || +ond.value) {
            time.allod = (+omd.value) + (+ond.value);
        }
-   };
+};
 
 const calcWhlvl = () => {time.whlvl = round(((+md.value - +mhd.value) * 11.7) + ((+nd.value - +nhd.value) * 11)) ;},
     calcWh0 = () => {time.wh0 = round((+md.value * 11.7) + (+nd.value * 11));},
@@ -58,13 +58,13 @@ function calcOhm() {
     if (+omd.value || +ond.value) {
         calcOh();
         ZP.ohm = round(time.oh * +rate.value);
-    }}
+}}
 
 function calcHdm() {
     if (time.allhd) {
         calcHdh();
         ZP.hdm = round(time.hdh * rate.value);
-    }}
+}}
 
 function calcRadio(radio, writeObj, key) {
     if (typeof(writeObj) == "object") {
@@ -81,7 +81,7 @@ function calcRadio(radio, writeObj, key) {
     return rez;
 }}
 
-        function calcLvl() {
+function calcLvl() {
             const lvlVal = calcRadio(lvl);
             if (lvlVal) {
                 const mh0 = (+mdg.value * 11.7), //Дневные часы по графику
@@ -109,7 +109,7 @@ function calcRadio(radio, writeObj, key) {
                 }
                 ZP.lvl = lvlm;
             }
-        }
+}
 
 function calcPw() {
     if (ms.checked) {
@@ -119,7 +119,7 @@ function calcPw() {
     } else {
         calcPwh();
         ZP.pw = round(time.pwh * (+rate.value));
-    }}
+}}
 
     const calcEhm = () => {if(sch[1].checked){ calcEh();ZP.ehm = round((time.eh * (+rate.value * 0.2)));}}, // 20% от ставки
     calcNhm = () => {if (time.allnd) {calcNh(); ZP.nhm = round((time.nh * (+rate.value * 0.4)));}}, // 40% от ставки 
@@ -135,23 +135,23 @@ function calcPw() {
     calcZp = () => {ZP.final.zp = round(ZP.final.zpc - (+prp.value));},// Зарплата
     calcPrp = () => {ZP.final.prp = +prp.value;};
 
-    function clear(obj) {
+function clear(obj) {
         for (let key in obj) {
             if (typeof(obj[key]) != "object") {
                 delete obj[key];
             }
             else {
                 clear(obj[key]);
-                }}}
+}}}
 
-    function sum(obj) {
+function sum(obj) {
         let rez = 0;
         for(let key in obj) {
             if(!isNaN(obj[key])){
                 rez += obj[key];
             }}
         return rez;
-    }
+}
 
 function round(value) {
     value = (Math.round(value * 100))/100;
@@ -164,7 +164,7 @@ function fixed(obj) {
             obj[key] = obj[key].toFixed(2);
         } else {
             fixed(obj[key]);
-        }}}
+}}}
 
 function space(obj) {
     for (let key in obj) {
@@ -178,7 +178,7 @@ function space(obj) {
             }
         } else{
             space(obj[key]);
-        }}}
+}}}
 
 function calc() {
     clear(time);
