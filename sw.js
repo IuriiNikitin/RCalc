@@ -31,8 +31,12 @@ const assetUrls = [
 
 
 self.addEventListener("install", async (event) => {
-    const cache =  await caches.open(staticCacheName);
-    await cache.addAll(assetUrls);
+    // const cache =  await caches.open(staticCacheName);
+    // await cache.addAll(assetUrls);
+    event.waitUntil(
+        caches.open(staticCacheName).then((cache) =>
+            cache.addAll(assetUrls))
+    );
 });
 
 self.addEventListener("activate", async (event) => {
@@ -45,5 +49,21 @@ self.addEventListener("activate", async (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-    // console.log("Fetch", event.request.url);
+    event.respondWith(fromCache(event.request));
+    event.waitUntil(update(event.request));
 });
+
+function fromCache(request) {
+    return caches.open(staticCacheName).then((cache) =>
+        cache.match(request).then((matching) =>
+            matching || Promise.reject('no-match')
+        ));
+}
+
+function update(request) {
+    return caches.open(staticCacheName).then((cache) =>
+        fetch(request).then((response) =>
+            cache.put(request, response)
+        )
+    );
+}
