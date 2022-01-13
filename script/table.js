@@ -196,6 +196,24 @@ function createTable() {
         i++;
     }
 
+    writeHistory();
+    const qrcode = new QRCode({ 
+        content: link, 
+        padding: 4,
+        width: 150,
+        height: 150,
+        join: true,
+        predefined: true,
+        xmlDeclaration: false,
+        container: "svg",
+        x: 260,
+        y: 430
+    });
+    const svg = qrcode.svg();
+    zpList.innerHTML += svg;
+
+
+
     const crDate =  new Date().toLocaleDateString(),
     crTime = new Date().toLocaleTimeString();
 

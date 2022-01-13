@@ -6,11 +6,12 @@ nhh = document.getElementById("nhh"), //Праздничные ночные ча
 spoiler = document.querySelectorAll("details");
 
 let link,
-href = window.location.href,
+href,
 search = "?";
 
 function writeHistory() {
-    search = "?";
+    search = "?",
+    href = window.location.href;
     const history = {};
    
     let 
@@ -35,28 +36,60 @@ function writeHistory() {
     } else {
         msVal = 0;
     }
+
     history.rate = rate.value;
+
+    if(+md.value){
     history.md = md.value;
+    }
+    if(+nd.value) {
     history.nd = nd.value;
+    }
+    if(+mdg.value) {
     history.mdg = mdg.value;
+    }
+    if(+ndg.value) {
     history.ndg = ndg.value;
+    }
+    if(+omd.value) {
     history.omd = omd.value;
+    }
+    if(+ond.value) {
     history.ond = ond.value;
+    }
+    if(+mhd.value) {
     history.mhd = mhd.value;
+    }
+    if(+nhd.value) {
     history.nhd = nhd.value;
+    }
+    if(+fnp.value) {
     history.fnp = fnp.value;
+    }
+    if(+cul.value) {
     history.cul = cul.value;
+    }
+
     history.coe = coe.value;
+
+    if(+prp.value) {
     history.prp = prp.value;
-
+    }
+    
     history.sch = schVal;
-    history.ms = msVal;
-    history.lms = lmsVal;
-    history.lvl = lvlVal;
 
-    if(omd.value == 0 && ond.value == 0 && mhd.value == 0 && nhd.value == 0) {
-        history.spoiler1 = 0;
-    } else {
+    if(msVal) {
+    history.ms = msVal;
+    }
+    if(lmsVal) {
+    history.lms = lmsVal;
+    }
+    if(lvlVal) {
+    history.lvl = lvlVal;
+    }
+
+
+    if(omd.value != 0 || ond.value != 0 || mhd.value != 0 || nhd.value != 0) {
         history.spoiler1 = 1;
     }
 
@@ -121,9 +154,20 @@ if(historyObj.nhd){
 }
 
 if(historyObj.fnp){fnp.value = historyObj.fnp;}
-if(historyObj.cul){cul.value = historyObj.cul;}
-if(historyObj.coe){coe.value = historyObj.coe;}
-if(historyObj.prp){prp.value = historyObj.prp;}
+
+if (historyObj.cul) {
+    cul.value = historyObj.cul;
+} else{
+    cul.value = 0;
+}
+if (historyObj.coe) {
+    coe.value = historyObj.coe;
+}
+if (historyObj.prp) {
+    prp.value = historyObj.prp;
+} else {
+    prp.value = 0;
+}
 
 if (historyObj.sch) {
     sch[historyObj.sch].checked = true;
@@ -131,15 +175,30 @@ if (historyObj.sch) {
         sch14();
     }
 }
-if(historyObj.ms){ms.checked = +historyObj.ms;}
-if(historyObj.lms){lms[historyObj.lms].checked = true;}
-if(historyObj.lvl){lvl[historyObj.lvl].checked = true;}
-if(historyObj.spoiler1 && historyObj.spoiler1 == 1) {
+if (historyObj.ms) {
+    ms.checked = true;
+} else {
+    ms.checked = false;
+}
+
+
+
+if (historyObj.lms) {
+    lms[historyObj.lms].checked = true;
+} else{
+    lms[0].checked = true;
+}
+
+
+if (historyObj.lvl) {
+    lvl[historyObj.lvl].checked = true;
+} else {
+    lvl[0].checked = true;
+}
+
+if(historyObj.spoiler1) {
     spoiler[0].open = true;
     // console.log("спойлер открыт");
-} else {
-    spoiler[0].open = false;
-    // console.log("спойлер закрыт");
 }
 someChanged = true;
 btnStatus();

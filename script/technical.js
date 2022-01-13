@@ -57,7 +57,7 @@ btn2.addEventListener("click", () => {
     let date = new Date().toLocaleDateString(),
     shortTime = new Date().toLocaleTimeString([], {timeStyle: 'short'});
     shortTime = shortTime.slice(0,2) + "-" + shortTime.slice(3);
-    saveSvg(zpList, `Зарплата ${date} ${shortTime}.svg`);
+    saveSvg(zpList, `Зарплата ${date} ${shortTime}.xml`);
 });
 btn3.addEventListener("click", () => {
     writeHistory();
