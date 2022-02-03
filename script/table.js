@@ -60,6 +60,29 @@ class Text {
         this.appendPlace.append(text);
     }
 }
+class Hyperlink {
+    constructor(x, y, clas, text, href, appendPlace){
+        this.x = x;
+        this.y = y;
+        this.text = text;
+        this.clas = clas;
+        this.href = href;
+        this.appendPlace = appendPlace;
+    }
+    render() {
+        const a = document.createElementNS(svgNS,"a");
+        a.setAttributeNS(null,"href", this.href);
+        a.setAttributeNS(null,"target", "_blank");
+
+        const text = document.createElementNS(svgNS,"text");
+        text.setAttributeNS(null,"class", this.clas);
+        text.setAttributeNS(null,"x", this.x);
+        text.setAttributeNS(null,"y", this.y);
+        text.append(document.createTextNode(this.text));
+        this.appendPlace.append(a);
+        a.append(text);
+    }
+}
 
 function createTable() {
     let i = 0; //Счётчик айтемов
@@ -67,12 +90,13 @@ function createTable() {
     zpList.innerHTML = "";
 
     let style = document.createElementNS(svgNS,"style");
-    style.append(document.createTextNode(".st0 {fill: white;stroke: #000000;stroke-width: 1;}"));
-    style.append(document.createTextNode(".st1 {fill: none;stroke: #000000;stroke-miterlimit: 10;}"));
-    style.append(document.createTextNode(".st2 {fill: none;stroke: #000000;stroke-width: 0.5;stroke-miterlimit: 10;}"));
-    style.append(document.createTextNode(".st3 {font-family: 'Arial-Bold', sans-serif; font-weight: 600; font-size:10px;}"));
+    style.append(document.createTextNode(".st0 {fill: white;}"));
+    style.append(document.createTextNode(".st1 {fill: none;stroke: #000000;}"));
+    style.append(document.createTextNode(".st2 {fill: none;stroke: #000000;stroke-width: 0.5;}"));
+    style.append(document.createTextNode(".st3 {font-family: 'helveticacyr-bold'; font-weight: 500;  font-size:10px;}"));
     style.append(document.createTextNode(".st4 {font-size: 8.5px;}"));
-    style.append(document.createTextNode(".st5 {font-family: 'Arial', sans-serif; font-weight: 400;}"));
+    style.append(document.createTextNode(".st5 {font-family: 'helveticaneuecyr-roman'; font-weight: 400;}"));
+    style.append(document.createTextNode(".st6 {stroke-dasharray: 10;}"));
     zpList.append(style);
     
     new Rect(0, 0, 425, 595, "st0").render();
@@ -92,6 +116,7 @@ function createTable() {
     new Line(334, items * itemSize + 65, 334, items * itemSize + 85, "st2").render();
     new Line(266, items * itemSize + 99, 266, items * itemSize + 125, "st2").render();
     new Line(33, items * itemSize + 112, 388, items * itemSize + 112, "st2").render();
+    new Line(425 , 0 , 425, 597 , "st2 st6").render();
 
     new Text(250, 28, "st3", "Тарифная").render();
     new Text(259, 39, "st3", "ставка").render();
@@ -197,20 +222,39 @@ function createTable() {
     }
 
     writeHistory();
+    
     const qrcode = new QRCode({ 
         content: link, 
         padding: 4,
-        width: 150,
-        height: 150,
+        width: 150.228,
+        height: 150.228,
         join: true,
         predefined: true,
         xmlDeclaration: false,
         container: "svg",
-        x: 260,
-        y: 430
+        id: "qRCode",
+        viewBox: "-35 -15 220.228 220.228",
+        x: 255,
+        y: 410
     });
     const svg = qrcode.svg();
     zpList.innerHTML += svg;
+    const qRCode = document.getElementById("qRCode");
+    style = document.createElementNS(svgNS,"style");
+    style.append(document.createTextNode(".st7 {fill: none;stroke: #000000;stroke-width: 4;}"));
+    style.append(document.createTextNode(".st8 {font-family: serif; font-weight: 500;  font-size:25px;}"));
+    style.append(document.createTextNode(".st9 {font-family: serif; font-weight: 600;  font-size:8px;}"));
+    style.append(document.createTextNode("a:link, a:visited {cursor: pointer;}"));
+    style.append(document.createTextNode("a text, text a {fill: blue; text-decoration: underline;}"));
+    style.append(document.createTextNode("a:hover, a:active {outline: dotted 1px blue;}"));
+    qRCode.append(style);
+
+    new Rect(-10, -10, 170.228, 210.228, "st7", qRCode).render();
+    new Text(13, 152, "st9", "https://ykypika.github.io/ZP_GOZ/", qRCode).render();
+    new Hyperlink(42, 181, "st8", "RCalc", link, qRCode).render();
+
+
+
 
 
 

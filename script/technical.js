@@ -4,6 +4,8 @@ const tableWrapper = document.querySelector(".tableWrapper"),
     btn1 = document.getElementById("btn1"),
     btn2 = document.getElementById("btn2"),
     btn3 = document.getElementById("btn3"),
+    btn4 = document.getElementById("btn4"),
+    btn5 = document.getElementById("btn5"),
     night = document.querySelectorAll(".night"),
     days = document.querySelectorAll(".days"),
     dayhours = document.querySelectorAll(".dayhours"),
@@ -16,6 +18,10 @@ const tableWrapper = document.querySelector(".tableWrapper"),
     mh = document.getElementById("mh"),
     nh =document.getElementById("nh"),
     copy =  document.querySelector(".copy"),
+    modal = document.querySelector(".modal_download"),
+    modalTitle = document.querySelector(".modal__title"),
+    modalClose = document.querySelector(".modal__close"),
+    
     showElement = (element) => {
         element.classList.remove("hide");
         element.classList.add("show");
@@ -35,16 +41,65 @@ const tableWrapper = document.querySelector(".tableWrapper"),
         element.classList.add("hide");
     };
 let someChanged = false,
-    numOfClick = 0;
+    numOfClick = 0,
+    timerDownload;
 
-btn1.addEventListener("click", () => {
+    function setDate() {
+        let date = new Date().toLocaleDateString(),
+            shortTime = new Date().toLocaleTimeString([], {
+                timeStyle: 'short'
+            });
+        shortTime = shortTime.slice(0, 2) + "-" + shortTime.slice(3);
+        date = date + "T" + shortTime;
+        return date;
+    }
+    function openModal() {
+        showElement(modal);
+        document.body.style.overflow = "hidden";
+    }
+    function closeModal() {
+        hideElement(modal);
+        document.body.style.overflow = "";
+        modalTitle.innerHTML =`
+        <div class="btnwrapper_download">
+        <button class="btn btn_download" id="btn4">Лист</button>
+        <button class="btn btn_download" id="btn5">Qrcode</button>
+        </div>`;
+        clearTimeout(timerDownload);
+    }
+    const trySave = (size, layout, fonts, svg, x, y, width, height, name) => {
+        let i = 0;
+        function attempt() {
+            try {
+                savePdf(size, layout, fonts, svg, x, y, width, height, name);
+                closeModal();
+            } catch {
+                i++;
+                if (i <= 5) {
+                    modalTitle.innerHTML = `
+                        <div>Загрузка скоро начнётся...</div>
+                        <br>
+                        <div>Попытка №${i}</div>`;
+                    timerDownload = setTimeout(attempt, 5000);
+                } else {
+                    modalTitle.innerHTML = `
+                        <div>Что-то пошло не так</div>
+                        <br>
+                        <div>Попробуйте позже</div>`;
+                    setTimeout(closeModal, 3000);
+                }
+            }
+        }
+    attempt();
+        };
+btn1.addEventListener("click", () => {  //Generate
     if (someChanged) {
         calc();
         createTable();
         showElement(zpList);
         numOfClick = 0;
     }
-    addAnim(zpList);
+    addAnim(zpList, "anim");
     someChanged = false;
     numOfClick++;
     if (numOfClick > 20) {
@@ -53,13 +108,10 @@ btn1.addEventListener("click", () => {
     }
     btn2.disabled = false;
 });
-btn2.addEventListener("click", () => {
-    let date = new Date().toLocaleDateString(),
-    shortTime = new Date().toLocaleTimeString([], {timeStyle: 'short'});
-    shortTime = shortTime.slice(0,2) + "-" + shortTime.slice(3);
-    saveSvg(zpList, `Зарплата ${date} ${shortTime}.xml`);
+btn2.addEventListener("click", () => { //download
+openModal();
 });
-btn3.addEventListener("click", () => {
+btn3.addEventListener("click", () => { //Share
     writeHistory();
     if (navigator.share) {
         navigator.share({
@@ -70,24 +122,33 @@ btn3.addEventListener("click", () => {
     } else {
         navigator.clipboard.writeText(link);
         copy.style.bottom = 40 - document.documentElement.scrollTop + "px";
-        addAnim1(copy);
+        addAnim(copy, "anim1");
         const first = () =>{ showFlex(copy);};
         const second = () =>{setTimeout( function(){ hideElement(copy);}, 1000 );};
           first();
           second();
     }
 });
-const addAnim = (element) => { //Анимация появления
+modal.addEventListener("click", (e) => { //modal events
+
+    if(e.target && e.target.matches(".modal__close, .modal_download")) {
+        closeModal();
+    }
+    if (e.target && e.target.matches("#btn4")) {
+        const date = setDate();
+        trySave("A4", "landskape", "fonts", zpList, 0, 0, 419.53, 595.28, `Расчётный лист ${date}.pdf`);
+    }
+    if (e.target && e.target.matches("#btn5")) {
+        const date = setDate();
+        trySave([150.23, 164.41], "portrait", "", qRCode, 0, 5, 150.228 , 150.228, `Qrcode ${date}.pdf`);
+    }
+});
+
+const addAnim = (element, anim) => { //Анимация появления
     setTimeout(() => {
-        element.classList.add("anim");
+        element.classList.add(anim);
     });
-    element.classList.remove("anim");
-};
-const addAnim1 = (element) => { //Анимация появления
-    setTimeout(() => {
-        element.classList.add("anim1");
-    });
-    element.classList.remove("anim1");
+    element.classList.remove(anim);
 };
 const toZero = (e, value1, fixed) => { // К value1 при blur, fixed(2) введённое значение
     if (!e.target.value) {
@@ -316,7 +377,7 @@ tableWrapper.addEventListener("change", (e) => {
         } else {
             coe.value = 1.2;
         }}
-    if(e.target && e.target.matches("input[type='radio'],input[type='checkbox']")) {
+    if(e.target && e.target.matches("select,input[type='checkbox']")) {
         someChanged = true;
     }
 });

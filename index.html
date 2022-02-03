@@ -256,19 +256,21 @@
 
 <tr><td class="left">ВЫСЛУГА</td>
     <td class="right">
-        <input name="lms" type="radio">0
-        <input name="lms" type="radio" value="2000">2К
-        <br>
-        <input name="lms" type="radio" value="3000" checked>3К
-        <input name="lms" type="radio" value="5000">5К
+        <select>
+            <option name="lms" value="0">0 Рублей</option>
+            <option name="lms" value="2000">2000 Рублей</option>
+            <option name="lms" value="3000" selected>3000 Рублей</option>
+            <option name="lms" value="5000">5000 Рублей</option>
+        </select>
     </td></tr>
 
 <tr><td class="left">РАЗРЯД</td>
     <td class="right">
-        <input name="lvl" type="radio">0
-        <input name="lvl" type="radio" value="2000" checked>2К
-        <br>
-        <input name="lvl" type="radio" value="4000">4К
+        <select>
+            <option name="lvl" value="0">0 Рублей</option>
+            <option name="lvl" value="2000" selected>2000 Рублей</option>
+            <option name="lvl" value="4000">4000 Рублей</option>
+        </select>
     </td></tr>
 
 <tr><td class="left">КУЛЬТУРА (%)</td>      <td class="right"><input class="delvalue" id="cul" type="number" value="15"></td></tr>
@@ -279,7 +281,21 @@
 <div class="btnwrapper">
     <button class="btn" id="btn3"><img width="20" src="img/share.svg"></button>
     <button class="btn" id="btn2" disabled><img width="20" src="img/download.svg"></button>
-    <button class="btn" id="btn1" disabled>Generate   <img style="vertical-align:middle;" width="25" src="img/generate.svg"></button>
+    <button class="btn" id="btn1" disabled>Generate<img style="margin-left: 5px;" width="25" src="img/generate.svg"></button>
+</div>
+
+<div class="modal_download hide">
+    <div class="modal__dialog">
+        <div class="modal__content">
+                <div data-close class="modal__close">&times;</div>
+                <div class="modal__title">
+                    <div class="btnwrapper_download">
+                        <button class="btn btn_download" id="btn4">Лист</button>
+                        <button class="btn btn_download" id="btn5">Qrcode</button>
+                    </div>
+                </div>
+        </div>
+    </div>
 </div>
 
 <div class="copy hide">Ссылка скопирована</div>
@@ -287,19 +303,7 @@
 
 <svg class="hide" width="300px" height="425px" viewBox="0 0 425 600"  id="zpList" />
 
-<script>
-    function loadScript(src) {
-        const script = document.createElement("script");
-        script.src = src;
-        script.async = false;
-        document.body.append(script);
-    }
-    loadScript("script/calc.js");
-    loadScript("script/table.js");
-    loadScript("script/technical.js");
-    loadScript("script/history.js");
-    loadScript("lib/qrcode.js");
-</script>
+<script src="script/loadScript.js"></script>
 
 </body>
 

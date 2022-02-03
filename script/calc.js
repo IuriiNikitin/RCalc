@@ -69,13 +69,13 @@ function calcHdm() {
 function calcRadio(radio, writeObj, key) {
     if (typeof(writeObj) == "object") {
     radio.forEach(btn => {
-        if (btn.checked && +btn.value) {
+        if (btn.selected && +btn.value) {
             writeObj[key] = +btn.value;
         }});} 
         else {
     let rez = 0;
     radio.forEach(btn => {
-        if (btn.checked && +btn.value) {
+        if (btn.selected && +btn.value) {
             rez = +btn.value;
         }});
     return rez;
