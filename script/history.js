@@ -24,11 +24,11 @@ function writeHistory() {
     schVal = i;}});
 
     lms.forEach((element, i) => {
-        if(element.checked) {
+        if(element.selected) {
             lmsVal = i;}});
 
     lvl.forEach((element, i) => {
-        if(element.checked) {
+        if(element.selected) {
             lvlVal = i;}});
 
     if(ms.checked) {
@@ -184,16 +184,16 @@ if (historyObj.ms) {
 
 
 if (historyObj.lms) {
-    lms[historyObj.lms].checked = true;
+    lms[historyObj.lms].selected = true;
 } else{
-    lms[0].checked = true;
+    lms[0].selected = true;
 }
 
 
 if (historyObj.lvl) {
-    lvl[historyObj.lvl].checked = true;
+    lvl[historyObj.lvl].selected = true;
 } else {
-    lvl[0].checked = true;
+    lvl[0].selected = true;
 }
 
 if(historyObj.spoiler1) {
