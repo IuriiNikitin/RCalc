@@ -27,35 +27,36 @@ const rate = document.getElementById("rate"), //Ставка
     let items = ""; //Количество строчек зарплаты
 
 const calcDays = () => {
-       time.allmd = +md.value + (+omd.value);
-       time.allnd = +nd.value + (+ond.value);
-       time.alld0 = +md.value + (+nd.value);
-       time.alld = time.allmd + time.allnd;
+       time.allmd = +md.value + (+omd.value); // Все дневные смены (вкл сверхурочные)
+       time.allnd = +nd.value + (+ond.value); // Все ночные смены (вкл сверхурочные)
+       time.alld0 = +md.value + (+nd.value); // Все смены (без сверхурочных)
+       time.alld = time.allmd + time.allnd; // Все смены
+       if (+omd.value || +ond.value) {
+        time.allod = (+omd.value) + (+ond.value); //Все сверхурочные дни
+    }
        if (+mhd.value || +nhd.value) {
-           time.allhd = (+mhd.value) + (+nhd.value);
-       }
+        time.allhd = (+mhd.value) + (+nhd.value); // Все праздничные смены
+    }
        if (time.allhd) {
-           time.wdlvl = time.alld0 - time.allhd;
+        time.wdlvl = time.alld0 - time.allhd; // Дни надбавки за разряд (все смены без сверхурочных и праздничных)
        } else {
         time.wdlvl = time.alld0;
        }
-       if (+omd.value || +ond.value) {
-           time.allod = (+omd.value) + (+ond.value);
-       }
 };
 
-const calcWhlvl = () => {time.whlvl = round(((+md.value - +mhd.value) * 11.7) + ((+nd.value - +nhd.value) * 11)) ;},
+const
     calcWh0 = () => {time.wh0 = round((+md.value * 11.7) + (+nd.value * 11));},
     calcWh = () => {time.wh = round((time.allmd * 11.7) + (time.allnd * 11));},
-    calcOh = () => {time.oh = round((+omd.value * 11.7) + (+ond.value * 11));},
     calcEh = () => {time.eh = round((time.allmd * 3.7) + (time.allnd * 2));},
     calcNh = () => {time.nh = round((+nd.value * 7.5) + (+ond.value * 8));},
     calcMsh = () => {time.msh = round(time.wh * (+coe.value - 1));},
     calcPwh = () => {time.pwh = round(time.wh * (+coe.value));},
-    calcHdh = () => {time.hdh = round((+mhd.value * 11.7) + (+nhd.value * 7));};
+    calcHdh = () => {time.hdh = round((+mhd.value * 11.7) + (+nhd.value * 11));},
+    calcOh = () => {time.oh = round((+omd.value * 11.7) + (+ond.value * 11));},
+    calcWhlvl = () => {time.whlvl = round(time.wh - ((+mhd.value * 11.7) + (+nhd.value * 11) + (+omd.value * 11.7) + (+ond.value * 11)));};
     
 function calcOhm() {
-    if (+omd.value || +ond.value) {
+    if (time.allod) {
         calcOh();
         ZP.ohm = round(time.oh * +rate.value);
 }}
@@ -184,11 +185,11 @@ function calc() {
     clear(time);
     clear(ZP);
     calcDays();
-    calcWhlvl();
-    calcWh0();
     calcWh();
+    calcWh0();
     calcOhm();
     calcHdm();
+    calcWhlvl();
     calcEhm();
     calcNhm();
     calcPw();

@@ -209,7 +209,7 @@ function convertDays(convertItem, writePlace, element, hoursInDay) {
 
 }
 function roundHours(value) {
-    value = (Math.round(value * 1000000000000)) / 1000000000000;
+    value = (Math.round(value * 100000000000)) / 100000000000;
     return value;
 }
 function sch14() {
@@ -345,9 +345,9 @@ tableWrapper.addEventListener("focusout", (e) => {
     if (e.target && e.target.matches("input.nights[type='number']")) {
         convertDays(nights, nighthours, e.target, 11);
     }
-    if (e.target && e.target.matches("input.nighthd[type='number']")) {
-        nighthourshd.value = round(nighthd.value * 7);
-    }
+    // if (e.target && e.target.matches("input.nighthd[type='number']")) {
+    //     nighthourshd.value = round(nighthd.value * 7);
+    // }
     if (e.target && e.target.matches("input.dayhours[type='number']")) {
         convertHours(dayhours, days, e.target, 11.7);
         btnStatus();
@@ -356,9 +356,9 @@ tableWrapper.addEventListener("focusout", (e) => {
         convertHours(nighthours, nights, e.target, 11);
         btnStatus();
     }
-    if (e.target && e.target.matches("input.nighthourshd[type='number']")) {
-        nighthd.value = nighthourshd.value / 7;
-    }
+    // if (e.target && e.target.matches("input.nighthourshd[type='number']")) {
+    //     nighthd.value = nighthourshd.value / 7;
+    // }
 });
 tableWrapper.addEventListener("change", (e) => {
     if (e.target && e.target.matches("input[name='sch']")) {
@@ -411,9 +411,9 @@ if (nextInput && nextInput.classList.contains("nighthours") || previousInput && 
     convertHours(nighthours, nights, nextInput, 11);
     convertHours(nighthours, nights, previousInput, 11);
     }
-    if (nextInput && nextInput.classList.contains("nighthourshd") || previousInput && previousInput.classList.contains("nighthourshd")) {
-        nighthd.value = nighthourshd.value / 7;
-    }
+    // if (nextInput && nextInput.classList.contains("nighthourshd") || previousInput && previousInput.classList.contains("nighthourshd")) {
+    //     nighthd.value = nighthourshd.value / 7;
+    // }
 
     if (nextInput && nextInput.matches("#mh") || previousInput && previousInput.matches("#mh")) {
         btnStatus();

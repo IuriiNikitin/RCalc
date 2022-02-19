@@ -150,7 +150,7 @@ if(historyObj.mhd){
 
 if(historyObj.nhd){
     nhd.value = historyObj.nhd;
-    nhh.value = roundHours(historyObj.nhd * 7);
+    nhh.value = roundHours(historyObj.nhd * 11);
 }
 
 if(historyObj.fnp){fnp.value = historyObj.fnp;}

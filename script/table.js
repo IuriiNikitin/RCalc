@@ -5,6 +5,7 @@ zpList = document.getElementById("zpList"),
 itemSize = 15, //Размер строчки
 k = 0.7; // расстояние между  
 
+
 class Rect {
     constructor(x, y , width, height, clas, appendPlace = zpList){
         this.x = x;
@@ -101,21 +102,21 @@ function createTable() {
     
     new Rect(0, 0, 425, 595, "st0").render();
     new Rect(238, 16, 150, 28, "st1").render();
-    new Rect(33, 54, 355, items * itemSize + 71, "st1").render();
-    new Rect(33, items * itemSize + 51, 355, 14, "st1").render();
-    new Rect(33, items * itemSize + 85, 355, 14, "st1").render();
+    new Rect(33, 54, 355, items * (itemSize * k) + 93, "st1").render();
+    new Rect(33, items * (itemSize * k) + 73, 355, 14, "st1").render();
+    new Rect(33, items * (itemSize * k) + 107, 355, 14, "st1").render();
 
     new Line(313, 16, 313, 44, "st1").render();
     new Line(33, 68, 388, 68, "st1").render();
-    new Line(238, 54, 238, items * itemSize + 51, "st2").render();
-    new Line(266, 54, 266, items * itemSize + 51, "st2").render();
-    new Line(303, 54, 303, items * itemSize + 99, "st2").render();
-    new Line(334, 54, 334, items * itemSize + 51, "st2").render();
-    new Line(238, items * itemSize + 65, 238, items * itemSize + 85, "st2").render();
-    new Line(266, items * itemSize + 65, 266, items * itemSize + 85, "st2").render();
-    new Line(334, items * itemSize + 65, 334, items * itemSize + 85, "st2").render();
-    new Line(266, items * itemSize + 99, 266, items * itemSize + 125, "st2").render();
-    new Line(33, items * itemSize + 112, 388, items * itemSize + 112, "st2").render();
+    new Line(238, 54, 238, items * (itemSize * k) + 73, "st2").render();
+    new Line(266, 54, 266, items * (itemSize * k) + 73, "st2").render();
+    new Line(303, 54, 303, items * (itemSize * k) + 121, "st2").render();
+    new Line(334, 54, 334, items * (itemSize * k) + 73, "st2").render();
+    new Line(238, items * (itemSize * k) + 87, 238, items * (itemSize * k) + 107, "st2").render();
+    new Line(266, items * (itemSize * k) + 87, 266, items * (itemSize * k) + 107, "st2").render();
+    new Line(334, items * (itemSize * k) + 87, 334, items * (itemSize * k) + 107, "st2").render();
+    new Line(266, items * (itemSize * k) + 121, 266, items * (itemSize * k) + 147, "st2").render();
+    new Line(33, items * (itemSize * k) + 134, 388, items * (itemSize * k) + 134, "st2").render();
     new Line(425 , 0 , 425, 597 , "st2 st6").render();
 
     new Text(250, 28, "st3", "Тарифная").render();
@@ -126,19 +127,19 @@ function createTable() {
     new Text(275, 64, "st3", "час.").render();
     new Text(314, 64, "st3", "%").render();
     new Text(343, 64, "st3", "Сумма").render();
-    new Text(210, items * itemSize + 61, "st3", "Итого начислено:").render();
-    new Text(215, items * itemSize + 95, "st3", "Итого удержано:").render();
-    new Text(125, items * itemSize + 109, "st3 st4", "ЗП за I половину месяца в Банк:").render();
-    new Text(123, items * itemSize + 121, "st3 st4", "ЗП за II половину месяца в Банк:").render();
-    new Text(37, items * itemSize + 73, "st4 st5", "[081] Плановый аванс").render();
-    new Text(37, items * itemSize + 82, "st4 st5", "[082] Налог с физического лица").render();
-    new Text(313, items * itemSize + 82, "st4 st5", percent.nfl).render();
-    new Text(321, items * itemSize + 61, "st3", ZP.final.zpd).render();
-    new Text(321, items * itemSize + 95, "st3", ZP.final.wit).render();
-    new Text(300, items * itemSize + 109, "st3", ZP.final.prp).render();
-    new Text(300, items * itemSize + 121, "st3", ZP.final.zp).render();
-    new Text(339, items * itemSize + 73, "st4 st5", ZP.final.prp).render();
-    new Text(339, items * itemSize + 82, "st4 st5", ZP.final.tax).render();
+    new Text(210, items * (itemSize * k) + 83, "st3", "Итого начислено:").render();
+    new Text(215, items * (itemSize * k) + 117, "st3", "Итого удержано:").render();
+    new Text(125, items * (itemSize * k) + 131, "st3 st4", "ЗП за I половину месяца в Банк:").render();
+    new Text(123, items * (itemSize * k) + 143, "st3 st4", "ЗП за II половину месяца в Банк:").render();
+    new Text(37, items * (itemSize * k) + 95, "st4 st5", "[081] Плановый аванс").render();
+    new Text(37, items * (itemSize * k) + 104, "st4 st5", "[082] Налог с физического лица").render();
+    new Text(313, items * (itemSize * k) + 104, "st4 st5", percent.nfl).render();
+    new Text(321, items * (itemSize * k) + 83, "st3", ZP.final.zpd).render();
+    new Text(321, items * (itemSize * k) + 117, "st3", ZP.final.wit).render();
+    new Text(300, items * (itemSize * k) + 131, "st3", ZP.final.prp).render();
+    new Text(300, items * (itemSize * k) + 143, "st3", ZP.final.zp).render();
+    new Text(339, items * (itemSize * k) + 95, "st4 st5", ZP.final.prp).render();
+    new Text(339, items * (itemSize * k) + 104, "st4 st5", ZP.final.tax).render();
     new Text(37, 78, "st4 st5", "[000] Отработанное время").render();
     new Text(247, 78, "st4 st5", Math.ceil(time.alld)).render();
     new Text(273, 78, "st4 st5", time.wh).render();
@@ -164,7 +165,7 @@ function createTable() {
         }
     if(ZP.pw) {
         new Text(37, 78 + (itemSize * k) * i, "st4 st5", "[021] Сдельная оплата труда").render();
-        new Text(248, 78 + (itemSize * k) * i, "st4 st5", Math.ceil(time.alld)).render();
+        new Text(247, 78 + (itemSize * k) * i, "st4 st5", Math.ceil(time.alld)).render();
         if (ms.checked) {
             new Text(273, 78 + (itemSize * k) * i, "st4 st5", time.wh).render();
         } else {
