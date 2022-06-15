@@ -17,10 +17,8 @@ const tableWrapper = document.querySelector(".tableWrapper"),
     nhg =document.getElementById("nhg"),
     mh = document.getElementById("mh"),
     nh =document.getElementById("nh"),
-    copy =  document.querySelector(".copy"),
-    modal = document.querySelector(".modal_download"),
-    modalTitle = document.querySelector(".modal__title"),
-    modalClose = document.querySelector(".modal__close"),
+    browserMessage =  document.querySelector(".browser_message"),
+    modalDownload = document.getElementById("modal_download"),
     
     showElement = (element) => {
         element.classList.remove("hide");
@@ -53,40 +51,68 @@ let someChanged = false,
         date = date + "T" + shortTime;
         return date;
     }
-    function openModal() {
+    function openModal(modalId) {
+        const modal = document.getElementById(modalId);
         showElement(modal);
         document.body.style.overflow = "hidden";
     }
-    function closeModal() {
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
         hideElement(modal);
         document.body.style.overflow = "";
-        modalTitle.innerHTML =`
-        <div class="btnwrapper_download">
-        <button class="btn btn_download" id="btn4">Лист</button>
-        <button class="btn btn_download" id="btn5">Qrcode</button>
-        </div>`;
-        clearTimeout(timerDownload);
     }
+    function showBrowserMessage(messageText) {
+        browserMessage.style.bottom = 40 - document.documentElement.scrollTop + "px";
+        browserMessage.innerText = messageText;
+        addAnim(browserMessage, "anim1");
+        const first = () => { showFlex(browserMessage);};
+        const second = () => { setTimeout( function(){ hideElement(browserMessage);}, 1000 );};
+          first();
+          second();
+    }
+    function showMessageInModal(modalId, message) {
+        const modal = document.getElementById(modalId);
+        const modalMessage = modal.querySelector(".modal_message");
+        hideElement(modal.querySelector(".modal__title"));
+        hideElement(modal.querySelector(".modal_data"));
+        showElement(modalMessage);
+        modalMessage.innerText = message;
+    }
+    function resetModal(modalId) {
+        const modal = document.getElementById(modalId);
+        const modalMessage = modal.querySelector(".modal_message");
+        hideElement(modalMessage);
+        showElement(modal.querySelector(".modal__title"));
+        showElement(modal.querySelector(".modal_data"));
+
+    }
+
     const trySave = (size, layout, fonts, svg, x, y, width, height, name) => {
         let i = 0;
         function attempt() {
             try {
                 savePdf(size, layout, fonts, svg, x, y, width, height, name);
-                closeModal();
+
+                closeModal("modal_download");
+                resetModal("modal_download");
+                clearTimeout(timerDownload);
             } catch {
                 i++;
                 if (i <= 5) {
-                    modalTitle.innerHTML = `
-                        <div>Загрузка скоро начнётся...</div>
-                        <br>
-                        <div>Попытка №${i}</div>`;
+                    showMessageInModal("modal_download", 
+                    `Загрузка скоро начнётся....
+                    попытка №${i}`
+                    );
                     timerDownload = setTimeout(attempt, 5000);
                 } else {
-                    modalTitle.innerHTML = `
-                        <div>Что-то пошло не так</div>
-                        <br>
-                        <div>Попробуйте позже</div>`;
-                    setTimeout(closeModal, 3000);
+                    showMessageInModal("modal_download", 
+                    `Что-то пошло не так
+                    Попробуйте позже`);
+                    setTimeout(() => {
+                        closeModal("modal_download");
+                        resetModal("modal_download");
+                        clearTimeout(timerDownload);
+                }, 3000);
                 }
             }
         }
@@ -109,7 +135,7 @@ btn1.addEventListener("click", () => {  //Generate
     btn2.disabled = false;
 });
 btn2.addEventListener("click", () => { //download
-openModal();
+openModal("modal_download");
 });
 btn3.addEventListener("click", () => { //Share
     writeHistory();
@@ -121,18 +147,14 @@ btn3.addEventListener("click", () => { //Share
           });
     } else {
         navigator.clipboard.writeText(link);
-        copy.style.bottom = 40 - document.documentElement.scrollTop + "px";
-        addAnim(copy, "anim1");
-        const first = () =>{ showFlex(copy);};
-        const second = () =>{setTimeout( function(){ hideElement(copy);}, 1000 );};
-          first();
-          second();
+        showBrowserMessage("Ссылка скопирована");
     }
 });
-modal.addEventListener("click", (e) => { //modal events
-
-    if(e.target && e.target.matches(".modal__close, .modal_download")) {
-        closeModal();
+modalDownload.addEventListener("click", (e) => { //modal events
+    if(e.target && e.target.matches(".modal__close, .modal")) {
+        closeModal("modal_download");
+        resetModal("modal_download");
+        clearTimeout(timerDownload);
     }
     if (e.target && e.target.matches("#btn4")) {
         const date = setDate();
@@ -209,7 +231,7 @@ function convertDays(convertItem, writePlace, element, hoursInDay) {
 
 }
 function roundHours(value) {
-    value = (Math.round(value * 100000000000)) / 100000000000;
+    value = (Math.round(value * 10000000000)) / 10000000000;
     return value;
 }
 function sch14() {
@@ -282,10 +304,10 @@ tableWrapper.addEventListener("focusout", (e) => {
         toZero(e, 0);
     }
     if (e.target && e.target.matches("input#rate[type='number']")) {
-        toZero(e, (251).toFixed(2), true);
+        toZero(e, (280).toFixed(2), true);
     }
     if (e.target && e.target.matches("input#cul[type='number']")) {
-        toZero(e, 15);
+        toZero(e, 0);
     }
     if (e.target && e.target.matches("input#coe[type='number']")) {
         if (ms.checked) {

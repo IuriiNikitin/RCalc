@@ -21,7 +21,7 @@
         <table class="up">
             <tr>
                 <td class="left">СТАВКА</td>
-                <td class="right"><input class="delvalue" id="rate" type="number" value="251.00"></td>
+                <td class="right"><input class="delvalue" id="rate" type="number" value="280.00"></td>
             </tr>
             <tr>
                 <td class="left">ГРАФИК</td>
@@ -259,9 +259,11 @@
         <select>
             <option name="lms" value="0">0 Рублей</option>
             <option name="lms" value="2000">2000 Рублей</option>
-            <option name="lms" value="3000" selected>3000 Рублей</option>
+            <option name="lms" value="3000">3000 Рублей</option>
             <option name="lms" value="5000">5000 Рублей</option>
             <option name="lms" value="7000">7000 Рублей</option>
+            <option name="lms" value="8000" selected>8000 Рублей</option>
+            <option name="lms" value="10000">10000 Рублей</option>
         </select>
     </td></tr>
 
@@ -274,7 +276,7 @@
         </select>
     </td></tr>
 
-<tr><td class="left">КУЛЬТУРА (%)</td>      <td class="right"><input class="delvalue" id="cul" type="number" value="15"></td></tr>
+<tr><td class="left">КУЛЬТУРА (%)</td>      <td class="right"><input class="delvalue" id="cul" type="number" value="0"></td></tr>
 <tr><td class="left">КОЭФФИЦИЕНТ</td>        <td class="right"><input class="delvalue"  id="coe" type="number" value="2"></td></tr>
 <tr><td class="left">АВАНС</td>        <td class="right"><input class="delvalue" id="prp" type="number" value="27840.00"></td></tr>
 </table>
@@ -285,24 +287,26 @@
     <button class="btn" id="btn1" disabled>Generate<img style="margin-left: 5px;" width="25" src="img/generate.svg"></button>
 </div>
 
-<div class="modal_download hide">
+<div id="modal_download" class="modal hide">
     <div class="modal__dialog">
         <div class="modal__content">
-                <div data-close class="modal__close">&times;</div>
-                <div class="modal__title">
-                    <div class="btnwrapper_download">
-                        <button class="btn btn_download" id="btn4">Лист</button>
-                        <button class="btn btn_download" id="btn5">Qrcode</button>
-                    </div>
+            <div class="modal__title">Загрузка</div>
+            <div class="modal_data">
+                <div class="btnwrapper_download">
+                    <button class="btn btn_download" id="btn4">Лист</button>
+                    <button class="btn btn_download" id="btn5">Qrcode</button>
                 </div>
+            </div>
+            <div class="modal_message hide"></div>
+            <div data-close class="modal__close">&times;</div>
         </div>
     </div>
 </div>
 
-<div class="copy hide">Ссылка скопирована</div>
+    <div class="browser_message hide"></div>
 
 
-<svg class="hide" width="300px" height="425px" viewBox="0 0 425 600"  id="zpList" />
+    <svg class="hide" width="300px" height="425px" viewBox="0 0 425 600" id="zpList" />
 
 <script src="script/loadScript.js"></script>
 

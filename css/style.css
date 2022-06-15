@@ -237,7 +237,7 @@ input[type=checkbox] {
   align-items: center;
 }
 
-.copy {
+.browser_message {
   position: absolute;
   z-index: 10;
   left: calc(50vw - 80px);
@@ -274,7 +274,7 @@ select {
   width: 90%;
   }
 
-.modal_download {
+.modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -320,9 +320,11 @@ select {
 }
 
 .modal__title {
+  position: relative;
+  top: -20px;
   text-align: center;
   font-size: 22px;
-  text-transform: uppercase
+  text-transform: uppercase;
 }
 
 .show {

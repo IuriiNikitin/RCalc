@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loadScript("script/table.js");
     loadScript("script/history.js");
     loadScript("lib/detect.js");
-    loadScript("lib/qrcode.js", "a");
+    loadScript("lib/qrcode.min.js", "a");
     
     loadScript("lib/pdf/pdfkit.js", "a");
     loadScript("lib/pdf/blobstream.js", "a");

@@ -232,15 +232,18 @@ function createTable() {
         join: true,
         predefined: true,
         xmlDeclaration: false,
-        container: "svg",
-        id: "qRCode",
-        viewBox: "-35 -15 220.228 220.228",
-        x: 255,
-        y: 410
+        container: "svg"
     });
+
+
     const svg = qrcode.svg();
     zpList.innerHTML += svg;
-    const qRCode = document.getElementById("qRCode");
+    const qRCode = zpList.querySelector("svg");
+    qRCode.setAttributeNS(null,"id", "qRCode");
+    qRCode.setAttributeNS(null,"viewBox", "-35 -15 220.228 220.228");
+    qRCode.setAttributeNS(null,"x", 255);
+    qRCode.setAttributeNS(null,"y", 410);
+
     style = document.createElementNS(svgNS,"style");
     style.append(document.createTextNode(".st7 {fill: none;stroke: #000000;stroke-width: 4;}"));
     style.append(document.createTextNode(".st8 {font-family: serif; font-weight: 500;  font-size:25px;}"));

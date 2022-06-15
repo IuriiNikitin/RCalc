@@ -127,7 +127,7 @@ function calcPw() {
     calcMs = () => {ZP.ms = round((time.msh * 0.75) * +rate.value);},
     calcFnp = () => {if(+fnp.value){ZP.fnp = +fnp.value;}},
     calcWa = () => {ZP.wa = (ms.checked) ? round((ZP.pw + ZP.ms) * 0.3) : round(ZP.pw * 0.3);},
-    calcCul = () =>  ZP.cul = (ms.checked) ? round((ZP.pw + ZP.ms) * (+cul.value / 100)) : round(ZP.pw * (+cul.value / 100)),
+    calcCul = () =>  {if(+cul.value){ZP.cul = (ms.checked) ? round((ZP.pw + ZP.ms) * (+cul.value / 100)) : round(ZP.pw * (+cul.value / 100))}},
     calcItems = () => {items = Object.keys(ZP).length;},
     calcZpd = () => {ZP.final.zpd = round(sum(ZP));}, //Грязная  зарплата
     calcTax = () => {ZP.final.tax = Math.trunc(ZP.final.zpd * (percent.nfl / 100));}, //Налог
