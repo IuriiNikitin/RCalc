@@ -22,16 +22,17 @@ const tableWrapper = document.querySelector(".tableWrapper"),
     
     showElement = (element) => {
         element.classList.remove("hide");
-        element.classList.add("show");
+
+        switch(window.getComputedStyle(element).display) {
+            case "block": element.classList.add("show");
+                break;
+            case "flex": element.classList.add("showFlex");
+                break;
+            case "table-row": element.classList.add("showRow");
+                break;
+        }
     },
-    showRow = (element) => {
-        element.classList.remove("hide");
-        element.classList.add("showRow");
-    },
-    showFlex = (element) => {
-        element.classList.remove("hide");
-        element.classList.add("showFlex");
-    },
+
     hideElement = (element) => {
         element.classList.remove("show");
         element.classList.remove("showRow");
@@ -65,7 +66,7 @@ let someChanged = false,
         browserMessage.style.bottom = 40 - document.documentElement.scrollTop + "px";
         browserMessage.innerText = messageText;
         addAnim(browserMessage, "anim1");
-        const first = () => { showFlex(browserMessage);};
+        const first = () => { showElement(browserMessage);};
         const second = () => { setTimeout( function(){ hideElement(browserMessage);}, 1000 );};
           first();
           second();
@@ -89,9 +90,9 @@ let someChanged = false,
 
     const trySave = (size, layout, fonts, svg, x, y, width, height, name) => {
         const message = {
-            loading: "Загрузка скоро начнётся....<br> Попытка № ",
+            loading: "Загрузка скоро начнётся....<img src='./img/spinner.svg' alt='spinner'><br> Попытка № ",
             fail: "Что-то пошло не так. <br> Попробуйте позже",
-            success: "Загрузка началась"
+            success: "Загрузка началась",
         }
         let i = 0;
         function attempt() {
@@ -249,7 +250,7 @@ function sch14() {
 }
 function sch16() {
     night.forEach(row => {
-        showRow(row);
+        showElement(row);
     });
 }
 tableWrapper.addEventListener("focusin", (e) => {
@@ -466,10 +467,10 @@ if (nextInput && nextInput.classList.contains("nighthours") || previousInput && 
 }
     if(e.target && e.target.matches(".altDays")) {
         hideElement(e.target.parentElement.parentElement.parentElement);
-        showRow(e.target.parentElement.parentElement.parentElement.nextElementSibling);
+        showElement(e.target.parentElement.parentElement.parentElement.nextElementSibling);
     }
     if(e.target && e.target.matches(".altHours")) {
         hideElement(e.target.parentElement.parentElement.parentElement);
-        showRow(e.target.parentElement.parentElement.parentElement.previousElementSibling);
+        showElement(e.target.parentElement.parentElement.parentElement.previousElementSibling);
     }
 });
