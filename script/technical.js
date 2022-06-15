@@ -76,7 +76,7 @@ let someChanged = false,
         hideElement(modal.querySelector(".modal__title"));
         hideElement(modal.querySelector(".modal_data"));
         showElement(modalMessage);
-        modalMessage.innerText = message;
+        modalMessage.innerHTML = message;
     }
     function resetModal(modalId) {
         const modal = document.getElementById(modalId);
@@ -88,26 +88,29 @@ let someChanged = false,
     }
 
     const trySave = (size, layout, fonts, svg, x, y, width, height, name) => {
+        const message = {
+            loading: "Загрузка скоро начнётся....<br> Попытка № ",
+            fail: "Что-то пошло не так. <br> Попробуйте позже",
+            success: "Загрузка началась"
+        }
         let i = 0;
         function attempt() {
             try {
                 savePdf(size, layout, fonts, svg, x, y, width, height, name);
 
-                closeModal("modal_download");
-                resetModal("modal_download");
-                clearTimeout(timerDownload);
+                showMessageInModal("modal_download", message.success);
+                setTimeout(() => {
+                    closeModal("modal_download");
+                    resetModal("modal_download");
+                    clearTimeout(timerDownload);
+            }, 3000);
             } catch {
                 i++;
                 if (i <= 5) {
-                    showMessageInModal("modal_download", 
-                    `Загрузка скоро начнётся....
-                    попытка №${i}`
-                    );
+                    showMessageInModal("modal_download", message.loading + i);
                     timerDownload = setTimeout(attempt, 5000);
                 } else {
-                    showMessageInModal("modal_download", 
-                    `Что-то пошло не так
-                    Попробуйте позже`);
+                    showMessageInModal("modal_download", message.fail);
                     setTimeout(() => {
                         closeModal("modal_download");
                         resetModal("modal_download");
