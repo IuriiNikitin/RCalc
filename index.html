@@ -15,13 +15,12 @@
     <link rel = "manifest" href = "manifest.json">
     <title>RCalc</title>
 </head>
-
 <body>
     <div class="tableWrapper">
         <table class="up">
             <tr>
                 <td class="left">СТАВКА</td>
-                <td class="right"><input class="delvalue" id="rate" type="number" value="280.00"></td>
+                <td class="right"><input class="delvalue" id="rate" type="number" data-default="280.00" value="280.00"></td>
             </tr>
             <tr>
                 <td class="left">ГРАФИК</td>
@@ -37,7 +36,7 @@
             <button class="altDays">Alt</button>
         </div>
     </td>
-    <td class="right"><input class="zero days delvalue" id="md" type="number" value="0"></td>
+    <td class="right"><input class="zero days delvalue" id="md" type="number" data-default="0" value="0"></td>
     </tr>
 
 <tr class="hide">
@@ -51,7 +50,7 @@
     <td class="right">
         <div class="input-number">
             <div class="input-number__minus"><</div>
-            <input class="zero dayhours" id="mh" type="number" value="0">
+            <input class="zero dayhours" id="mh" type="number" data-default="0" value="0">
             <div class="input-number__plus">></div>
         </div>
     </td>
@@ -64,7 +63,7 @@
                 <button class="altDays">Alt</button>
             </div>
         </td>    
-        <td class="right"><input class="zero nights delvalue" id="nd" type="number" value="0"></td>
+        <td class="right"><input class="zero nights delvalue" id="nd" type="number" data-default="0" value="0"></td>
     </tr>
 
     <tr class="hide">
@@ -78,7 +77,7 @@
 <td class="right">
     <div class="input-number">
         <div class="input-number__minus"><</div> 
-        <input class="zero nighthours" id="nh" type="number" value="0">
+        <input class="zero nighthours" id="nh" type="number" data-default="0" value="0">
                 <div class="input-number__plus">></div>
         </div>
 </td>
@@ -91,7 +90,7 @@
            <button class="altDays">Alt</button>
         </div>
         </td>
-        <td class="right"><input class="zero days delvalue" id="mdg" type="number" value="0"></td>
+        <td class="right"><input class="zero days delvalue" id="mdg" type="number" data-default="0" value="0"></td>
     </tr>
 
     <tr class="hide">
@@ -104,7 +103,7 @@
         <td class="right">
             <div class="input-number">
                 <div class="input-number__minus"><</div>
-                <input class="zero dayhours" id="mhg" type="number" value="0">
+                <input class="zero dayhours" id="mhg" type="number" data-default="0" value="0">
                 <div class="input-number__plus">></div>
             </div>
         </td>
@@ -117,7 +116,7 @@
            <button class="altDays">Alt</button>
         </div>
         </td>
-        <td class="right"><input class="zero nights delvalue" id="ndg" type="number" value="0"></td>
+        <td class="right"><input class="zero nights delvalue" id="ndg" type="number" data-default="0" value="0"></td>
     </tr>
 
     <tr class="hide">
@@ -130,7 +129,7 @@
         <td class="right">
             <div class="input-number">
                 <div class="input-number__minus"><</div>
-                <input class="zero nighthours" id="nhg" type="number" value="0">
+                <input class="zero nighthours" id="nhg" type="number" data-default="0" value="0">
                 <div class="input-number__plus">></div>
             </div>
         </td>
@@ -149,7 +148,7 @@
        <button class="altDays">Alt</button>
     </div>
 </td>
-    <td class="right"><input class="zero days delvalue" id="omd" type="number" value="0"></td>
+    <td class="right"><input class="zero days delvalue" id="omd" type="number" data-default="0" value="0"></td>
 </tr>
 
 <tr class="hide">
@@ -163,7 +162,7 @@
     <td class="right">
         <div class="input-number">
             <div class="input-number__minus"><</div>
-        <input class="zero dayhours" id="omh" type="number" value="0">
+        <input class="zero dayhours" id="omh" type="number" data-default="0" value="0">
         <div class="input-number__plus">></div>
     </div>
     </td>
@@ -176,7 +175,7 @@
        <button class="altDays">Alt</button>
     </div>
     </td>
-    <td class="right"><input class="zero nights delvalue" id="ond" type="number" value="0"></td>
+    <td class="right"><input class="zero nights delvalue" id="ond" type="number" data-default="0" value="0"></td>
 </tr>
 <tr class="hide">
     <td class="left small">
@@ -189,7 +188,7 @@
     <td class="right">
         <div class="input-number">
             <div class="input-number__minus"><</div>
-        <input class="zero nighthours" id="onh" type="number" value="0">
+        <input class="zero nighthours" id="onh" type="number" data-default="0" value="0">
         <div class="input-number__plus">></div>
     </div>
     </td>
@@ -202,7 +201,7 @@
        <button class="altDays">Alt</button>
        </div>
     </td>
-    <td class="right"><input class="zero days delvalue" id="mhd" type="number" value="0"></td>
+    <td class="right"><input class="zero days delvalue" id="mhd" type="number" data-default="0" value="0"></td>
 </tr>
 <tr class="hide">
     <td class="left small">
@@ -215,7 +214,7 @@
     <td class="right">
         <div class="input-number">
             <div class="input-number__minus"><</div>
-        <input class="zero dayhours" id="mhh" type="number" value="0">
+        <input class="zero dayhours" id="mhh" type="number" data-default="0" value="0">
         <div class="input-number__plus">></div>
     </div>
     </td>
@@ -228,7 +227,7 @@
        <button class="altDays">Alt</button>
         </div>
     </td>
-    <td class="right"><input class="zero nights delvalue" id="nhd" type="number" value="0"></td>
+    <td class="right"><input class="zero nights delvalue" id="nhd" type="number" data-default="0" value="0"></td>
 </tr>
 
 <tr class="hide">
@@ -242,7 +241,7 @@
     <td class="right">
         <div class="input-number">
             <div class="input-number__minus"><</div>
-        <input class="zero nighthours" id="nhh" type="number" value="0">
+        <input class="zero nighthours" id="nhh" type="number" data-default="0" value="0">
         <div class="input-number__plus">></div>
     </div>
     </td>
@@ -251,8 +250,14 @@
 </details>
 
 <table>
-    <tr><td class="left">ВЫПЛАТЫ ИЗ <big>ФНП</big><br><small><small>(фонд нач. подразделения)</small></small></td>        <td  class="right"><input class="zero delvalue" id="fnp" type="number" value="0"></td></tr>
-    <tr><td class="left">МНОГОСТАНОЧКА</td>        <td class="right"><input id="ms" type="checkbox" checked></td></tr>
+    <tr>
+        <td class="left small">ВЫПЛАТЫ ИЗ <big>ФНП</big><br><small><small>(фонд нач. подразделения)</small></small></td>
+        <td  class="right"><input class="zero delvalue" id="fnp" type="number" data-default="0" value="0"></td>
+    </tr>
+    <tr>
+        <td class="left">МНОГОСТАНОЧКА</td>
+        <td class="right"><input id="ms" type="checkbox" checked></td>
+    </tr>
 
 <tr><td class="left">ВЫСЛУГА</td>
     <td class="right">
@@ -277,9 +282,9 @@
         </select>
     </td></tr>
 
-<tr><td class="left">КУЛЬТУРА (%)</td>      <td class="right"><input class="delvalue" id="cul" type="number" value="0"></td></tr>
-<tr><td class="left">КОЭФФИЦИЕНТ</td>        <td class="right"><input class="delvalue"  id="coe" type="number" value="2"></td></tr>
-<tr><td class="left">АВАНС</td>        <td class="right"><input class="delvalue" id="prp" type="number" value="27840.00"></td></tr>
+<tr><td class="left">КУЛЬТУРА (%)</td>      <td class="right"><input class="delvalue" id="cul" type="number" data-default="0" value="0"></td></tr>
+<tr><td class="left">КОЭФФИЦИЕНТ</td>        <td class="right"><input class="delvalue"  id="coe" type="number" data-default="2" value="2"></td></tr>
+<tr><td class="left">АВАНС</td>        <td class="right"><input class="delvalue" id="prp" type="number" data-default="27840.00" value="27840.00"></td></tr>
 </table>
 </div>
 <div class="btnwrapper">

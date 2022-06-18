@@ -265,12 +265,7 @@ tableWrapper.addEventListener("focusin", (e) => {
         if(+e.target.value == 0){
             delVaule(e);
     }}
-    // if (e.target && e.target.matches("input#mh[type='number']")) {
-    //     mhgVal();
-    // }
-    // if (e.target && e.target.matches("input#nh[type='number']")) {
-    //     nhgVal();
-    // }
+
 });
 tableWrapper.addEventListener("keyup", (e) => {
     if (e.target && e.target.matches("input[type='number']")) {
@@ -304,25 +299,19 @@ tableWrapper.addEventListener("keyup", (e) => {
 });
 tableWrapper.addEventListener("focusout", (e) => {
 
-    if (e.target && e.target.matches("input.zero[type='number']")) {
-        toZero(e, 0);
-    }
-    if (e.target && e.target.matches("input#rate[type='number']")) {
-        toZero(e, (280).toFixed(2), true);
-    }
-    if (e.target && e.target.matches("input#cul[type='number']")) {
-        toZero(e, 0);
-    }
-    if (e.target && e.target.matches("input#coe[type='number']")) {
-        if (ms.checked) {
-            toZero(e, 2);
+    if (e.target && e.target.matches("input[type='number']")) {
+
+        if (!e.target.value) {
+            e.target.value = e.target.dataset.default;
+            someChanged = true;
+
         } else {
-            toZero(e, 1.2);
+            if (e.target.matches("#rate") || e.target.matches("#prp")) {
+                e.target.value = (+e.target.value).toFixed(2);
+            }
         }
     }
-    if (e.target && e.target.matches("input#prp[type='number']")) {
-        toZero(e, (27840).toFixed(2), true);
-    }
+
     if (e.target && e.target.matches("input#md[type='number']")) {
         btnStatus();
         mdgVal();
@@ -371,9 +360,7 @@ tableWrapper.addEventListener("focusout", (e) => {
     if (e.target && e.target.matches("input.nights[type='number']")) {
         convertDays(nights, nighthours, e.target, 11);
     }
-    // if (e.target && e.target.matches("input.nighthd[type='number']")) {
-    //     nighthourshd.value = round(nighthd.value * 7);
-    // }
+
     if (e.target && e.target.matches("input.dayhours[type='number']")) {
         convertHours(dayhours, days, e.target, 11.7);
         btnStatus();
@@ -382,9 +369,7 @@ tableWrapper.addEventListener("focusout", (e) => {
         convertHours(nighthours, nights, e.target, 11);
         btnStatus();
     }
-    // if (e.target && e.target.matches("input.nighthourshd[type='number']")) {
-    //     nighthd.value = nighthourshd.value / 7;
-    // }
+
 });
 tableWrapper.addEventListener("change", (e) => {
     if (e.target && e.target.matches("input[name='sch']")) {
@@ -399,8 +384,10 @@ tableWrapper.addEventListener("change", (e) => {
 
     if (e.target && e.target.matches("input[type='checkbox']")) {
         if (ms.checked) {
+            coe.dataset.default = 2;
             coe.value = 2;
         } else {
+            coe.dataset.default = 1.2;
             coe.value = 1.2;
         }}
     if(e.target && e.target.matches("select,input[type='checkbox']")) {
@@ -437,9 +424,7 @@ if (nextInput && nextInput.classList.contains("nighthours") || previousInput && 
     convertHours(nighthours, nights, nextInput, 11);
     convertHours(nighthours, nights, previousInput, 11);
     }
-    // if (nextInput && nextInput.classList.contains("nighthourshd") || previousInput && previousInput.classList.contains("nighthourshd")) {
-    //     nighthd.value = nighthourshd.value / 7;
-    // }
+
 
     if (nextInput && nextInput.matches("#mh") || previousInput && previousInput.matches("#mh")) {
         btnStatus();
