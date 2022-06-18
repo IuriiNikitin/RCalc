@@ -303,13 +303,13 @@ tableWrapper.addEventListener("focusout", (e) => {
 
         if (!e.target.value) {
             e.target.value = e.target.dataset.default;
-            someChanged = true;
 
         } else {
             if (e.target.matches("#rate") || e.target.matches("#prp")) {
                 e.target.value = (+e.target.value).toFixed(2);
             }
         }
+        someChanged = true;
     }
 
     if (e.target && e.target.matches("input#md[type='number']")) {
