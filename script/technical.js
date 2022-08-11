@@ -126,7 +126,7 @@ btn1.addEventListener("click", () => {  //Generate
     if (someChanged) {
         calc();
         createTable();
-        showElement(zpList);
+        showElement(document.querySelector(".zpList"));
         numOfClick = 0;
     }
     addAnim(zpList, "anim");
@@ -162,9 +162,13 @@ modalDownload.addEventListener("click", (e) => { //modal events
     }
     if (e.target && e.target.matches("#btn4")) {
         const date = setDate();
-        trySave("A4", "landskape", "fonts", zpList, 0, 0, 419.53, 595.28, `Расчётный лист ${date}.pdf`);
+        trySave("A5", "portrait", "fonts", zpList, 0, 0, 425, 595, `Расчётный лист ${date}.pdf`);
     }
     if (e.target && e.target.matches("#btn5")) {
+        const date = setDate();
+        trySave("A4", "landskape", "fonts", zpList, 0, 0, 425, 595, `Расчётный лист ${date}.pdf`);
+    }
+    if (e.target && e.target.matches("#btn6")) {
         const date = setDate();
         trySave([150.23, 164.41], "portrait", "", qRCode, 0, 5, 150.228 , 150.228, `Qrcode ${date}.pdf`);
     }
