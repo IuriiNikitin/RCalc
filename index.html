@@ -16,282 +16,293 @@
     <title>RCalc</title>
 </head>
 <body>
-    <div class="tableWrapper">
-        <table class="up">
-            <tr>
-                <td class="left">СТАВКА</td>
-                <td class="right"><input class="delvalue" id="rate" type="number" data-default="280.00" value="280.00"></td>
+    <section class="calc">
+        <section class="table_and_buttons">
+            <div class="tableWrapper">
+                <table class="up">
+                    <tr>
+                        <td class="left">СТАВКА</td>
+                        <td class="right"><input class="delvalue" id="rate" type="number" data-default="280.00" value="280.00"></td>
+                    </tr>
+                    <tr>
+                        <td class="left">ГРАФИК</td>
+                        <td class="right"><input name="sch" value="14" type="radio">14
+                            <input name="sch" value="16" type="radio" checked>16
+                        </td>
+                    </tr>
+
+        <tr>
+            <td class="left small">
+                <div class="text_and_button">
+                    <div class="text">ДНЕВНЫХ СМЕН<br><small><small>без учёта сверхурочных</small></small></div>
+                    <button class="altDays">Alt</button>
+                </div>
+            </td>
+            <td class="right"><input class="zero days delvalue" id="md" type="number" data-default="0" value="0"></td>
             </tr>
-            <tr>
-                <td class="left">ГРАФИК</td>
-                <td class="right"><input name="sch" value="14" type="radio">14
-                    <input name="sch" value="16" type="radio" checked>16
+
+        <tr class="hide">
+            <td class="left small">
+                <div class="text_and_button">
+                    <div class="text">ДНЕВНЫХ ЧАСОВ<br><small><small>без учёта сверхурочных</small></small></div>
+                    <button class="altHours">Alt</button>
+                </div>
+            </td>
+
+            <td class="right">
+                <div class="input-number">
+                    <div class="input-number__minus"><</div>
+                    <input class="zero dayhours" id="mh" type="number" data-default="0" value="0">
+                    <div class="input-number__plus">></div>
+                </div>
+            </td>
+            </tr>
+
+            <tr class="night">
+                <td class="left small">
+                    <div class="text_and_button">
+                        <div class="text">НОЧНЫХ СМЕН<br><small><small>без учёта сверхурочных</small></small></div>
+                        <button class="altDays">Alt</button>
+                    </div>
+                </td>    
+                <td class="right"><input class="zero nights delvalue" id="nd" type="number" data-default="0" value="0"></td>
+            </tr>
+
+            <tr class="hide">
+                <td class="left small">
+                    <div class="text_and_button">
+                        <div class="text">НОЧНЫХ ЧАСОВ<br><small><small>без учёта сверхурочных</small></small></div>
+                        <button class="altHours">Alt</button>
+                    </div>
                 </td>
+
+        <td class="right">
+            <div class="input-number">
+                <div class="input-number__minus"><</div> 
+                <input class="zero nighthours" id="nh" type="number" data-default="0" value="0">
+                        <div class="input-number__plus">></div>
+                </div>
+        </td>
+        </tr>
+
+            <tr>
+                <td class="left small">
+                    <div class="text_and_button">
+                <div class="text">ДНЕВНЫХ СМЕН<br><small><small>по графику</small></small></div>
+                <button class="altDays">Alt</button>
+                </div>
+                </td>
+                <td class="right"><input class="zero days delvalue" id="mdg" type="number" data-default="0" value="0"></td>
             </tr>
 
-<tr>
-    <td class="left small">
-        <div class="text_and_button">
-            <div class="text">ДНЕВНЫХ СМЕН<br><small><small>без учёта сверхурочных</small></small></div>
-            <button class="altDays">Alt</button>
-        </div>
-    </td>
-    <td class="right"><input class="zero days delvalue" id="md" type="number" data-default="0" value="0"></td>
-    </tr>
+            <tr class="hide">
+                <td class="left small">
+                    <div class="text_and_button">
+                        <div class="text">ДНЕВНЫХ ЧАСОВ<br><small><small>по графику</small></small></div>
+                        <button class="altHours">Alt</button>
+                    </div>
+                </td>
+                <td class="right">
+                    <div class="input-number">
+                        <div class="input-number__minus"><</div>
+                        <input class="zero dayhours" id="mhg" type="number" data-default="0" value="0">
+                        <div class="input-number__plus">></div>
+                    </div>
+                </td>
+                </tr>
 
-<tr class="hide">
-    <td class="left small">
-        <div class="text_and_button">
-            <div class="text">ДНЕВНЫХ ЧАСОВ<br><small><small>без учёта сверхурочных</small></small></div>
-            <button class="altHours">Alt</button>
-        </div>
-    </td>
-
-    <td class="right">
-        <div class="input-number">
-            <div class="input-number__minus"><</div>
-            <input class="zero dayhours" id="mh" type="number" data-default="0" value="0">
-            <div class="input-number__plus">></div>
-        </div>
-    </td>
-    </tr>
-
-    <tr class="night">
-        <td class="left small">
-            <div class="text_and_button">
-                <div class="text">НОЧНЫХ СМЕН<br><small><small>без учёта сверхурочных</small></small></div>
+            <tr class="night">
+                <td class="left small">
+                    <div class="text_and_button">
+                <div class="text">НОЧНЫХ СМЕН<br><small><small>по графику</small></small></div>
                 <button class="altDays">Alt</button>
-            </div>
-        </td>    
-        <td class="right"><input class="zero nights delvalue" id="nd" type="number" data-default="0" value="0"></td>
-    </tr>
+                </div>
+                </td>
+                <td class="right"><input class="zero nights delvalue" id="ndg" type="number" data-default="0" value="0"></td>
+            </tr>
 
-    <tr class="hide">
-        <td class="left small">
-            <div class="text_and_button">
-                <div class="text">НОЧНЫХ ЧАСОВ<br><small><small>без учёта сверхурочных</small></small></div>
-                <button class="altHours">Alt</button>
-            </div>
-        </td>
+            <tr class="hide">
+                <td class="left small">
+                    <div class="text_and_button">
+                        <div class="text">НОЧНЫХ ЧАСОВ<br><small><small>по графику</small></small></div>
+                        <button class="altHours">Alt</button>
+                    </div>
+                </td>
+                <td class="right">
+                    <div class="input-number">
+                        <div class="input-number__minus"><</div>
+                        <input class="zero nighthours" id="nhg" type="number" data-default="0" value="0">
+                        <div class="input-number__plus">></div>
+                    </div>
+                </td>
+                </tr>
 
-<td class="right">
-    <div class="input-number">
-        <div class="input-number__minus"><</div> 
-        <input class="zero nighthours" id="nh" type="number" data-default="0" value="0">
-                <div class="input-number__plus">></div>
-        </div>
-</td>
-</tr>
+            </table>
 
-    <tr>
-        <td class="left small">
-            <div class="text_and_button">
-           <div class="text">ДНЕВНЫХ СМЕН<br><small><small>по графику</small></small></div>
-           <button class="altDays">Alt</button>
-        </div>
-        </td>
-        <td class="right"><input class="zero days delvalue" id="mdg" type="number" data-default="0" value="0"></td>
-    </tr>
-
-    <tr class="hide">
-        <td class="left small">
-            <div class="text_and_button">
-                <div class="text">ДНЕВНЫХ ЧАСОВ<br><small><small>по графику</small></small></div>
-                <button class="altHours">Alt</button>
+        <details>
+            
+            <summary>ДОПОЛНИТЕЛЬНЫЕ СМЕНЫ</summary>
+            <table>
+        <tr>
+            <td class="left small">
+                <div class="text_and_button">
+            <div class="text">СВЕРХУРОЧНЫХ<br><small><small>дневных смен</small></small></div>
+            <button class="altDays">Alt</button>
             </div>
         </td>
-        <td class="right">
-            <div class="input-number">
-                <div class="input-number__minus"><</div>
-                <input class="zero dayhours" id="mhg" type="number" data-default="0" value="0">
-                <div class="input-number__plus">></div>
-            </div>
-        </td>
+            <td class="right"><input class="zero days delvalue" id="omd" type="number" data-default="0" value="0"></td>
         </tr>
 
-    <tr class="night">
-        <td class="left small">
-            <div class="text_and_button">
-           <div class="text">НОЧНЫХ СМЕН<br><small><small>по графику</small></small></div>
-           <button class="altDays">Alt</button>
-        </div>
-        </td>
-        <td class="right"><input class="zero nights delvalue" id="ndg" type="number" data-default="0" value="0"></td>
-    </tr>
-
-    <tr class="hide">
-        <td class="left small">
-            <div class="text_and_button">
-                <div class="text">НОЧНЫХ ЧАСОВ<br><small><small>по графику</small></small></div>
-                <button class="altHours">Alt</button>
+        <tr class="hide">
+            <td class="left small">
+                <div class="text_and_button">
+            <div class="text">СВЕРХУРОЧНЫХ<br><small><small>дневных часов</small></small></div>
+            <button class="altHours">Alt</button>
             </div>
-        </td>
-        <td class="right">
-            <div class="input-number">
-                <div class="input-number__minus"><</div>
-                <input class="zero nighthours" id="nhg" type="number" data-default="0" value="0">
+            </td>
+
+            <td class="right">
+                <div class="input-number">
+                    <div class="input-number__minus"><</div>
+                <input class="zero dayhours" id="omh" type="number" data-default="0" value="0">
                 <div class="input-number__plus">></div>
             </div>
-        </td>
+            </td>
         </tr>
 
-    </table>
+        <tr>
+            <td class="left small">
+                <div class="text_and_button">
+            <div class="text">СВЕРХУРОЧНЫХ<br><small><small>ночных смен</small></small></div>
+            <button class="altDays">Alt</button>
+            </div>
+            </td>
+            <td class="right"><input class="zero nights delvalue" id="ond" type="number" data-default="0" value="0"></td>
+        </tr>
+        <tr class="hide">
+            <td class="left small">
+                <div class="text_and_button">
+            <div class="text">СВЕРХУРОЧНЫХ<br><small><small>ночных часов</small></small></div>
+            <button class="altHours">Alt</button>
+            </div>
+            </td>
 
-<details>
+            <td class="right">
+                <div class="input-number">
+                    <div class="input-number__minus"><</div>
+                <input class="zero nighthours" id="onh" type="number" data-default="0" value="0">
+                <div class="input-number__plus">></div>
+            </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="left small">
+                <div class="text_and_button">
+            <div class="text">ПРАЗДНИЧНЫХ<br><small><small>дневных смен</small></small></div>
+            <button class="altDays">Alt</button>
+            </div>
+            </td>
+            <td class="right"><input class="zero days delvalue" id="mhd" type="number" data-default="0" value="0"></td>
+        </tr>
+        <tr class="hide">
+            <td class="left small">
+                <div class="text_and_button">
+            <div class="text">ПРАЗДНИЧНЫХ<br><small><small>дневных часов</small></small></div>
+            <button class="altHours">Alt</button>
+            </div>
+            </td>
+
+            <td class="right">
+                <div class="input-number">
+                    <div class="input-number__minus"><</div>
+                <input class="zero dayhours" id="mhh" type="number" data-default="0" value="0">
+                <div class="input-number__plus">></div>
+            </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="left small">
+                <div class="text_and_button">
+            <div class="text">ПРАЗДНИЧНЫХ<br><small><small>ночных смен</small></small></div>
+            <button class="altDays">Alt</button>
+                </div>
+            </td>
+            <td class="right"><input class="zero nights delvalue" id="nhd" type="number" data-default="0" value="0"></td>
+        </tr>
+
+        <tr class="hide">
+            <td class="left small">
+                <div class="text_and_button">
+            <div class="text">ПРАЗДНИЧНЫХ<br><small><small>ночных часов</small></small></div>
+            <button class="altHours">Alt</button>
+            </div>
+            </td>
+
+            <td class="right">
+                <div class="input-number">
+                    <div class="input-number__minus"><</div>
+                <input class="zero nighthours" id="nhh" type="number" data-default="0" value="0">
+                <div class="input-number__plus">></div>
+            </div>
+            </td>
+        </tr>
+        </table>
+        </details>
+
+        <table>
+            <tr>
+                <td class="left small">ВЫПЛАТЫ ИЗ <big>ФНП</big><br><small><small>(фонд нач. подразделения)</small></small></td>
+                <td  class="right"><input class="zero delvalue" id="fnp" type="number" data-default="0" value="0"></td>
+            </tr>
+            <tr>
+                <td class="left">МНОГОСТАНОЧКА</td>
+                <td class="right"><input id="ms" type="checkbox" checked></td>
+            </tr>
+
+        <tr><td class="left">ВЫСЛУГА</td>
+            <td class="right">
+                <select>
+                    <option name="lms" value="0">0 Рублей</option>
+                    <option name="lms" value="2000">2000 Рублей</option>
+                    <option name="lms" value="3000">3000 Рублей</option>
+                    <option name="lms" value="5000">5000 Рублей</option>
+                    <option name="lms" value="6000">6000 Рублей</option>
+                    <option name="lms" value="7000">7000 Рублей</option>
+                    <option name="lms" value="8000" selected>8000 Рублей</option>
+                    <option name="lms" value="10000">10000 Рублей</option>
+                </select>
+            </td></tr>
+
+        <tr><td class="left">РАЗРЯД</td>
+            <td class="right">
+                <select>
+                    <option name="lvl" value="0">0 Рублей</option>
+                    <option name="lvl" value="2000" selected>2000 Рублей</option>
+                    <option name="lvl" value="4000">4000 Рублей</option>
+                </select>
+            </td></tr>
+
+        <tr><td class="left">КУЛЬТУРА (%)</td>      <td class="right"><input class="delvalue" id="cul" type="number" data-default="0" value="0"></td></tr>
+        <tr><td class="left">КОЭФФИЦИЕНТ</td>        <td class="right"><input class="delvalue"  id="coe" type="number" data-default="2" value="2"></td></tr>
+        <tr><td class="left">АВАНС</td>        <td class="right"><input class="delvalue" id="prp" type="number" data-default="34800.00" value="34800.00"></td></tr>
+        </table>
+        </div>
+        <div class="btnwrapper">
+            <button class="btn" id="btn3"><img width="20" src="img/share.svg"></button>
+            <button class="btn" id="btn2" disabled><img width="20" src="img/download.svg"></button>
+            <button class="btn" id="btn1" disabled>Generate<img style="margin-left: 5px;" width="25" src="img/generate.svg"></button>
+        </div>
+    </section>
+
+    <section class="sheet">
+        <div class="zpList hide">
+            <svg viewBox="0 0 425 595" id="zpList"/>
+        </div>
+    </section>
     
-    <summary>ДОПОЛНИТЕЛЬНЫЕ СМЕНЫ</summary>
-    <table>
-<tr>
-    <td class="left small">
-        <div class="text_and_button">
-       <div class="text">СВЕРХУРОЧНЫХ<br><small><small>дневных смен</small></small></div>
-       <button class="altDays">Alt</button>
-    </div>
-</td>
-    <td class="right"><input class="zero days delvalue" id="omd" type="number" data-default="0" value="0"></td>
-</tr>
-
-<tr class="hide">
-    <td class="left small">
-        <div class="text_and_button">
-       <div class="text">СВЕРХУРОЧНЫХ<br><small><small>дневных часов</small></small></div>
-       <button class="altHours">Alt</button>
-    </div>
-    </td>
-
-    <td class="right">
-        <div class="input-number">
-            <div class="input-number__minus"><</div>
-        <input class="zero dayhours" id="omh" type="number" data-default="0" value="0">
-        <div class="input-number__plus">></div>
-    </div>
-    </td>
-</tr>
-
-<tr>
-    <td class="left small">
-        <div class="text_and_button">
-       <div class="text">СВЕРХУРОЧНЫХ<br><small><small>ночных смен</small></small></div>
-       <button class="altDays">Alt</button>
-    </div>
-    </td>
-    <td class="right"><input class="zero nights delvalue" id="ond" type="number" data-default="0" value="0"></td>
-</tr>
-<tr class="hide">
-    <td class="left small">
-        <div class="text_and_button">
-       <div class="text">СВЕРХУРОЧНЫХ<br><small><small>ночных часов</small></small></div>
-       <button class="altHours">Alt</button>
-    </div>
-    </td>
-
-    <td class="right">
-        <div class="input-number">
-            <div class="input-number__minus"><</div>
-        <input class="zero nighthours" id="onh" type="number" data-default="0" value="0">
-        <div class="input-number__plus">></div>
-    </div>
-    </td>
-</tr>
-
-<tr>
-    <td class="left small">
-        <div class="text_and_button">
-       <div class="text">ПРАЗДНИЧНЫХ<br><small><small>дневных смен</small></small></div>
-       <button class="altDays">Alt</button>
-       </div>
-    </td>
-    <td class="right"><input class="zero days delvalue" id="mhd" type="number" data-default="0" value="0"></td>
-</tr>
-<tr class="hide">
-    <td class="left small">
-        <div class="text_and_button">
-       <div class="text">ПРАЗДНИЧНЫХ<br><small><small>дневных часов</small></small></div>
-       <button class="altHours">Alt</button>
-    </div>
-    </td>
-
-    <td class="right">
-        <div class="input-number">
-            <div class="input-number__minus"><</div>
-        <input class="zero dayhours" id="mhh" type="number" data-default="0" value="0">
-        <div class="input-number__plus">></div>
-    </div>
-    </td>
-</tr>
-
-<tr>
-    <td class="left small">
-        <div class="text_and_button">
-       <div class="text">ПРАЗДНИЧНЫХ<br><small><small>ночных смен</small></small></div>
-       <button class="altDays">Alt</button>
-        </div>
-    </td>
-    <td class="right"><input class="zero nights delvalue" id="nhd" type="number" data-default="0" value="0"></td>
-</tr>
-
-<tr class="hide">
-    <td class="left small">
-        <div class="text_and_button">
-       <div class="text">ПРАЗДНИЧНЫХ<br><small><small>ночных часов</small></small></div>
-       <button class="altHours">Alt</button>
-    </div>
-    </td>
-
-    <td class="right">
-        <div class="input-number">
-            <div class="input-number__minus"><</div>
-        <input class="zero nighthours" id="nhh" type="number" data-default="0" value="0">
-        <div class="input-number__plus">></div>
-    </div>
-    </td>
-</tr>
-</table>
-</details>
-
-<table>
-    <tr>
-        <td class="left small">ВЫПЛАТЫ ИЗ <big>ФНП</big><br><small><small>(фонд нач. подразделения)</small></small></td>
-        <td  class="right"><input class="zero delvalue" id="fnp" type="number" data-default="0" value="0"></td>
-    </tr>
-    <tr>
-        <td class="left">МНОГОСТАНОЧКА</td>
-        <td class="right"><input id="ms" type="checkbox" checked></td>
-    </tr>
-
-<tr><td class="left">ВЫСЛУГА</td>
-    <td class="right">
-        <select>
-            <option name="lms" value="0">0 Рублей</option>
-            <option name="lms" value="2000">2000 Рублей</option>
-            <option name="lms" value="3000">3000 Рублей</option>
-            <option name="lms" value="5000">5000 Рублей</option>
-            <option name="lms" value="6000">6000 Рублей</option>
-            <option name="lms" value="7000">7000 Рублей</option>
-            <option name="lms" value="8000" selected>8000 Рублей</option>
-            <option name="lms" value="10000">10000 Рублей</option>
-        </select>
-    </td></tr>
-
-<tr><td class="left">РАЗРЯД</td>
-    <td class="right">
-        <select>
-            <option name="lvl" value="0">0 Рублей</option>
-            <option name="lvl" value="2000" selected>2000 Рублей</option>
-            <option name="lvl" value="4000">4000 Рублей</option>
-        </select>
-    </td></tr>
-
-<tr><td class="left">КУЛЬТУРА (%)</td>      <td class="right"><input class="delvalue" id="cul" type="number" data-default="0" value="0"></td></tr>
-<tr><td class="left">КОЭФФИЦИЕНТ</td>        <td class="right"><input class="delvalue"  id="coe" type="number" data-default="2" value="2"></td></tr>
-<tr><td class="left">АВАНС</td>        <td class="right"><input class="delvalue" id="prp" type="number" data-default="34800.00" value="34800.00"></td></tr>
-</table>
-</div>
-<div class="btnwrapper">
-    <button class="btn" id="btn3"><img width="20" src="img/share.svg"></button>
-    <button class="btn" id="btn2" disabled><img width="20" src="img/download.svg"></button>
-    <button class="btn" id="btn1" disabled>Generate<img style="margin-left: 5px;" width="25" src="img/generate.svg"></button>
-</div>
+        </section>
 
 <div id="modal_download" class="modal hide">
     <div class="modal__dialog">
@@ -311,12 +322,6 @@
 </div>
 
     <div class="browser_message hide"></div>
-
-<div class="zpList hide">
-    <svg viewBox="0 0 425 595" id="zpList"/>
-</div>
-    
-
 <script src="script/loadScript.js"></script>
 
 </body>
