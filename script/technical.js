@@ -128,6 +128,7 @@ btn1.addEventListener("click", () => {  //Generate
         createTable();
         showElement(document.querySelector(".zpList"));
         numOfClick = 0;
+        setSheetSize();
     }
     addAnim(zpList, "anim");
     someChanged = false;
@@ -251,11 +252,13 @@ function sch14() {
     ndg.value = 0;
     nighthours[0].value = 0;
     nighthours[1].value = 0;
+    setSheetSize();
 }
 function sch16() {
     night.forEach(row => {
         showElement(row);
     });
+    setSheetSize();
 }
 tableWrapper.addEventListener("focusin", (e) => {
     if (e.target && e.target.matches("input.delvalue[type='number']")) {
@@ -462,4 +465,15 @@ if (nextInput && nextInput.classList.contains("nighthours") || previousInput && 
         hideElement(e.target.parentElement.parentElement.parentElement);
         showElement(e.target.parentElement.parentElement.parentElement.previousElementSibling);
     }
+    if(e.target && e.target.matches("summary")) {
+        setTimeout(setSheetSize, 100);
+    }
 });
+
+function setSheetSize() {
+    const sheet = document.querySelector(".sheet");
+    const tableAndBtns = document.querySelector(".table_and_buttons");
+    const tableAndBtnsHight = +window.getComputedStyle(tableAndBtns).height.match(/\d/igm).join("") - 40;
+    sheet.style = `width:${tableAndBtnsHight/1.4}px;`;
+    createTable();
+}

@@ -13,6 +13,8 @@
 }
 
 body {
+  margin: 0px;
+  padding-bottom: 20px;
   background-color: #35363A;
   font-size: 10pt;
   font-weight: bold;
@@ -20,15 +22,6 @@ body {
   font-family: "Arial", sans-serif;
   text-align: center;
   height: 100%;
-}
-
-main {
-  max-width: 95%;
-  margin: auto;
-}
-
-.up {
-  margin-top: 5vh;
 }
 
 table {
@@ -169,9 +162,12 @@ input[type=checkbox] {
   background-color: #007399;
   transform: scale(0.98);
 }
+.btn:hover {
+  background-color: #007399;
+}
 
 #zpList {
-  max-width: 350px;
+  /* max-width: 350px; */
   min-width: 305px;
   margin: auto;
   opacity: 0;
@@ -346,11 +342,19 @@ select {
   display: none;
 }
 
-/* .calc {
+.calc {
   display: flex;
   align-content: center;
-  justify-content:space-evenly;
+  justify-content:center;
   align-items: center;
   flex-direction: row-reverse;
   flex-wrap: wrap;
-} */
+}
+.sheet {
+  margin: 0 10px;
+  width: 466px;
+}
+.tableWrapper {
+  margin: 0 10px;
+  margin-top: 20px;
+}

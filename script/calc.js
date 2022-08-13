@@ -170,12 +170,17 @@ function fixed(obj) {
 function space(obj) {
     for (let key in obj) {
         if (typeof (obj[key]) != "object") {
-            if (obj[key].length == 7) {
-                obj[key] = obj[key].slice(0, 1) + " " + obj[key].slice(1);
-            } else if (obj[key].length == 8) {
-                obj[key] = obj[key].slice(0, 2) + " " + obj[key].slice(2);
-            } else if (obj[key].length == 9) {
-                obj[key] = obj[key].slice(0, 3) + " " + obj[key].slice(3);
+            
+            switch(obj[key].length) {
+                case 7:
+                    obj[key] = obj[key].slice(0, 1) + " " + obj[key].slice(1);
+                    break;
+                case 8:
+                    obj[key] = obj[key].slice(0, 2) + " " + obj[key].slice(2);
+                    break;
+                case 9:
+                    obj[key] = obj[key].slice(0, 3) + " " + obj[key].slice(3);
+                    break;
             }
         } else{
             space(obj[key]);
