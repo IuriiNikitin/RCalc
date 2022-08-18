@@ -166,16 +166,6 @@ input[type=checkbox] {
   background-color: #007399;
 }
 
-#zpList {
-  /* max-width: 350px; */
-  min-width: 305px;
-  margin: auto;
-  opacity: 0;
-}
-.zpList {
-  display: flex;
-  }
-
 @keyframes spoiler {
   from {
     opacity: 0;
@@ -357,4 +347,10 @@ select {
 .tableWrapper {
   margin: 0 10px;
   margin-top: 20px;
+}
+#zpList {
+  /* max-width: 350px; */
+  /* min-width: 305px; */
+  margin: auto;
+  opacity: 0;
 }

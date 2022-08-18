@@ -126,7 +126,7 @@ btn1.addEventListener("click", () => {  //Generate
     if (someChanged) {
         calc();
         createTable();
-        showElement(document.querySelector(".zpList"));
+        showElement(document.getElementById("zpList"));
         numOfClick = 0;
         setSheetSize();
     }
