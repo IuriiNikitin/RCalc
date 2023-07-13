@@ -13,6 +13,8 @@
 }
 
 body {
+  margin: 0px;
+  padding-bottom: 20px;
   background-color: #35363A;
   font-size: 10pt;
   font-weight: bold;
@@ -20,15 +22,6 @@ body {
   font-family: "Arial", sans-serif;
   text-align: center;
   height: 100%;
-}
-
-main {
-  max-width: 95%;
-  margin: auto;
-}
-
-.up {
-  margin-top: 5vh;
 }
 
 table {
@@ -119,7 +112,6 @@ input[type=checkbox] {
   max-width: 220px;
   height: 40px;
   margin: auto;
-  margin-top: 20px;
   background-color: #008CBA;
   border: solid 1px #FFFFFF;
   color: white;
@@ -135,7 +127,7 @@ input[type=checkbox] {
   width: 95%;
   max-width: 350px;
   min-width: 305px;
-  margin: auto;
+  margin: 20px auto;
 }
 
 .btn#btn1 {
@@ -153,6 +145,8 @@ input[type=checkbox] {
 }
 
 .btn {
+  cursor: pointer;
+  outline: none;
   margin-left: 3px;
   margin-right: 3px;
 }
@@ -168,11 +162,8 @@ input[type=checkbox] {
   background-color: #007399;
   transform: scale(0.98);
 }
-
-#zpList {
-  margin: auto;
-  margin-top: 15px;
-  opacity: 0;
+.btn:hover {
+  background-color: #007399;
 }
 
 @keyframes spoiler {
@@ -198,6 +189,7 @@ input[type=checkbox] {
 }
 .altDays,
 .altHours {
+  cursor: pointer;
   align-items: center;
   justify-content: center;
   width: 30px;
@@ -265,14 +257,14 @@ select {
 .btnwrapper_download {
   margin: auto;
   display: block;
-  }
-  .btn_download {
+}
+.btn_download {
   display:inline-block;
   border-color: #000;
   margin: 5px;
   max-width: 200px;
   width: 90%;
-  }
+}
 
 .modal {
   position: fixed;
@@ -283,14 +275,12 @@ select {
   height: 100%;
   overflow: hidden;
   background-color: rgba(0, 0, 0, .5);
-  /* opacity: 0; */
 }
 
 .modal__dialog {
-  max-width: 400px;
-  /* margin: 60px auto */
-  margin: 40vh auto;
-  margin:calc(50vh - 91px) auto
+  width: 100%;
+  height: 100%;
+  display: flex;
 }
 
 .modal__content {
@@ -302,7 +292,6 @@ select {
   background-color: #ffffff;
   border: 1px solid rgba(0, 0, 0, .2);
   border-radius: 10px;
-  max-height: 80vh;
   overflow-y: auto
 }
 
@@ -341,4 +330,27 @@ select {
 
 .hide {
   display: none;
+}
+
+.calc {
+  display: flex;
+  align-content: center;
+  justify-content:center;
+  align-items: center;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+}
+.sheet {
+  margin: 0 10px;
+  width: 466px;
+}
+.tableWrapper {
+  margin: 0 10px;
+  margin-top: 20px;
+}
+#zpList {
+  /* max-width: 350px; */
+  /* min-width: 305px; */
+  margin: auto;
+  opacity: 0;
 }
