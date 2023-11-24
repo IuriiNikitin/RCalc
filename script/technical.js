@@ -129,6 +129,19 @@ const trySave = (size, layout, fonts, svg, x, y, width, height, name) => {
   }
   attempt();
 };
+function saveSvg(svgEl, name) {
+  svgEl.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  const svgData = svgEl.outerHTML;
+  const preface = '<?xml version="1.0" standalone="no"?>\r\n';
+  const svgBlob = new Blob([preface, svgData], {type:"image/svg+xml;charset=utf-8"});
+  const svgUrl = URL.createObjectURL(svgBlob);
+  const downloadLink = document.createElement("a");
+  downloadLink.href = svgUrl;
+  downloadLink.download = name;
+  document.body.append(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
+}
 btn1.addEventListener("click", () => {
   //Generate
   if (someChanged) {
@@ -213,6 +226,10 @@ modalDownload.addEventListener("click", (e) => {
       150.228,
       `Qrcode ${date}.pdf`
     );
+  }
+  if (e.target && e.target.matches("#btn7")) {
+    const date = setDate();
+    saveSvg(zpList, `Расчётный лист ${date}.svg`);
   }
 });
 
