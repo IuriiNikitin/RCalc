@@ -254,7 +254,7 @@ function createTable() {
     qRCode.append(style);
 
     new Rect(-10, -10, 170.228, 210.228, "st7", qRCode).render();
-    new Text(13, 152, "st9", "https://ykypika.github.io/ZP_GOZ/", qRCode).render();
+    new Text(13, 152, "st9", "https://ykypika.github.io/RCalc/", qRCode).render();
     new Hyperlink(42, 181, "st8", "RCalc", link, qRCode).render();
 
 
